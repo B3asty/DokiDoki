@@ -9,8 +9,8 @@ const path = require('path');
 //const DBL = require("dblapi.js");
 //const dbl = new DBL('process.env.dbl');
 const client = new CommandoClient({
-    commandPrefix: '<',
-    unknownCommandResponse: false,
+    commandPrefix: '<<',
+    unknownCommandResponse: true,
     owner: ['193021560792154112', '111469545637605376'],
     disableEveryone: true, 
     //connectionString: connectionString,
