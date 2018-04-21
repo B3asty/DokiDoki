@@ -3,6 +3,7 @@ const { CommandoClient, SQLiteProvider } = require('discord.js-commando');
 const { Pool } = require('pg')
 const connectionString = require(process.env.DATABASE_URL)
 */
+const prefix = "<<"
 const oneLine = require('common-tags').oneLine;
 const sqlite = require('sqlite');
 const path = require('path');
