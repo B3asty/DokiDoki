@@ -154,7 +154,10 @@ module.exports = class animeCommand extends Command {
 		  }
 
 		  ) // contains the json result on success
-		  .catch(err => msg.channel.send("Something went wrong, please try again."));
+		  .catch(err => {
+		  	msg.channel.send("Something went wrong, please try again.")
+		  	console.log(err);
+		  });
 	   
 		  function inputAn(anarr){
 		  	msg.channel.awaitMessages(m => m.author.id == msg.author.id, { max: 1, time: 30000, errors: ['time'] })
