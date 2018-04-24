@@ -100,6 +100,7 @@ module.exports = class animeCommand extends Command {
 	// search my animelist
 		mal.anime.search(anm)
 		  .then(result => {
+		  	console.log(result)
 		  	if(result.anime.length > 1){
 		  		var titles = "";
 
