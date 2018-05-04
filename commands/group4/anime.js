@@ -96,6 +96,7 @@ module.exports = class animeCommand extends Command {
 
 	    var anm = args.name+'';
 	    var embed = new RichEmbed()
+	    var embedst2 = new RichEmbed()
 
 	// search my animelist
 		mal.anime.search(anm)
@@ -103,16 +104,38 @@ module.exports = class animeCommand extends Command {
 		  	console.log(result)
 		  	if(result.anime.length > 1){
 		  		var titles = "";
-
+		  		var titles2 = "";
 		  		embed.setTitle("Multiple Anime found");
-		  		for (var i = 0; i < result.anime.length; i++) {  			
-		  			titles = titles + "**["+ (i+1) + "]** " + result.anime[i].title + "\n";
+		  		embedst2.setTitle("Multiple Anime found");
+		  		if(result.anime.length < 30){
+		  			for (var i = 0; i < result.anime.length; i++) {  			
+			  			titles = titles + "**["+ (i+1) + "]** " + result.anime[i].title + "\n";
+			  		}
+
+			  		titles = titles+"\n**Please enter the number of the Anime you want to view** \n**Or type** `cancel` **to cancel the command**"
+			  		embed.setDescription(titles)
+
+			  		msg.channel.send(embed)
+		  		}else{
+		  			for (var i = 0; i < 30; i++) {  			
+			  			titles = titles + "**["+ (i+1) + "]** " + result.anime[i].title + "\n";
+			  		}
+
+			  		titles = titles+"\n**Please enter the number of the Anime you want to view** \n**Or type** `cancel` **to cancel the command**"
+			  		embed.setDescription(titles)
+
+			  		msg.channel.send(embed)
+
+			  		for (var i = 30; i < result.anime.length; i++) {  			
+			  			titles2 = titles2 + "**["+ (i+1) + "]** " + result.anime[i].title + "\n";
+			  		}
+
+			  		titles2 = titles2+"\n**Please enter the number of the Anime you want to view** \n**Or type** `cancel` **to cancel the command**"
+			  		embedst2.setDescription(titles2)
+
+			  		msg.channel.send(embedst2)
 		  		}
-
-		  		titles = titles+"\n**Please enter the number of the Anime you want to view** \n**Or type** `cancel` **to cancel the command**"
-		  		embed.setDescription(titles)
-
-		  		msg.channel.send(embed)
+		  		
 				inputAn(result.anime)
 
 		  	}else {
