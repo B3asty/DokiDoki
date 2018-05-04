@@ -150,7 +150,7 @@ module.exports = class animeCommand extends Command {
 				        }
 
 				        var desc = res.synopsis.toString().replace(/<.*>/g,' ').replace(/&#039;/g,"'").replace(/\[.*\]/g,' ');
-				        (desc.length > 2048){
+				        if(desc.length > 2048){
 				        	desc = desc.substring(0,2047).substring(0,desc.lastIndexOf('.'))
 				        }
 
