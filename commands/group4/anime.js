@@ -150,9 +150,9 @@ module.exports = class animeCommand extends Command {
 				        }
 
 				        var desc = res.synopsis.toString().replace(/<.*>/g,' ').replace(/&#039;/g,"'").replace(/\[.*\]/g,' ');
-				        /*if(desc.length > 1024){
-				        	desc = desc.substring(0,1023).substring(0,desc.lastIndexOf('.'))
-				        }*/
+				        (desc.length > 2048){
+				        	desc = desc.substring(0,2047).substring(0,desc.lastIndexOf('.'))
+				        }
 
 				        embed.setTitle(res.title,true)
 					  	embed.setDescription("**Description**\n"+desc)
@@ -244,9 +244,9 @@ module.exports = class animeCommand extends Command {
 				        }
 
 				        var desc = csn.synopsis.toString().replace(/<.*>/g,' ').replace(/&#039;/g,"'").replace(/\[.*\]/g,' ');
-				        /*if(desc.length > 1024){
-				        	desc = desc.substring(0,1023).substring(0,desc.lastIndexOf('.'))
-				        }*/
+				        if(desc.length > 2048){
+				        	desc = desc.substring(0,2047).substring(0,desc.lastIndexOf('.'))
+				        }
 
 				        embed2.setTitle(csn.title,true)
 					  	embed2.setDescription("**Description**\n"+desc)
