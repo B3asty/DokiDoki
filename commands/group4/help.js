@@ -23,16 +23,19 @@ module.exports = class HelpCommand extends Command {
         const groups = this.client.registry.groups;
         const commands = this.client.registry.findCommands();
 
-        const grp1c = commands.findAll('groupID','group1');
-        var grp1 = "";
-        if(grp1c.length > 0){
-            for(var i = 0; i < grp1c.length; i++){
-                grp1=grp1+"`"+grp1c[i].name+"`";
-                if(i+1 < grp1c.length){
-                    grp1=grp1+", ";
+        if(commands.findAll('groupID','group1')){
+            const grp1c = commands.findAll('groupID','group1');
+            var grp1 = "";
+            if(grp1c.length > 0){
+                for(var i = 0; i < grp1c.length; i++){
+                    grp1=grp1+"`"+grp1c[i].name+"`";
+                    if(i+1 < grp1c.length){
+                        grp1=grp1+", ";
+                    }
                 }
             }
         }
+        
 
 
         const grp2c = commands.findAll('groupID','group2');
@@ -110,9 +113,12 @@ module.exports = class HelpCommand extends Command {
                 }else{
 
                     embed.setTitle('DokiDoki Commands')
-                    if(grp1c.length > 0){
-                        embed.addField(groups.find('id','group1').name+"",grp1+" ")
+                    if(grp1c){
+                        if(grp1c.length > 0){
+                            embed.addField(groups.find('id','group1').name+"",grp1+" ")
+                        }
                     }
+                    
                     if(grp2c.length > 0){
                         embed.addField(groups.find('id','group2').name+"",grp2+" ")
                     }
