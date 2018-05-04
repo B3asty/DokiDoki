@@ -113,7 +113,7 @@ module.exports = class HelpCommand extends Command {
                 }else{
 
                     embed.setTitle('DokiDoki Commands')
-                    if(grp1c){
+                    if(commands.findAll('groupID','group1')){
                         if(grp1c.length > 0){
                             embed.addField(groups.find('id','group1').name+"",grp1+" ")
                         }
