@@ -112,7 +112,8 @@ module.exports = class animeCommand extends Command {
 		  		titles = titles+"\n**Please enter the number of the Anime you want to view** \n**Or type** `cancel` **to cancel the command**"
 		  		embed.setDescription(titles)
 
-				msg.channel.send(embed)
+		  		msg.channel.send(embed)
+				inputAn(result.anime)
 
 		  	}else {
 		  		var res = result.anime[0];
