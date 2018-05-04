@@ -22,9 +22,9 @@ module.exports = class HelpCommand extends Command {
     async run(msg, args) {
         const groups = this.client.registry.groups;
         const commands = this.client.registry.findCommands();
-
+        var grp1c = "";
         if(commands.findAll('groupID','group1')){
-            const grp1c = commands.findAll('groupID','group1');
+            grp1c = commands.findAll('groupID','group1');
             var grp1 = "";
             if(grp1c.length > 0){
                 for(var i = 0; i < grp1c.length; i++){
