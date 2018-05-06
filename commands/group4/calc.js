@@ -13,7 +13,7 @@ module.exports = class CalcCommand extends Command {
             guildOnly: true,
             args: [
                 {
-                    key: '0',
+                    key: 'exp',
                     prompt: 'what to calculate',
                     type: 'string',
                     default: ''
@@ -24,17 +24,17 @@ module.exports = class CalcCommand extends Command {
 async run(msg, args){
         const embed = new RichEmbed()
             .setColor('RANDOM');
-        if (!args[0]) {
+        if (!args.exp) {
             embed.setDescription('Please input an expression.');
             return msg.channel.send(embed);
         }
         let result;
         try {
-            result = math.eval(args.join(' '));
+            result = math.eval(args.exp.join(' '));
         } catch (e) {
             result = 'Error: "Invalid Input"';
         }
-        embed.addField('Input', `\`\`\`js\n${args.join(' ')}\`\`\``)
+        embed.addField('Input', `\`\`\`js\n${args.exp.join(' ')}\`\`\``)
             .addField('Output', `\`\`\`js\n${result}\`\`\``);
         return msg.channel.send(embed);
         
