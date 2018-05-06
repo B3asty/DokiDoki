@@ -29,8 +29,9 @@ async run(msg, args){
             return msg.channel.send(embed);
         }
         let result;
+        var expr = args.exp.replace(/\s/g)
         try {
-            result = math.eval(args.exp.join(' '));
+            result = math.eval(expr);
         } catch (e) {
             result = 'Error: "Invalid Input"';
         }
