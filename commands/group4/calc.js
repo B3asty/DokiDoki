@@ -1,6 +1,5 @@
 const { Command } = require('discord.js-commando')
 const { RichEmbed } = require('discord.js');
-const { math } = require('mathjs');
 
 module.exports = class CalcCommand extends Command {
     constructor(client) {
