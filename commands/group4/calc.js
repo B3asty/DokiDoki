@@ -30,7 +30,7 @@ async run(msg, args){
             return msg.channel.send(embed);
         }
         let result;
-        var expr = args.exp.replace(/\s/g)
+        var expr = args.exp;
         try {
             result = math.eval(expr);
         } catch (e) {
