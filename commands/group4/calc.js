@@ -1,6 +1,5 @@
 const { Command } = require('discord.js-commando')
 const { RichEmbed } = require('discord.js');
-const { math } = require('mathjs');
 
 module.exports = class CalcCommand extends Command {
     constructor(client) {
@@ -23,6 +22,7 @@ module.exports = class CalcCommand extends Command {
         });
     }
 async run(msg, args){
+        var math = require('mathjs');
         const embed = new RichEmbed()
             .setColor('RANDOM');
         if (!args.exp) {
