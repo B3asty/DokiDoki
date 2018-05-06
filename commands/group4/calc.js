@@ -35,7 +35,7 @@ async run(msg, args){
         } catch (e) {
             result = 'Error: "Invalid Input"';
         }
-        embed.addField('Input', `\`\`\`js\n${args.exp.join(' ')}\`\`\``)
+        embed.addField('Input', `\`\`\`js\n${expr}\`\`\``)
             .addField('Output', `\`\`\`js\n${result}\`\`\``);
         return msg.channel.send(embed);
         
