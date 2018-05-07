@@ -45,9 +45,10 @@ async run(msg, args){
                 }
                 var from = inp.substring(inp.search(/\-[a-zA-Z]/)+1, inp.search(/\-[a-zA-Z]/)+3);
 
-                translate(txt, {from: from, to: to}).then(res => {
+                translate(`${txt}`, {from: `${from}`, to: `${to}`}).then(res => {
                     const embed = new RichEmbed()
                     embed.setColor('RANDOM');
+                    console.log(res);
                     embed.setTitle("Translating from: " + res.from.language.iso)
                     embed.addField('Input', "```" + txt + "```")
                     embed.addField('Output', "```" + res.text + "```");
@@ -58,9 +59,10 @@ async run(msg, args){
                 })   
 
             }else{
-                translate(txt, {to: to}).then(res => {
+                translate(`${txt}`, {to: 'en'}).then(res => {
                     const embed = new RichEmbed()
                     embed.setColor('RANDOM');
+                    console.log(res);
                     embed.setTitle("Translating from: " + res.from.language.iso)
                     embed.addField('Input', "```" + txt + "```")
                     embed.addField('Output', "```" + res.text + "```");
