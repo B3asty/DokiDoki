@@ -36,7 +36,7 @@ module.exports = class UrbanCommand extends Command {
 
           if(ex.length > 1024){
             ex = ex.substring(0,1023);
-            ex = ex.substring(0, ex.lastIndexOf('.'));
+            ex = ex.substring(0, ex.lastIndexOf('.')+1);
           }
 
           if(res.example){
