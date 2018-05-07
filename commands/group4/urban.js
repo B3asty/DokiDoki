@@ -32,10 +32,16 @@ module.exports = class UrbanCommand extends Command {
           embed.setTitle(res.urbanURL) 
           embed.setDescription(`**Definition of ${res.word}:**\n${res.definition}`)
           console.log(res.example)
-          //embed.addField('**Examples:**',` ${res.example}`)
+
+          var ex = res.example;
+
+          if(ex.length > 1024){
+            ex = ex.substring(0,1023).substring(0, ex.lastIndexOf('.'));
+          }
+
+          embed.addField('**Examples:**',ex)
           embed.addField('Author', res.author, true) 
           embed.addField('Rating', `**\:thumbsup: \`Upvotes: ${res.thumbsUp}\` | :thumbsdown: \`Downvotes: ${res.thumbsDown}\`**`)
-          console.log(res.tags)
           embed.addField('Tags', res.tags.join(', '), true)
         return msg.channel.send(embed);
       
