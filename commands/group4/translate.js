@@ -54,7 +54,10 @@ async run(msg, args){
                     embed.addField('Output', "```" + res.text + "```");
                     msg.channel.send(embed);
                 }).catch(err => {
-                    msg.channel.send("Something went wrong.\nDid you choose the right language code?\nCheck [here](https://cloud.google.com/translate/docs/languages)");
+                    const embed = new RichEmbed()
+                    embed.setTitle("Something went wrong!")
+                    embed.setDescription("Did you choose the right language code?\nCheck [here](https://cloud.google.com/translate/docs/languages)")
+                    msg.channel.send(embed);
                     console.log(err);
                 })   
 
@@ -68,7 +71,10 @@ async run(msg, args){
                     embed.addField('Output', "```" + res.text + "```");
                     msg.channel.send(embed);
                 }).catch(err => {
-                    msg.channel.send("Something went wrong.\nDid you choose the right language code?\nCheck [here](https://cloud.google.com/translate/docs/languages)");
+                    const embed = new RichEmbed()
+                    embed.setTitle("Something went wrong!")
+                    embed.setDescription("Did you choose the right language code?\nCheck [here](https://cloud.google.com/translate/docs/languages)")
+                    msg.channel.send(embed);
                     console.log(err);
                 })   
             }
@@ -83,8 +89,10 @@ async run(msg, args){
                 embed.addField('Output', "```" + res.text + "```");
                 msg.channel.send(embed);
                }).catch(err => {
-                msg.channel.send("Something went wrong.");
-                console.log(err);
+                const embed = new RichEmbed()
+                    embed.setTitle("Something went wrong!")
+                    msg.channel.send(embed);
+                    console.log(err);
                })   
         }
 
