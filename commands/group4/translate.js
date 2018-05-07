@@ -72,7 +72,7 @@ async run(msg, args){
             }
 
         }else{
-            translate(txt, {from: 'en', to: 'en'}).then(res => {
+            translate(txt, {to: 'en'}).then(res => {
                 embed.setTitle("Translating from: " + res.from.language + " to " + res.to.language)
                 embed.addField('Input', "```" + txt + "```")
                 embed.addField('Output', "```" + res.text + "```");
