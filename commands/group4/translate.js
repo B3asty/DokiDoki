@@ -24,7 +24,7 @@ module.exports = class translateCommand extends Command {
 async run(msg, args){
         const translate = require('google-translate-api');
         
-            embed.setColor('RANDOM');
+            
 
         var inp = args.text;
         var txt = inp;
@@ -47,6 +47,7 @@ async run(msg, args){
 
                 translate(txt, {from: from, to: to}).then(res => {
                     const embed = new RichEmbed()
+                    embed.setColor('RANDOM');
                     embed.setTitle("Translating from: " + res.from.language.iso)
                     embed.addField('Input', "```" + txt + "```")
                     embed.addField('Output', "```" + res.text + "```");
@@ -59,6 +60,7 @@ async run(msg, args){
             }else{
                 translate(txt, {to: to}).then(res => {
                     const embed = new RichEmbed()
+                    embed.setColor('RANDOM');
                     embed.setTitle("Translating from: " + res.from.language.iso)
                     embed.addField('Input', "```" + txt + "```")
                     embed.addField('Output', "```" + res.text + "```");
@@ -72,7 +74,7 @@ async run(msg, args){
         }else{
             translate(`${txt}`, {to: 'en'}).then(res => {
                 const embed = new RichEmbed()
-                console.log("I'm here");
+                embed.setColor('RANDOM');
                 console.log(res);
                 embed.setTitle("Translating from: " + res.from.language.iso)
                 embed.addField('Input', "```" + txt + "```")
