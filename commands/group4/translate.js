@@ -23,7 +23,7 @@ module.exports = class translateCommand extends Command {
     }
 async run(msg, args){
         const translate = require('google-translate-api');
-        const embed = new RichEmbed()
+        
             embed.setColor('RANDOM');
 
         var inp = args.text;
@@ -46,9 +46,11 @@ async run(msg, args){
                 var from = inp.substring(inp.search(/\-[a-zA-Z]/)+1, inp.search(/\-[a-zA-Z]/)+3);
 
                 translate(txt, {from: from, to: to}).then(res => {
+                    const embed = new RichEmbed()
                     embed.setTitle("Translating from: " + res.from.language.iso)
                     embed.addField('Input', "```" + txt + "```")
                     embed.addField('Output', "```" + res.text + "```");
+                    msg.channel.send(embed);
                 }).catch(err => {
                     msg.channel.send("Something went wrong.");
                     console.log(err);
@@ -56,9 +58,11 @@ async run(msg, args){
 
             }else{
                 translate(txt, {to: to}).then(res => {
+                    const embed = new RichEmbed()
                     embed.setTitle("Translating from: " + res.from.language.iso)
                     embed.addField('Input', "```" + txt + "```")
                     embed.addField('Output', "```" + res.text + "```");
+                    msg.channel.send(embed);
                 }).catch(err => {
                     msg.channel.send("Something went wrong.");
                     console.log(err);
@@ -67,11 +71,13 @@ async run(msg, args){
 
         }else{
             translate(`${txt}`, {to: 'en'}).then(res => {
+                const embed = new RichEmbed()
                 console.log("I'm here");
                 console.log(res);
                 embed.setTitle("Translating from: " + res.from.language.iso)
                 embed.addField('Input', "```" + txt + "```")
                 embed.addField('Output', "```" + res.text + "```");
+                msg.channel.send(embed);
                }).catch(err => {
                 msg.channel.send("Something went wrong.");
                 console.log(err);
@@ -81,7 +87,7 @@ async run(msg, args){
         
         
         
-        return msg.channel.send(embed);
+        
 
     }
 };
