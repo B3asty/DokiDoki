@@ -26,7 +26,16 @@ async run(msg, args){
         const embed = new RichEmbed()
             embed.setColor('RANDOM');
 
-        if (!args.text) {
+            translate('Ik spreek Engels', {to: 'en'}).then(res => {
+    console.log(res.text);
+    //=> I speak English
+    console.log(res.from.language.iso);
+    //=> nl
+}).catch(err => {
+    console.error(err);
+});
+
+/*        if (!args.text) {
             embed.setDescription('Please input an expression.');
             return msg.channel.send(embed);
         }
@@ -86,6 +95,6 @@ async run(msg, args){
         
         
         return msg.channel.send(embed);
-        
+        */
     }
 };
