@@ -26,20 +26,6 @@ async run(msg, args){
         const embed = new RichEmbed()
             embed.setColor('RANDOM');
 
-            translate('Ik spreek Engels', {to: 'en'}).then(res => {
-    console.log(res.text);
-    //=> I speak English
-    console.log(res.from.language.iso);
-    //=> nl
-}).catch(err => {
-    console.error(err);
-});
-
-/*        if (!args.text) {
-            embed.setDescription('Please input an expression.');
-            return msg.channel.send(embed);
-        }
-
         var inp = args.text;
 
         if(inp.search(/\+[a-zA-Z]/) > 0 || inp.search(/\-[a-zA-Z]/) > 0){
@@ -61,7 +47,7 @@ async run(msg, args){
                 var from = inp.substring(inp.search(/\-[a-zA-Z]/), inp.search(/\-[a-zA-Z]/)+3);
 
                 translate(txt, {from: from, to: to}).then(res => {
-                    embed.setTitle("Translating from " + res.from.language + " to " + res.to.language)
+                    embed.setTitle("Translating from: " + res.from.language.iso)
                     embed.addField('Input', "```" + txt + "```")
                     embed.addField('Output', "```" + res.text + "```");
                 }).catch(err => {
@@ -71,7 +57,7 @@ async run(msg, args){
 
             }else{
                 translate(txt, {to: to}).then(res => {
-                    embed.setTitle("Translating from: " + res.from.language + " to " + res.to.language)
+                    embed.setTitle("Translating from: " + res.from.language.iso)
                     embed.addField('Input', "```" + txt + "```")
                     embed.addField('Output', "```" + res.text + "```");
                 }).catch(err => {
@@ -82,7 +68,7 @@ async run(msg, args){
 
         }else{
             translate(txt, {to: 'en'}).then(res => {
-                embed.setTitle("Translating from: " + res.from.language + " to " + res.to.language)
+                embed.setTitle("Translating from: " + res.from.language.iso)
                 embed.addField('Input', "```" + txt + "```")
                 embed.addField('Output', "```" + res.text + "```");
                }).catch(err => {
@@ -95,6 +81,6 @@ async run(msg, args){
         
         
         return msg.channel.send(embed);
-        */
+
     }
 };
