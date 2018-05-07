@@ -31,11 +31,11 @@ module.exports = class UrbanCommand extends Command {
           embed.setColor('RANDOM') 
           embed.setTitle(res.urbanURL) 
           embed.setDescription(`**Definition of ${res.word}:**\n${res.definition}`)
-          embed.addField('**Examples:**',` ${res.example}`)
+          //embed.addField('**Examples:**',` ${res.example}`)
           embed.addField('Author', res.author, true) 
           embed.addField('Rating', `**\:thumbsup: \`Upvotes: ${res.thumbsUp}\` | :thumbsdown: \`Downvotes: ${res.thumbsDown}\`**`)
         if (res.tags.length > 0 && res.tags.join(' ').length < 1024) {
-          embed.addField('Tags', res.tags.join(', '), true)
+          //embed.addField('Tags', res.tags.join(', '), true)
         }
         return msg.channel.send(embed);
       
