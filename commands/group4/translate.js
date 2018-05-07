@@ -83,7 +83,7 @@ async run(msg, args){
                 embed.addField('Output', "```" + res.text + "```");
                 msg.channel.send(embed);
                }).catch(err => {
-                msg.channel.send("Something went wrong.");
+                msg.channel.send("Something went wrong.\nDid you choose the right language code?\nCheck [here](https://cloud.google.com/translate/docs/languages)");
                 console.log(err);
                })   
         }
