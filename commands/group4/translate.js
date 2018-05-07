@@ -1,0 +1,91 @@
+const { Command } = require('discord.js-commando')
+const { RichEmbed } = require('discord.js');
+
+module.exports = class translateCommand extends Command {
+    constructor(client) {
+        super(client, {
+            name: 'translate',
+            aliases: ['t', 'tl'],
+            group: 'group4',
+            memberName: 'translate',
+            description: 'Translate a Text, or detect the Language',
+            examples: ['translate Hello World +de', 'tl Hallo Welt -de +en', 't Hallo Welt -de'],
+            guildOnly: true,
+            args: [
+                {
+                    key: 'text',
+                    prompt: 'what to translateulate',
+                    type: 'string',
+                    default: ''
+                }
+            ]
+        });
+    }
+async run(msg, args){
+        const translate = require('google-translate-api');
+        const embed = new RichEmbed()
+            embed.setColor('RANDOM');
+
+        if (!args.text) {
+            embed.setDescription('Please input an expression.');
+            return msg.channel.send(embed);
+        }
+
+        var inp = args.text;
+
+        if(inp.search(/\+[a-zA-Z]/) > 0 || inp.search(/\-[a-zA-Z]/) > 0){
+            var txt = inp;
+            var lan = ""; 
+            //to language specified
+            if(inp.search(/\+[a-zA-Z]/) > 0){
+                var to = inp.substring(inp.search(/\+[a-zA-Z]/), inp.search(/\+[a-zA-Z]/)+3);
+                txt = txt.substring(0, inp.search(/\+[a-zA-Z]/))
+            }else{
+                var to = "en";
+            }
+
+            //from language specified
+            if(inp.search(/\-[a-zA-Z]/) > 0){
+                if(txt.search(/\-[a-zA-Z]/) > 0){
+                    txt = txt.substring(0, inp.search(/\-[a-zA-Z]/))
+                }
+                var from = inp.substring(inp.search(/\-[a-zA-Z]/), inp.search(/\-[a-zA-Z]/)+3);
+
+                translate(txt, {from: from, to: to}).then(res => {
+                    embed.setTitle("Translating from " + res.from.language + " to " + res.to.language)
+                    embed.addField('Input', "```" + txt + "```")
+                    embed.addField('Output', "```" + res.text + "```");
+                }).catch(err => {
+                    msg.channel.send("Something went wrong.");
+                    console.log(err);
+                })   
+
+            }else{
+                translate(txt, {to: to}).then(res => {
+                    embed.setTitle("Translating from: " + res.from.language + " to " + res.to.language)
+                    embed.addField('Input', "```" + txt + "```")
+                    embed.addField('Output', "```" + res.text + "```");
+                }).catch(err => {
+                    msg.channel.send("Something went wrong.");
+                    console.log(err);
+                })   
+            }
+
+        }else{
+            translate(txt, {from: 'en', to: 'en'}).then(res => {
+                embed.setTitle("Translating from: " + res.from.language + " to " + res.to.language)
+                embed.addField('Input', "```" + txt + "```")
+                embed.addField('Output', "```" + res.text + "```");
+               }).catch(err => {
+                msg.channel.send("Something went wrong.");
+                console.log(err);
+               })   
+        }
+
+        
+        
+        
+        return msg.channel.send(embed);
+        
+    }
+};
