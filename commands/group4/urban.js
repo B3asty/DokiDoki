@@ -24,33 +24,38 @@ module.exports = class UrbanCommand extends Command {
     async run(msg,args) {
         const urban = require('relevant-urban','urban');
         if (!args.text) msg.channel.send(`***Please specify some text!***`);
-        let res = await urban(args.text).catch(e => { 
-          return msg.channel.send('***Sorry, that word was not found!***');
-        });
-        const embed = new RichEmbed()
-          embed.setColor('RANDOM') 
-          embed.setTitle(res.urbanURL) 
-          embed.setDescription(`**Definition of ${res.word}:**\n${res.definition}`)
+        urban(args.text)
+          .then(res => {
+            const embed = new RichEmbed()
+            embed.setColor('RANDOM') 
+            embed.setTitle(res.urbanURL) 
+            embed.setDescription(`**Definition of ${res.word}:**\n${res.definition}`)
 
-          var ex = res.example;
+            var ex = res.example;
 
-          if(ex.length > 1024){
-            ex = ex.substring(0,1023);
-            ex = ex.substring(0, ex.lastIndexOf('.')+1);
-          }
+            if(ex.length > 1024){
+              ex = ex.substring(0,1023);
+              ex = ex.substring(0, ex.lastIndexOf('.')+1);
+            }
 
-          if(res.example){
-            embed.addField('**Examples:**',ex)
-          }
-          embed.addField('Author', res.author, true) 
-          embed.addField('Rating', `**\:thumbsup: \`Upvotes: ${res.thumbsUp}\` | :thumbsdown: \`Downvotes: ${res.thumbsDown}\`**`)
+            if(res.example){
+              embed.addField('**Examples:**',ex)
+            }
+            embed.addField('Author', res.author, true) 
+            embed.addField('Rating', `**\:thumbsup: \`Upvotes: ${res.thumbsUp}\` | :thumbsdown: \`Downvotes: ${res.thumbsDown}\`**`)
+            
+            var tag = "`" +  res.tags.join('`, `') + "`";
+
+            if(res.tags.length > 0){
+              embed.addField('Tags', tag, true)
+            }
+          return msg.channel.send(embed);
+          })
+          .catch(e => { 
+            return msg.channel.send('***Sorry, that word was not found!***');
+          });
+
+        
           
-          var tag = "`" +  res.tags.join('`, `') + "`";
-
-          if(res.tags.length > 0){
-            embed.addField('Tags', tag, true)
-          }
-        return msg.channel.send(embed);
-      
       }
 };
