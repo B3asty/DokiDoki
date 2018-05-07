@@ -31,18 +31,25 @@ module.exports = class UrbanCommand extends Command {
           embed.setColor('RANDOM') 
           embed.setTitle(res.urbanURL) 
           embed.setDescription(`**Definition of ${res.word}:**\n${res.definition}`)
-          console.log(res.example)
 
           var ex = res.example;
 
           if(ex.length > 1024){
-            ex = ex.substring(0,1023).substring(0, ex.lastIndexOf('.'));
+            ex = ex.substring(0,1023);
+            ex = ex.substring(0, ex.lastIndexOf('.'));
           }
 
-          embed.addField('**Examples:**',ex)
+          if(res.example){
+            embed.addField('**Examples:**',ex)
+          }
           embed.addField('Author', res.author, true) 
           embed.addField('Rating', `**\:thumbsup: \`Upvotes: ${res.thumbsUp}\` | :thumbsdown: \`Downvotes: ${res.thumbsDown}\`**`)
-          embed.addField('Tags', res.tags.join(', '), true)
+          
+          var tag = "`" +  res.tags.join('`, `') + "`";
+
+          if(res.tags.length > 0){
+            embed.addField('Tags', tag, true)
+          }
         return msg.channel.send(embed);
       
       }
