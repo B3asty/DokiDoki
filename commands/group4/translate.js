@@ -27,13 +27,12 @@ async run(msg, args){
             embed.setColor('RANDOM');
 
         var inp = args.text;
-
+        var txt = inp;
         if(inp.search(/\+[a-zA-Z]/) > 0 || inp.search(/\-[a-zA-Z]/) > 0){
-            var txt = inp;
-            var lan = ""; 
+            
             //to language specified
             if(inp.search(/\+[a-zA-Z]/) > 0){
-                var to = inp.substring(inp.search(/\+[a-zA-Z]/), inp.search(/\+[a-zA-Z]/)+3);
+                var to = inp.substring(inp.search(/\+[a-zA-Z]/)+1, inp.search(/\+[a-zA-Z]/)+3);
                 txt = txt.substring(0, inp.search(/\+[a-zA-Z]/))
             }else{
                 var to = "en";
@@ -44,7 +43,7 @@ async run(msg, args){
                 if(txt.search(/\-[a-zA-Z]/) > 0){
                     txt = txt.substring(0, inp.search(/\-[a-zA-Z]/))
                 }
-                var from = inp.substring(inp.search(/\-[a-zA-Z]/), inp.search(/\-[a-zA-Z]/)+3);
+                var from = inp.substring(inp.search(/\-[a-zA-Z]/)+1, inp.search(/\-[a-zA-Z]/)+3);
 
                 translate(txt, {from: from, to: to}).then(res => {
                     embed.setTitle("Translating from: " + res.from.language.iso)
@@ -67,7 +66,7 @@ async run(msg, args){
             }
 
         }else{
-            translate('${text}', {to: 'en'}).then(res => {
+            translate('${txt}', {to: 'en'}).then(res => {
                 embed.setTitle("Translating from: " + res.from.language.iso)
                 embed.addField('Input', "```" + txt + "```")
                 embed.addField('Output', "```" + res.text + "```");
