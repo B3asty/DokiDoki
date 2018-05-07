@@ -67,6 +67,8 @@ async run(msg, args){
 
         }else{
             translate('${txt}', {to: 'en'}).then(res => {
+                console.log("I'm here");
+                console.log(res);
                 embed.setTitle("Translating from: " + res.from.language.iso)
                 embed.addField('Input', "```" + txt + "```")
                 embed.addField('Output', "```" + res.text + "```");
