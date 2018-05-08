@@ -1,8 +1,4 @@
 const { CommandoClient, SQLiteProvider } = require('discord.js-commando');
-/*
-const { Pool } = require('pg')
-const connectionString = require(process.env.DATABASE_URL)
-*/
 const prefix = "<<"
 const oneLine = require('common-tags').oneLine;
 const sqlite = require('sqlite');
@@ -13,8 +9,7 @@ const client = new CommandoClient({
     commandPrefix: '<<',
     unknownCommandResponse: true,
     owner: ['193021560792154112', '111469545637605376'],
-    disableEveryone: true, 
-    //connectionString: connectionString,
+    disableEveryone: true
 });
 
 sqlite.open(path.join(__dirname, "settings.sqlite3")).then((db) => {
@@ -54,38 +49,40 @@ client.registry
 	})
 
 // Random Shits
-sqlite.open("./score.sqlite");
+const { Pool } = require('pg');
+const pool = new Pool({
+  connectionString: "postgres://mncmdnttojdsku:3849194dc1c60408b302cd9991f3ce27e08827998d5029ae25080e6bf09ee779@ec2-54-225-96-191.compute-1.amazonaws.com:5432/d3u98tvto5gblt",
+  ssl: true
+});
 client.on("message", message => {
-  sqlite.get(`SELECT * FROM scores WHERE userId ="${message.author.id}"`).then(row => {
+pool.connect();
+const query = pool.query(
+  'SELECT * FROM XP WHERE userId ="${message.author.id}"').then(row => {
     if (!row) {
-      sqlite.run("INSERT INTO scores (userId, points, level) VALUES (?, ?, ?)", [message.author.id, 1, 0]);
+      pool.query("INSERT INTO XP (userId, points, level) VALUES (?, ?, ?)", [message.author.id, 1, 0]);
     } else {
-      let curLevel = Math.floor(0.1 * Math.sqrt(row.points + 1));
+      let curLevel = Math.floor(0.1 * Math.sqrt(row.points + 0.1));
       if (curLevel > row.level) {
         row.level = curLevel;
-        sqlite.run(`UPDATE scores SET points = ${row.points + 1}, level = ${row.level} WHERE userId = ${message.author.id}`);
-        message.reply(`You've leveled up to level **${curLevel}**! Ain't that dandy?`);
+        pool.query(`UPDATE XP SET points = ${row.points + 0.1}, level = ${row.level} WHERE userId = ${message.author.id}`);
+        message.reply(`You've leveled up to level **${curLevel}**!`);
       }
-      sqlite.run(`UPDATE scores SET points = ${row.points + 1} WHERE userId = ${message.author.id}`);
+      pool.run(`UPDATE XP SET points = ${row.points + 0.1} WHERE userId = ${message.author.id}`);
     }
-  }).catch(() => {
-    console.error;
-    sqlite.run("CREATE TABLE IF NOT EXISTS scores (userId TEXT, points INTEGER, level INTEGER)").then(() => {
-      sqlite.run("INSERT INTO scores (userId, points, level) VALUES (?, ?, ?)", [message.author.id, 1, 0]);
-    });
   });
+});
 
   if (!message.content.startsWith(prefix)) return;
 
   if (message.content.startsWith(prefix + "level")) {
-    sqlite.get(`SELECT * FROM scores WHERE userId ="${message.author.id}"`).then(row => {
+    sqlite.get(`SELECT * FROM XP WHERE userId ="${message.author.id}"`).then(row => {
       if (!row) return message.reply("Your current level is 0");
       message.reply(`Your current level is ${row.level}`);
     });
   } else
 
   if (message.content.startsWith(prefix + "points")) {
-    sqlite.get(`SELECT * FROM scores WHERE userId ="${message.author.id}"`).then(row => {
+    sqlite.get(`SELECT * FROM XP WHERE userId ="${message.author.id}"`).then(row => {
       if (!row) return message.reply("sadly you do not have any points yet!");
       message.reply(`you currently have ${row.points} points, good going!`);
     });
