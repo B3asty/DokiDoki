@@ -1,5 +1,4 @@
 const { CommandoClient, SQLiteProvider } = require('discord.js-commando');
-const prefix = "<<"
 const oneLine = require('common-tags').oneLine;
 const sqlite = require('sqlite');
 const path = require('path');
@@ -26,6 +25,8 @@ client.registry
         ['group3', 'Random'],
 	['group4', 'Util'],
 	['group5', 'Administration'],
+	['group6', 'NSFW'],
+
 ])	
 // Console.Log and other stuff -.-
     .registerDefaultGroups()
