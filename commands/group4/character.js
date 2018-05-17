@@ -134,9 +134,9 @@ module.exports = class characterCommand extends Command {
 
 		  			if(res.mangaography.length > 0){
 		  				var mangas = "";
-		  				for (var i = 0; i < mangaography.length; i++) {
-		  					mangas = mangas + "`" + mangaography[i].sn.replace("_"," ") + "`";
-		  					if(i+1 < mangaography.length){
+		  				for (var i = 0; i < res.mangaography.length; i++) {
+		  					mangas = mangas + "`" + res.mangaography[i].sn.replace("_"," ") + "`";
+		  					if(i+1 < res.mangaography.length){
 		  						mangas = mangas + ",";
 		  					}
 		  				}
@@ -144,9 +144,9 @@ module.exports = class characterCommand extends Command {
 
 		  			if(res.animeography.length > 0){
 		  				var animes = "";
-		  				for (var i = 0; i < animeography.length; i++) {
-		  					animes = animes + "`" + animeography[i].sn.replace("_"," ") + "`";
-		  					if(i+1 < animeography.length){
+		  				for (var i = 0; i < res.animeography.length; i++) {
+		  					animes = animes + "`" + res.animeography[i].sn.replace("_"," ") + "`";
+		  					if(i+1 < res.animeography.length){
 		  						animes = animes + ",";
 		  					}
 		  				}
