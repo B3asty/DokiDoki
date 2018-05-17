@@ -3,14 +3,14 @@ const { RichEmbed } = require('discord.js');
 var mal = require('maljs');
 const MALjs = require('MALjs');
 
-module.exports = class animeCommand extends Command {
+module.exports = class mangaCommand extends Command {
 	constructor(client) {
 		super(client, {
 			name: 'manga',
 			aliases: [],
 			group: 'group4',
 			memberName: 'manga',
-			description: 'Shows a manga.',
+			description: 'Shows an manga.',
 			examples: ['manga Name'],
 
 			args: [
@@ -25,23 +25,7 @@ module.exports = class animeCommand extends Command {
 	}
 
 	async run(msg, args) {
- 
-/*	var aniname = ''+args.name;
-	mal.quickSearch(aniname).then(function(results) {
-        results.anime[0].fetch().then(function(r) {
-        	var nam = r.sn.replace('_',' ');
-        	const embed = new RichEmbed()
-        	embed.setAuthor(nam, r.cover)
-        	embed.addField("Description", r.description)
-        	embed.setThumbnail(r.cover)
-
-        	msg.channel.send(embed)
-
-   });
-});*/
-
-
-		const mal = new MALjs('DokiDokiBot', 'DokiDoki');
+ 		const mal = new MALjs('DokiDokiBot', 'DokiDoki');
 
 		const months = {
 				"00": "",
@@ -102,44 +86,44 @@ module.exports = class animeCommand extends Command {
 		mal.manga.search(anm)
 		  .then(result => {
 		  	console.log(result)
-		  	if(result.anime.length > 1){
+		  	if(result.manga.length > 1){
 		  		var titles = "";
 		  		var titles2 = "";
-		  		embed.setTitle("Multiple Anime found");
-		  		embedst2.setTitle("Multiple Anime found");
-		  		if(result.anime.length < 30){
-		  			for (var i = 0; i < result.anime.length; i++) {  			
-			  			titles = titles + "**["+ (i+1) + "]** " + result.anime[i].title + "\n";
+		  		embed.setTitle("Multiple manga found");
+		  		embedst2.setTitle("Multiple manga found");
+		  		if(result.manga.length < 30){
+		  			for (var i = 0; i < result.manga.length; i++) {  			
+			  			titles = titles + "**["+ (i+1) + "]** " + result.manga[i].title + "\n";
 			  		}
 
-			  		titles = titles+"\n**Please enter the number of the Anime you want to view** \n**Or type** `cancel` **to cancel the command**"
+			  		titles = titles+"\n**Please enter the number of the manga you want to view** \n**Or type** `cancel` **to cancel the command**"
 			  		embed.setDescription(titles)
 
 			  		msg.channel.send(embed)
 		  		}else{
 		  			for (var i = 0; i < 30; i++) {  			
-			  			titles = titles + "**["+ (i+1) + "]** " + result.anime[i].title + "\n";
+			  			titles = titles + "**["+ (i+1) + "]** " + result.manga[i].title + "\n";
 			  		}
 
-			  		titles = titles+"\n**Please enter the number of the Anime you want to view** \n**Or type** `cancel` **to cancel the command**"
+			  		titles = titles+"\n**Please enter the number of the manga you want to view** \n**Or type** `cancel` **to cancel the command**"
 			  		embed.setDescription(titles)
 
 			  		msg.channel.send(embed)
 
-			  		for (var i = 30; i < result.anime.length; i++) {  			
-			  			titles2 = titles2 + "**["+ (i+1) + "]** " + result.anime[i].title + "\n";
+			  		for (var i = 30; i < result.manga.length; i++) {  			
+			  			titles2 = titles2 + "**["+ (i+1) + "]** " + result.manga[i].title + "\n";
 			  		}
 
-			  		titles2 = titles2+"\n**Please enter the number of the Anime you want to view** \n**Or type** `cancel` **to cancel the command**"
+			  		titles2 = titles2+"\n**Please enter the number of the manga you want to view** \n**Or type** `cancel` **to cancel the command**"
 			  		embedst2.setDescription(titles2)
 
 			  		msg.channel.send(embedst2)
 		  		}
 		  		
-				inputAn(result.anime)
+				inputAn(result.manga)
 
 		  	}else {
-		  		var res = result.anime[0];
+		  		var res = result.manga[0];
 		  		var syn = "";
 	                	if(res.synonyms.length > 0){
 				            for(var i = 0; i < res.synonyms.length; i++){
@@ -187,7 +171,7 @@ module.exports = class animeCommand extends Command {
 					  	embed.addField("Status", res.status, true)
 					  	embed.addField("Type", res.type, true)
 					  	embed.addField("Score", res.score+"/10", true)
-					  	embed.addField("Link", "https://myanimelist.net/anime/"+res.id, true)
+					  	embed.addField("Link", "https://myanimelist.net/manga/"+res.id, true)
 
 					  	var fromcspl = res.start_date.toString().split('-');
 					  	var tocspl = res.end_date.toString().split('-');
@@ -211,7 +195,7 @@ module.exports = class animeCommand extends Command {
 
 					  	msg.channel.send(embed)
 					  }
-			
+
 		  }
 
 		  ) // contains the json result on success
@@ -281,7 +265,7 @@ module.exports = class animeCommand extends Command {
 					  	embed2.addField("Status", csn.status, true)
 					  	embed2.addField("Type", csn.type, true)
 					  	embed2.addField("Score", csn.score+"/10", true)
-					  	embed2.addField("Link", "https://myanimelist.net/anime/"+csn.id, true)
+					  	embed2.addField("Link", "https://myanimelist.net/manga/"+csn.id, true)
 
 					  	var fromcspl = csn.start_date.toString().split('-');
 					  	var tocspl = csn.end_date.toString().split('-');
