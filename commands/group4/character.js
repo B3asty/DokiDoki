@@ -131,30 +131,33 @@ module.exports = class characterCommand extends Command {
 		  			embed.setDescription(res.description)
 		  			embed.addField("Link", "https://myanimelist.net/"+res.path)
 
+
 		  			if(res.mangaography.length > 0){
 		  				var mangas = "";
 		  				for (var i = 0; i < res.mangaography.length; i++) {
-		  						
-		  					
 		  					if(i+1 < res.mangaography.length){
 		  						if(res.mangaography[i].sn != res.mangaography[i+1].sn){
 			  						mangas = mangas + "`" + res.mangaography[i].sn.replace(/\_/g," ") + "`";
+			  						mangas = mangas + ",";
 			  					}
-		  						mangas = mangas + ",";
 		  					}else{
 		  						mangas = mangas + "`" + res.mangaography[i].sn.replace(/\_/g," ") + "`";
 		  					}
 		  				}
-
 		  				embed.addField("Manga", mangas)
 		  			}
+
 
 		  			if(res.animeography.length > 0){
 		  				var animes = "";
 		  				for (var i = 0; i < res.animeography.length; i++) {
-		  					animes = animes + "`" + res.animeography[i].sn.replace(/\_/g," ") + "`";
 		  					if(i+1 < res.animeography.length){
-		  						animes = animes + ",";
+		  						if(res.animeography[i].sn != res.animeography[i+1].sn){
+			  						animes = animes + "`" + res.animeography[i].sn.replace(/\_/g," ") + "`";
+			  						animes = animes + ",";
+			  					}
+		  					}else{
+		  						animes = animes + "`" + res.animeography[i].sn.replace(/\_/g," ") + "`";
 		  					}
 		  				}
 
