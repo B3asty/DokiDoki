@@ -120,6 +120,9 @@ module.exports = class characterCommand extends Command {
 		  	}else {
 		  		result.character[0].fetch().then(res => {
 		  			console.log(res)
+		  			embed.setTitle(res.sn.replace("_"," "))
+		  			embed.setThumbnail(res.pictures[0])
+		  			embed.setDescription(res.description)
 		  		})
 	    	}
 	    })
