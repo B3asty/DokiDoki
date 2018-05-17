@@ -6,18 +6,18 @@ const MALjs = require('MALjs');
 module.exports = class animeCommand extends Command {
 	constructor(client) {
 		super(client, {
-			name: 'anime',
+			name: 'manga',
 			aliases: [''],
 			group: 'group4',
-			memberName: 'anime',
-			description: 'Shows an anime.',
-			examples: ['anime Name'],
+			memberName: 'manga',
+			description: 'Shows a manga.',
+			examples: ['manga Name'],
 
 			args: [
 				{
 					key: 'name',
 					label: 'user',
-					prompt: 'Which anime would you like to see?',
+					prompt: 'Which manga would you like to see?',
 					type: 'string'
 				}
 			]
