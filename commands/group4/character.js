@@ -84,11 +84,11 @@ module.exports = class characterCommand extends Command {
 	    	if(result.character.length > 1){
 	    		var titles = "";
 		  		var titles2 = "";
-		  		embed.setTitle("Multiple character found");
-		  		embedst2.setTitle("Multiple character found");
+		  		embed.setTitle("Multiple Characters found");
+		  		embedst2.setTitle("Multiple Characters found");
 		  		if(result.character.length < 30){
 		  			for (var i = 0; i < result.character.length; i++) {  			
-			  			titles = titles + "**["+ (i+1) + "]** " + result.character[i].title + "\n";
+			  			titles = titles + "**["+ (i+1) + "]** " + result.character[i].sn.replace("_"," ") + "\n";
 			  		}
 
 			  		titles = titles+"\n**Please enter the number of the character you want to view** \n**Or type** `cancel` **to cancel the command**"
