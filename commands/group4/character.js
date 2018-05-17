@@ -127,8 +127,11 @@ module.exports = class characterCommand extends Command {
 			  			//thum = thum.substring(thum.indexOf("https",2),thum.length)
 			  			embed.setThumbnail(res.cover)
 		  			//}
-
-		  			embed.setDescription(res.description)
+		  			var desc = res.description.replace("&quot;",'"').replace("&apos;","'");
+		  			if(desc.length > 2048){
+				        desc = desc.substring(0,2047).substring(0,desc.lastIndexOf('.'))
+				    }
+		  			embed.setDescription(desc)
 		  			embed.addField("Link", "https://myanimelist.net/"+res.path)
 
 
@@ -194,7 +197,11 @@ module.exports = class characterCommand extends Command {
 			  			embed2.setThumbnail(res.cover)
 		  			//}
 
-		  			embed2.setDescription(res.description)
+		  			var desc = res.description.replace("&quot;",'"').replace("&apos;","'");
+		  			if(desc.length > 2048){
+				        desc = desc.substring(0,2047).substring(0,desc.lastIndexOf('.'))
+				    }
+		  			embed2.setDescription(desc)
 		  			embed2.addField("Link", "https://myanimelist.net/"+res.path)
 
 
