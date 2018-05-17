@@ -124,7 +124,7 @@ module.exports = class characterCommand extends Command {
 		  			thum = thum.substring(thum.indexOf("https",2),thum.length)
 		  			console.log(thum)
 		  			embed.setTitle(res.sn.replace("_"," "))
-		  			//embed.setThumbnail(res.pictures[0])
+		  			embed.setThumbnail(thum)
 		  			embed.setDescription(res.description)
 		  			embed.addField("Link", "https://myanimelist.net/"+res.path)
 		  			msg.channel.send(embed)
