@@ -7,7 +7,7 @@ module.exports = class animeCommand extends Command {
 	constructor(client) {
 		super(client, {
 			name: 'manga',
-			aliases: [''],
+			aliases: [],
 			group: 'group4',
 			memberName: 'manga',
 			description: 'Shows a manga.',
