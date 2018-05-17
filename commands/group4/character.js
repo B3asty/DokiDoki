@@ -121,6 +121,7 @@ module.exports = class characterCommand extends Command {
 		  		result.character[0].fetch().then(res => {
 		  			console.log(res)
 		  			var thum = res.pictures[0];
+		  			thum = thum.substring(thum.indexOf("https",2),thum.length)
 		  			console.log(thum)
 		  			embed.setTitle(res.sn.replace("_"," "))
 		  			//embed.setThumbnail(res.pictures[0])
