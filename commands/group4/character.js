@@ -179,16 +179,14 @@ module.exports = class characterCommand extends Command {
 		  	msg.channel.awaitMessages(m => m.author.id == msg.author.id, { max: 1, time: 30000, errors: ['time'] })
             .then(collected => {
             	if(collected.first().content == 'cancel'){
-            			msg.channel.send('Command canceled.')
-            		}else if(parseInt(collected.first().content,10)-1 == 'NaN' || parseInt(collected.first().content,10)-1 < 0){
-            			msg.channel.send('This is not a valid number, please try again.')
-            			inputAn(anarr)
-            		}else{
-            			var embed2 = new RichEmbed()
-	                	var res = anarr[parseInt(collected.first().content,10)-1]
-	                }
-
-	                embed2.setTitle(res.sn.replace(/\_/g," "))
+        			msg.channel.send('Command canceled.')
+        		}else if(parseInt(collected.first().content,10)-1 == 'NaN' || parseInt(collected.first().content,10)-1 < 0){
+        			msg.channel.send('This is not a valid number, please try again.')
+        			inputAn(anarr)
+        		}else{
+        			var embed2 = new RichEmbed()
+                	anarr[parseInt(collected.first().content,10)-1].fetch().then(res => {
+                		embed2.setTitle(res.sn.replace(/\_/g," "))
 
 		  			//if(res.pictures[0]){
 			  			//var thum = res.pictures[0];
@@ -235,11 +233,13 @@ module.exports = class characterCommand extends Command {
 		  			msg.channel.send(embed2)
 
 	            })
-	            .catch(err => {
-	            	console.log(err)
-	            	msg.channel.send('The Time to reply ran out, please try again.');
-	            })
-
+                .catch()
+                }
+            })
+            .catch(err => {
+            	console.log(err)
+            	msg.channel.send('The Time to reply ran out, please try again.');
+            })
 		}
 	}
 }
