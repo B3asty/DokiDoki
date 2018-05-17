@@ -142,7 +142,7 @@ module.exports = class mangaCommand extends Command {
 				        var eng = "";
 				        if(res.english.length > 0){
 				            for(var i = 0; i < res.english.length; i++){
-				                eng = eng+"`"+res.english[i]+"`";M
+				                eng = eng+"`"+res.english[i]+"`";
 				                if(i+1 < res.english.length){
 				                    eng=eng+", ";
 				                }
