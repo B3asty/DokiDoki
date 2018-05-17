@@ -134,16 +134,15 @@ module.exports = class characterCommand extends Command {
 		  			if(res.mangaography.length > 0){
 		  				var mangas = "";
 		  				for (var i = 0; i < res.mangaography.length; i++) {
-		  					if(i = 0){
-		  						mangas = mangas + "`" + res.mangaography[i].sn.replace(/\_/g," ") + "`";
-		  					}else{
-		  						if(res.mangaography[i].sn != res.mangaography[i-1].sn){
-			  						mangas = mangas + "`" + res.mangaography[i].sn.replace(/\_/g," ") + "`";
-			  					}
-		  					}
+		  						
 		  					
 		  					if(i+1 < res.mangaography.length){
+		  						if(res.mangaography[i].sn != res.mangaography[i+1].sn){
+			  						mangas = mangas + "`" + res.mangaography[i].sn.replace(/\_/g," ") + "`";
+			  					}
 		  						mangas = mangas + ",";
+		  					}else{
+		  						mangas = mangas + "`" + res.mangaography[i].sn.replace(/\_/g," ") + "`";
 		  					}
 		  				}
 
