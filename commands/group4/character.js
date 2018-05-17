@@ -118,7 +118,9 @@ module.exports = class characterCommand extends Command {
 				//inputAn(result.character)
 
 		  	}else {
-		  		console.log(result.character[0].fetch())
+		  		result.character[0].fetch().then(res => {
+		  			console.log(res)
+		  		})
 	    	}
 	    })
 	    .catch(err => {
