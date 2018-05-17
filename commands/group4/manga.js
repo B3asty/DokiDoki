@@ -85,7 +85,6 @@ module.exports = class mangaCommand extends Command {
 	// search my animelist
 		mal.manga.search(anm)
 		  .then(result => {
-		  	console.log(result)
 		  	if(result.manga.length > 1){
 		  		var titles = "";
 		  		var titles2 = "";
@@ -181,7 +180,7 @@ module.exports = class mangaCommand extends Command {
 					  	}else{
 					  		if(tocspl[0] == "0000"){
 					  			var toc = "";
-					  			var fromc = "Will start airing in " + months[fromcspl[1]] + days[fromcspl[2]] + fromcspl[0];
+					  			var fromc = months[fromcspl[1]] + days[fromcspl[2]] + fromcspl[0] + " and ongoig.";
 					  		}else{
 					  			var toc = months[tocspl[1]]  + days[tocspl[2]] + tocspl[0];
 					  			var fromc = months[fromcspl[1]] + days[fromcspl[2]] + fromcspl[0] + " to ";
@@ -207,7 +206,6 @@ module.exports = class mangaCommand extends Command {
 		  function inputAn(anarr){
 		  	msg.channel.awaitMessages(m => m.author.id == msg.author.id, { max: 1, time: 30000, errors: ['time'] })
             .then(collected => {
-            		console.log(collected.first().content)
             		if(collected.first().content == 'cancel'){
             			msg.channel.send('Command canceled.')
             		}else if(parseInt(collected.first().content,10)-1 == 'NaN' || parseInt(collected.first().content,10)-1 < 0){
@@ -216,7 +214,7 @@ module.exports = class mangaCommand extends Command {
             		}else{
             			var embed2 = new RichEmbed()
 	                	var csn = anarr[parseInt(collected.first().content,10)-1]
-	                	//console.log(csn)
+	                	console.log(csn.chapters)
 	                	
 	                	var syn = "";
 	                	if(csn.synonyms.length > 0){
@@ -275,7 +273,7 @@ module.exports = class mangaCommand extends Command {
 					  	}else{
 					  		if(tocspl[0] == "0000"){
 					  			var toc = "";
-					  			var fromc = "Will start airing in " + months[fromcspl[1]] + days[fromcspl[2]] + fromcspl[0];
+					  			var fromc = months[fromcspl[1]] + days[fromcspl[2]] + fromcspl[0] + " and ongoig.";
 					  		}else{
 					  			var toc = months[tocspl[1]]  + days[tocspl[2]] + tocspl[0];
 					  			var fromc = months[fromcspl[1]] + days[fromcspl[2]] + fromcspl[0] + " to ";
