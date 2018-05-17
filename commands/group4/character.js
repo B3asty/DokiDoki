@@ -120,6 +120,9 @@ module.exports = class characterCommand extends Command {
 		  	}else {
 	    	}
 	    })
-	    .catch()
+	    .catch(err => {
+	    	console.log(err)
+	    	msg.channel.send("Something went wrong!")
+	    })
 	}
 }
