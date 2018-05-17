@@ -115,18 +115,18 @@ module.exports = class characterCommand extends Command {
 			  		msg.channel.send(embedst2)
 		  		}
 		  		
-				//inputAn(result.character)
+				inputAn(result.character)
 
 		  	}else {
 		  		result.character[0].fetch().then(res => {
 		  			console.log(res)
-		  			embed.setTitle(res.sn.replace("_"," "))
+		  			embed.setTitle(res.sn.replace(/\_/g," "))
 
-		  			if(res.pictures[0]){
-			  			var thum = res.pictures[0];
-			  			thum = thum.substring(thum.indexOf("https",2),thum.length)
-			  			embed.setThumbnail(thum)
-		  			}
+		  			//if(res.pictures[0]){
+			  			//var thum = res.pictures[0];
+			  			//thum = thum.substring(thum.indexOf("https",2),thum.length)
+			  			embed.setThumbnail(res.cover)
+		  			//}
 
 		  			embed.setDescription(res.description)
 		  			embed.addField("Link", "https://myanimelist.net/"+res.path)
@@ -172,5 +172,73 @@ module.exports = class characterCommand extends Command {
 	    	console.log(err)
 	    	msg.channel.send("Something went wrong!")
 	    })
+
+
+
+	    function inputAn(anarr){
+		  	msg.channel.awaitMessages(m => m.author.id == msg.author.id, { max: 1, time: 30000, errors: ['time'] })
+            .then(collected => {
+            	if(collected.first().content == 'cancel'){
+            			msg.channel.send('Command canceled.')
+            		}else if(parseInt(collected.first().content,10)-1 == 'NaN' || parseInt(collected.first().content,10)-1 < 0){
+            			msg.channel.send('This is not a valid number, please try again.')
+            			inputAn(anarr)
+            		}else{
+            			var embed2 = new RichEmbed()
+	                	var res = anarr[parseInt(collected.first().content,10)-1]
+	                }
+
+	                embed2.setTitle(res.sn.replace(/\_/g," "))
+
+		  			//if(res.pictures[0]){
+			  			//var thum = res.pictures[0];
+			  			//thum = thum.substring(thum.indexOf("https",2),thum.length)
+			  			embed2.setThumbnail(res.cover)
+		  			//}
+
+		  			embed2.setDescription(res.description)
+		  			embed2.addField("Link", "https://myanimelist.net/"+res.path)
+
+
+		  			if(res.mangaography.length > 0){
+		  				var mangas = "";
+		  				for (var i = 0; i < res.mangaography.length; i++) {
+		  					if(i+1 < res.mangaography.length){
+		  						if(res.mangaography[i].sn != res.mangaography[i+1].sn){
+			  						mangas = mangas + "`" + res.mangaography[i].sn.replace(/\_/g," ") + "`";
+			  						mangas = mangas + ",";
+			  					}
+		  					}else{
+		  						mangas = mangas + "`" + res.mangaography[i].sn.replace(/\_/g," ") + "`";
+		  					}
+		  				}
+		  				embed2.addField("Manga", mangas)
+		  			}
+
+
+		  			if(res.animeography.length > 0){
+		  				var animes = "";
+		  				for (var i = 0; i < res.animeography.length; i++) {
+		  					if(i+1 < res.animeography.length){
+		  						if(res.animeography[i].sn != res.animeography[i+1].sn){
+			  						animes = animes + "`" + res.animeography[i].sn.replace(/\_/g," ") + "`";
+			  						animes = animes + ",";
+			  					}
+		  					}else{
+		  						animes = animes + "`" + res.animeography[i].sn.replace(/\_/g," ") + "`";
+		  					}
+		  				}
+
+		  				embed2.addField("Anime", animes)
+		  			}
+
+		  			msg.channel.send(embed2)
+
+            })
+            .catch(err => {
+            	console.log(err)
+            	msg.channel.send('The Time to reply ran out, please try again.');
+            })
+
 	}
 }
