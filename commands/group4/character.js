@@ -234,11 +234,12 @@ module.exports = class characterCommand extends Command {
 
 		  			msg.channel.send(embed2)
 
-            })
-            .catch(err => {
-            	console.log(err)
-            	msg.channel.send('The Time to reply ran out, please try again.');
-            })
+	            })
+	            .catch(err => {
+	            	console.log(err)
+	            	msg.channel.send('The Time to reply ran out, please try again.');
+	            })
 
+		}
 	}
 }
