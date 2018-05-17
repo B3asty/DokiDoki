@@ -120,13 +120,38 @@ module.exports = class characterCommand extends Command {
 		  	}else {
 		  		result.character[0].fetch().then(res => {
 		  			console.log(res)
-		  			var thum = res.pictures[0];
-		  			thum = thum.substring(thum.indexOf("https",2),thum.length)
 		  			console.log(thum)
 		  			embed.setTitle(res.sn.replace("_"," "))
-		  			embed.setThumbnail(thum)
+
+		  			if(res.pictures[0]){
+			  			var thum = res.pictures[0];
+			  			thum = thum.substring(thum.indexOf("https",2),thum.length)
+			  			embed.setThumbnail(thum)
+		  			}
+
 		  			embed.setDescription(res.description)
 		  			embed.addField("Link", "https://myanimelist.net/"+res.path)
+
+		  			if(res.mangaography.length > 0){
+		  				var mangas = "";
+		  				for (var i = 0; i < mangaography.length; i++) {
+		  					mangas = mangas + "`" + mangaography[i].sn.replace("_"," ") + "`";
+		  					if(i+1 < mangaography.length){
+		  						mangas = mangas + ",";
+		  					}
+		  				}
+		  			}
+
+		  			if(res.animeography.length > 0){
+		  				var animes = "";
+		  				for (var i = 0; i < animeography.length; i++) {
+		  					animes = animes + "`" + animeography[i].sn.replace("_"," ") + "`";
+		  					if(i+1 < animeography.length){
+		  						animes = animes + ",";
+		  					}
+		  				}
+		  			}
+
 		  			msg.channel.send(embed)
 		  		})
 	    	}
