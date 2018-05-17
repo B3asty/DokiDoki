@@ -123,7 +123,7 @@ module.exports = class characterCommand extends Command {
 		  			embed.setTitle(res.sn.replace("_"," "))
 		  			embed.setThumbnail(res.pictures[0])
 		  			embed.setDescription(res.description)
-		  			embed.setField("Link", "https://myanimelist.net/"+res.path)
+		  			embed.addField("Link", "https://myanimelist.net/"+res.path)
 		  			msg.channel.send(embed)
 		  		})
 	    	}
