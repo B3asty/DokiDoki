@@ -120,7 +120,6 @@ module.exports = class characterCommand extends Command {
 		  	}else {
 		  		result.character[0].fetch().then(res => {
 		  			console.log(res)
-		  			console.log(thum)
 		  			embed.setTitle(res.sn.replace("_"," "))
 
 		  			if(res.pictures[0]){
@@ -140,6 +139,8 @@ module.exports = class characterCommand extends Command {
 		  						mangas = mangas + ",";
 		  					}
 		  				}
+
+		  				embed.addField("Manga", mangas)
 		  			}
 
 		  			if(res.animeography.length > 0){
@@ -150,6 +151,8 @@ module.exports = class characterCommand extends Command {
 		  						animes = animes + ",";
 		  					}
 		  				}
+
+		  				embed.addField("Anime", animes)
 		  			}
 
 		  			msg.channel.send(embed)
