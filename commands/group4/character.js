@@ -120,8 +120,10 @@ module.exports = class characterCommand extends Command {
 		  	}else {
 		  		result.character[0].fetch().then(res => {
 		  			console.log(res)
+		  			var thum = res.pictures[0];
+		  			console.log(thum)
 		  			embed.setTitle(res.sn.replace("_"," "))
-		  			embed.setThumbnail(res.pictures[0])
+		  			//embed.setThumbnail(res.pictures[0])
 		  			embed.setDescription(res.description)
 		  			embed.addField("Link", "https://myanimelist.net/"+res.path)
 		  			msg.channel.send(embed)
