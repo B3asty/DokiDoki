@@ -88,7 +88,7 @@ module.exports = class characterCommand extends Command {
 		  		embedst2.setTitle("Multiple Characters found");
 		  		if(result.character.length < 30){
 		  			for (var i = 0; i < result.character.length; i++) {  			
-			  			titles = titles + "**["+ (i+1) + "]** " + result.character[i].sn.replace("_"," ") + "\n";
+			  			titles = titles + "**["+ (i+1) + "]** " + result.character[i].sn.replace(/\_/g," ") + "\n";
 			  		}
 
 			  		titles = titles+"\n**Please enter the number of the character you want to view** \n**Or type** `cancel` **to cancel the command**"
@@ -97,7 +97,7 @@ module.exports = class characterCommand extends Command {
 			  		msg.channel.send(embed)
 		  		}else{
 		  			for (var i = 0; i < 30; i++) {  			
-			  			titles = titles + "**["+ (i+1) + "]** " + result.character[i].title + "\n";
+			  			titles = titles + "**["+ (i+1) + "]** " + result.character[i].sn.replace(/\_/g," ") + "\n";
 			  		}
 
 			  		titles = titles+"\n**Please enter the number of the character you want to view** \n**Or type** `cancel` **to cancel the command**"
@@ -106,7 +106,7 @@ module.exports = class characterCommand extends Command {
 			  		msg.channel.send(embed)
 
 			  		for (var i = 30; i < result.character.length; i++) {  			
-			  			titles2 = titles2 + "**["+ (i+1) + "]** " + result.character[i].title + "\n";
+			  			titles2 = titles2 + "**["+ (i+1) + "]** " + result.character[i].sn.replace(/\_/g," ") + "\n";
 			  		}
 
 			  		titles2 = titles2+"\n**Please enter the number of the character you want to view** \n**Or type** `cancel` **to cancel the command**"
@@ -134,7 +134,7 @@ module.exports = class characterCommand extends Command {
 		  			if(res.mangaography.length > 0){
 		  				var mangas = "";
 		  				for (var i = 0; i < res.mangaography.length; i++) {
-		  					mangas = mangas + "`" + res.mangaography[i].sn.replace("_"," ") + "`";
+		  					mangas = mangas + "`" + res.mangaography[i].sn.replace(/\_/g," ") + "`";
 		  					if(i+1 < res.mangaography.length){
 		  						mangas = mangas + ",";
 		  					}
@@ -146,7 +146,7 @@ module.exports = class characterCommand extends Command {
 		  			if(res.animeography.length > 0){
 		  				var animes = "";
 		  				for (var i = 0; i < res.animeography.length; i++) {
-		  					animes = animes + "`" + res.animeography[i].sn.replace("_"," ") + "`";
+		  					animes = animes + "`" + res.animeography[i].sn.replace(/\_/g," ") + "`";
 		  					if(i+1 < res.animeography.length){
 		  						animes = animes + ",";
 		  					}
