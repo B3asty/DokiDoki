@@ -55,7 +55,7 @@ const pool = new Pool({
   connectionString: "postgres://mncmdnttojdsku:3849194dc1c60408b302cd9991f3ce27e08827998d5029ae25080e6bf09ee779@ec2-54-225-96-191.compute-1.amazonaws.com:5432/d3u98tvto5gblt",
   ssl: true
 });
-client.on("message", message => {
+/*client.on("message", message => {
 pool.connect();
 const query = pool.query(
   'SELECT * FROM XP WHERE userId ="${message.author.id}"').then(row => {
@@ -71,6 +71,6 @@ const query = pool.query(
       pool.run(`UPDATE XP SET points = ${row.points + 0.1} WHERE userId = ${message.author.id}`);
     }
   });
-});
+});*/
 
 client.login(process.env.token);

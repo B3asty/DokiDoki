@@ -89,14 +89,14 @@ module.exports = class mangaCommand extends Command {
 		  	if(result.manga.length > 1){
 		  		var titles = "";
 		  		var titles2 = "";
-		  		embed.setTitle("Multiple manga found");
-		  		embedst2.setTitle("Multiple manga found");
+		  		embed.setTitle("Multiple Manga found");
+		  		embedst2.setTitle("Multiple Manga found");
 		  		if(result.manga.length < 30){
 		  			for (var i = 0; i < result.manga.length; i++) {  			
 			  			titles = titles + "**["+ (i+1) + "]** " + result.manga[i].title + "\n";
 			  		}
 
-			  		titles = titles+"\n**Please enter the number of the manga you want to view** \n**Or type** `cancel` **to cancel the command**"
+			  		titles = titles+"\n**Please enter the number of the Manga you want to view** \n**Or type** `cancel` **to cancel the command**"
 			  		embed.setDescription(titles)
 
 			  		msg.channel.send(embed)
@@ -105,7 +105,7 @@ module.exports = class mangaCommand extends Command {
 			  			titles = titles + "**["+ (i+1) + "]** " + result.manga[i].title + "\n";
 			  		}
 
-			  		titles = titles+"\n**Please enter the number of the manga you want to view** \n**Or type** `cancel` **to cancel the command**"
+			  		titles = titles+"\n**Please enter the number of the Manga you want to view** \n**Or type** `cancel` **to cancel the command**"
 			  		embed.setDescription(titles)
 
 			  		msg.channel.send(embed)
@@ -114,7 +114,7 @@ module.exports = class mangaCommand extends Command {
 			  			titles2 = titles2 + "**["+ (i+1) + "]** " + result.manga[i].title + "\n";
 			  		}
 
-			  		titles2 = titles2+"\n**Please enter the number of the manga you want to view** \n**Or type** `cancel` **to cancel the command**"
+			  		titles2 = titles2+"\n**Please enter the number of the Manga you want to view** \n**Or type** `cancel` **to cancel the command**"
 			  		embedst2.setDescription(titles2)
 
 			  		msg.channel.send(embedst2)
@@ -143,7 +143,7 @@ module.exports = class mangaCommand extends Command {
 				        var eng = "";
 				        if(res.english.length > 0){
 				            for(var i = 0; i < res.english.length; i++){
-				                eng = eng+"`"+res.english[i]+"`";
+				                eng = eng+"`"+res.english[i]+"`";M
 				                if(i+1 < res.english.length){
 				                    eng=eng+", ";
 				                }
@@ -167,7 +167,7 @@ module.exports = class mangaCommand extends Command {
 					  	
 					  	embed.addField("English Title", eng + " ",true)
 					  	embed.addField("Synonyms", syn + " ",true)
-					  	embed.addField("Episodes", res.episodes, true)
+					  	embed.addField("Chapters", res.chapters, true)
 					  	embed.addField("Status", res.status, true)
 					  	embed.addField("Type", res.type, true)
 					  	embed.addField("Score", res.score+"/10", true)
@@ -261,7 +261,7 @@ module.exports = class mangaCommand extends Command {
 					  	
 					  	embed2.addField("English Title", eng + " ",true)
 					  	embed2.addField("Synonyms", syn + " ",true)
-					  	embed2.addField("Episodes", csn.episodes, true)
+					  	embed2.addField("Chapters", csn.chapters, true)
 					  	embed2.addField("Status", csn.status, true)
 					  	embed2.addField("Type", csn.type, true)
 					  	embed2.addField("Score", csn.score+"/10", true)
