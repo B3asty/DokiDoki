@@ -127,7 +127,7 @@ module.exports = class characterCommand extends Command {
 			  			//thum = thum.substring(thum.indexOf("https",2),thum.length)
 			  			embed.setThumbnail(res.cover)
 		  			//}
-		  			var desc = res.description.replace("&quot;",'"').replace("&apos;","'");
+		  			var desc = res.description.replace(/\&quot\;/g,'"').replace(/\&apos\;/g,"'");
 		  			if(desc.length > 2048){
 				        desc = desc.substring(0,2047).substring(0,desc.lastIndexOf('.'))
 				    }
@@ -197,7 +197,7 @@ module.exports = class characterCommand extends Command {
 			  			embed2.setThumbnail(res.cover)
 		  			//}
 
-		  			var desc = res.description.replace("&quot;",'"').replace("&apos;","'");
+		  			var desc = res.description.replace(/\&quot\;/g,'"').replace(/\&apos\;/g,"'");
 		  			if(desc.length > 2048){
 				        desc = desc.substring(0,2047).substring(0,desc.lastIndexOf('.'))
 				    }
