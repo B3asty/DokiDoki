@@ -102,7 +102,7 @@ module.exports = class animeCommand extends Command {
 		mal.manga.search(anm)
 		  .then(result => {
 		  	console.log(result)
-		  	/*if(result.anime.length > 1){
+		  	if(result.anime.length > 1){
 		  		var titles = "";
 		  		var titles2 = "";
 		  		embed.setTitle("Multiple Anime found");
@@ -211,13 +211,13 @@ module.exports = class animeCommand extends Command {
 
 					  	msg.channel.send(embed)
 					  }
-			*/
+			
 		  }
 
 		  ) // contains the json result on success
 		  .catch(err => {
-		  	//msg.channel.send("Something went wrong, please try again.")
-		  	//console.log(err);
+		  	msg.channel.send("Something went wrong, please try again.")
+		  	console.log(err);
 		  });
 	   
 		  function inputAn(anarr){
