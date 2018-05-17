@@ -1,6 +1,6 @@
 const { Command } = require('discord.js-commando')
 const { RichEmbed } = require('discord.js');
-const MALjs = require('MALjs');
+var mal = require('maljs');
 
 module.exports = class characterCommand extends Command {
 	constructor(client) {
@@ -24,8 +24,6 @@ module.exports = class characterCommand extends Command {
 	}
 
 	async run(msg, args) {
- 		const mal = new MALjs('DokiDokiBot', 'DokiDoki');
-
 		const months = {
 				"00": "",
 	            "01": "January ",
