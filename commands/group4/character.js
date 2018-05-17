@@ -141,7 +141,7 @@ module.exports = class characterCommand extends Command {
 		  					if(i+1 < res.mangaography.length){
 		  						if(res.mangaography[i].sn != res.mangaography[i+1].sn){
 			  						mangas = mangas + "`" + res.mangaography[i].sn.replace(/\_/g," ") + "`";
-			  						mangas = mangas + ",";
+			  						mangas = mangas + ", ";
 			  					}
 		  					}else{
 		  						mangas = mangas + "`" + res.mangaography[i].sn.replace(/\_/g," ") + "`";
@@ -157,7 +157,7 @@ module.exports = class characterCommand extends Command {
 		  					if(i+1 < res.animeography.length){
 		  						if(res.animeography[i].sn != res.animeography[i+1].sn){
 			  						animes = animes + "`" + res.animeography[i].sn.replace(/\_/g," ") + "`";
-			  						animes = animes + ",";
+			  						animes = animes + ", ";
 			  					}
 		  					}else{
 		  						animes = animes + "`" + res.animeography[i].sn.replace(/\_/g," ") + "`";
@@ -211,7 +211,7 @@ module.exports = class characterCommand extends Command {
 		  					if(i+1 < res.mangaography.length){
 		  						if(res.mangaography[i].sn != res.mangaography[i+1].sn){
 			  						mangas = mangas + "`" + res.mangaography[i].sn.replace(/\_/g," ") + "`";
-			  						mangas = mangas + ",";
+			  						mangas = mangas + ", ";
 			  					}
 		  					}else{
 		  						mangas = mangas + "`" + res.mangaography[i].sn.replace(/\_/g," ") + "`";
@@ -227,7 +227,7 @@ module.exports = class characterCommand extends Command {
 		  					if(i+1 < res.animeography.length){
 		  						if(res.animeography[i].sn != res.animeography[i+1].sn){
 			  						animes = animes + "`" + res.animeography[i].sn.replace(/\_/g," ") + "`";
-			  						animes = animes + ",";
+			  						animes = animes + ", ";
 			  					}
 		  					}else{
 		  						animes = animes + "`" + res.animeography[i].sn.replace(/\_/g," ") + "`";
