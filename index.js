@@ -66,7 +66,7 @@ const query = pool.query(
       let curLevel = Math.floor(0.01 * Math.sqrt(row.points + 0.1));
       if (curLevel > row.level) {
         row.level = curLevel;
-        pool.query(`UPDATE XP SET points = ${row.points + 0.1}, level = ${row.level} WHERE userId = ${message.author.id}`);
+        pool.query(`UPDATE XP SET level = ${row.level} WHERE userId = ${message.author.id}`);
         message.reply(`You've leveled up to level **${curLevel}**!`);
       }
       pool.run(`UPDATE XP SET points = ${row.points + 0.1} WHERE userId = ${message.author.id}`);
