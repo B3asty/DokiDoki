@@ -33,13 +33,10 @@ module.exports = class emojiCommand extends Command {
 
             if(mes.charAt(1) == 'a'){
             	var link = "https://cdn.discordapp.com/emojis/"+mojiID+".gif"
-            	//embed.setImage("https://cdn.discordapp.com/emojis/"+mojiID+".gif")
-
             }else{
             	var link = "https://cdn.discordapp.com/emojis/"+mojiID+".png"
-            	//embed.setImage(embed.setImage("https://cdn.discordapp.com/emojis/"+mojiID+".png"))
             }
-            
+            embed.setImage(link)
             msg.channel.send(embed)
        
 }
