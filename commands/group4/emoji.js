@@ -42,7 +42,8 @@ module.exports = class emojiCommand extends Command {
 				const moo = require('twemoji')
 				var tx = moo.parse(' :poop: ')
 				tx = tx.substring(tx.indexOf('src=')+5, tx.lastIndexOf('"'));
-				embed.setImage(tx)
+				console.log(tx)
+				//embed.setImage(tx)
 				msg.channel.send(embed)
 			}
 
