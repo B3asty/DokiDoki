@@ -57,17 +57,15 @@ const pool = new Pool({
 });
 client.on("message", message => {
 pool.connect();
-const query = pool.query(`SELECT * FROM XP WHERE userid ="${message.author.id}"`).then(row => {
-    if (!row) { pool.query("INSERT INTO XP (userid, xp, level) VALUES (?, ?, ?)", [message.author.id, 1, 0]);
+const query = pool.query(`SELECT * FROM XP`).then(row => {
+    if (!row) { pool.query("INSERT INTO XP (userid, xp, level) VALUES (?, ?, ?)", [message.author.id, 1, 1]);
     } else {
-      let curLevel = Math.floor(0.01 * Math.sqrt(row.points + 0.1));
+      let curLevel = Math.floor(0.01 * Math.sqrt(row.points + 0.01));
       if (curLevel > row.level) {
         row.level = curLevel;
         pool.query(`UPDATE XP SET level = ${row.level} WHERE userId = ${message.author.id}`);
         message.reply(`You've leveled up to level **${curLevel}**!`);
       }
-      pool.run(`UPDATE XP SET points = ${row.points + 0.1} WHERE userid = ${message.author.id}`);
-    }
   });
 });
 
