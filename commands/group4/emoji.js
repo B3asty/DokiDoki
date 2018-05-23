@@ -25,19 +25,24 @@ module.exports = class emojiCommand extends Command {
 	async run(msg, args) {
 		const embed = new RichEmbed()
 			var mes = args.moji;
-			
-            var mojiID = mes.substring(1,mes.length-1).substring(mes.lastIndexOf(":"),mes.length)
-            console.log(mes)
-            console.log(mojiID)
-            console.log(mes.charAt(1))
+			if(/\<a?\:.+\:[0-9]+\>/.test(mes)){
+				var mojiID = mes.substring(1,mes.length-1).substring(mes.lastIndexOf(":"),mes.length)
+	            //console.log(mes)
+	            //console.log(mojiID)
+	            //console.log(mes.charAt(1))
 
-            if(mes.charAt(1) == 'a'){
-            	var link = "https://cdn.discordapp.com/emojis/"+mojiID+".gif"
-            }else{
-            	var link = "https://cdn.discordapp.com/emojis/"+mojiID+".png"
-            }
-            embed.setImage(link)
-            msg.channel.send(embed)
+	            if(mes.charAt(1) == 'a'){
+	            	var link = "https://cdn.discordapp.com/emojis/"+mojiID+".gif"
+	            }else{
+	            	var link = "https://cdn.discordapp.com/emojis/"+mojiID+".png"
+	            }
+	            embed.setImage(link)
+	            msg.channel.send(embed)
+			}else{
+				msg.channel.send("This command only works for custom emojis at the moment.")
+			}
+
+            
        
 }
 };
