@@ -66,7 +66,7 @@ const query = pool.query(`SELECT * FROM XP`).then(row => {
         pool.query(`UPDATE XP SET level = ${row.level} WHERE userId = ${message.author.id}`);
         message.reply(`You've leveled up to level **${curLevel}**!`);
       }
-  });
+  };
 });
 
 client.login(process.env.token);
