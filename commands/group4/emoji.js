@@ -45,7 +45,7 @@ module.exports = class emojiCommand extends Command {
 				moo.parse(
 				  args.moji,
 				  function(icon, options, variant) {
-				    console.log(options.base + icon + options.ext);
+				    console.log(options.base + "/" +  options.size + "/" + icon + options.ext);
 				  }
 				);
 
