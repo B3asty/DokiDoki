@@ -40,14 +40,22 @@ module.exports = class emojiCommand extends Command {
 	            msg.channel.send(embed)
 			}else{
 				const moo = require('twemoji')
-				var tx = moo.parse(' :poop: ')
-				console.log(moo)
-				var moj = client.emojis.find("name", tx.substring(1,tx.length-1));
-				console.log(moj)
-				tx = tx.substring(tx.indexOf('src=')+5, tx.lastIndexOf('"'));
-				console.log(tx)
+				//var tx = moo.parse(' :poop: ')
+
+				moo.parse(
+				  args.moji,
+				  function(icon, options, variant) {
+				    console.log(icon);
+				  }
+				);
+
+				//console.log(moo)
+				//var moj = client.emojis.find("name", tx.substring(1,tx.length-1));
+				//console.log(moj)
+				//tx = tx.substring(tx.indexOf('src=')+5, tx.lastIndexOf('"'));
+				//console.log(tx)
 				//embed.setImage(tx)
-				msg.channel.send(embed)
+				//msg.channel.send(embed)
 			}
 
             
