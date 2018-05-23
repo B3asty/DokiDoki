@@ -16,7 +16,7 @@ module.exports = class emojiCommand extends Command {
 					key: 'moji',
 					label: 'emoji',
 					prompt: 'What emoji would you like to see?',
-					type: 'text'
+					type: 'string'
 				}
 			]
 		});
