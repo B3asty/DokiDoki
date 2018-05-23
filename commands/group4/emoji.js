@@ -27,6 +27,7 @@ module.exports = class emojiCommand extends Command {
 			var mes = args.moji;
 			
             var mojiID = mes.substring(1,mes.length-1).substring(mes.lastIndexOf(":"),mes.length)
+            console.log(mes)
             console.log(mojiID)
 
             if(mes.charAt(1) == 'a'){
