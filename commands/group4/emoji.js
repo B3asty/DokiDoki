@@ -41,6 +41,8 @@ module.exports = class emojiCommand extends Command {
 			}else{
 				const moo = require('twemoji')
 				var tx = moo.parse(' :poop: ')
+				console.log(moo)
+				console.log(tx)
 				tx = tx.substring(tx.indexOf('src=')+5, tx.lastIndexOf('"'));
 				console.log(tx)
 				//embed.setImage(tx)
