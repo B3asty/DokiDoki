@@ -45,17 +45,11 @@ module.exports = class emojiCommand extends Command {
 				moo.parse(
 				  args.moji,
 				  function(icon, options, variant) {
-				    console.log(options.base + "/" +  options.size + "/" + icon + options.ext);
+				    var moj = options.base +  options.size + "/" + icon + options.ext;
+				    embed.setImage(moj)
 				  }
 				);
-
-				//console.log(moo)
-				//var moj = client.emojis.find("name", tx.substring(1,tx.length-1));
-				//console.log(moj)
-				//tx = tx.substring(tx.indexOf('src=')+5, tx.lastIndexOf('"'));
-				//console.log(tx)
-				//embed.setImage(tx)
-				//msg.channel.send(embed)
+				msg.channel.send(embed)
 			}
 
             
