@@ -58,7 +58,6 @@ const pool = new Pool({
 client.on("message", message => {
 pool.connect();
 const query = pool.query(
-	const userid = message.author.id
   'SELECT * FROM XP WHERE userid ="${message.author.id}"').then(row => {
     if (!row) {
       pool.query("INSERT INTO XP (userid, xp, level) VALUES (?, ?, ?)", [message.author.id, 1, 0]);
