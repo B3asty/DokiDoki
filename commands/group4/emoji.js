@@ -31,11 +31,14 @@ module.exports = class emojiCommand extends Command {
             console.log(mojiID)
             console.log(mes.charAt(1))
 
-            /*if(mes.charAt(1) == 'a'){
-            	embed.setImage("https://cdn.discordapp.com/emojis/"+mojiID+".gif")
+            if(mes.charAt(1) == 'a'){
+            	var link = "https://cdn.discordapp.com/emojis/"+mojiID+".gif"
+            	//embed.setImage("https://cdn.discordapp.com/emojis/"+mojiID+".gif")
+
             }else{
-            	embed.setImage(embed.setImage("https://cdn.discordapp.com/emojis/"+mojiID+".png"))
-            }*/
+            	var link = "https://cdn.discordapp.com/emojis/"+mojiID+".png"
+            	//embed.setImage(embed.setImage("https://cdn.discordapp.com/emojis/"+mojiID+".png"))
+            }
             
             msg.channel.send(embed)
        
