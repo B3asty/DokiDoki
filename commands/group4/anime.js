@@ -42,7 +42,7 @@ module.exports = class animeCommand extends Command {
 
 
 		const mal = new MALjs('DokiDokiBot', process.env.mal);
-		//console.log(mal)
+		console.log(mal)
 		const months = {
 				"00": "",
 	            "01": "January ",
@@ -99,7 +99,7 @@ module.exports = class animeCommand extends Command {
 	    var embedst2 = new RichEmbed()
 
 	// search my animelist
-		mal.anime.search('acchi')
+		mal.anime.search(anm)
 		  .then(result => {
 		  	console.log(result)
 		  	if(result.anime.length > 1){
