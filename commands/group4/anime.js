@@ -102,6 +102,7 @@ module.exports = class animeCommand extends Command {
 		mal.quickSearch(anm)
 		  .then(result => {
 		  	console.log(result)
+		  	console.log(result.anime[0].mal)
 		  	if(result.anime.length > 1){
 		  		var titles = "";
 		  		var titles2 = "";
@@ -109,7 +110,7 @@ module.exports = class animeCommand extends Command {
 		  		embedst2.setTitle("Multiple Anime found");
 		  		if(result.anime.length < 30){
 		  			for (var i = 0; i < result.anime.length; i++) {  			
-			  			titles = titles + "**["+ (i+1) + "]** " + result.anime[i].title + "\n";
+			  			titles = titles + "**["+ (i+1) + "]** " + result.anime[i].sn.replace(/\_/g," ") + "\n";
 			  		}
 
 			  		titles = titles+"\n**Please enter the number of the Anime you want to view** \n**Or type** `cancel` **to cancel the command**"
@@ -118,7 +119,7 @@ module.exports = class animeCommand extends Command {
 			  		msg.channel.send(embed)
 		  		}else{
 		  			for (var i = 0; i < 30; i++) {  			
-			  			titles = titles + "**["+ (i+1) + "]** " + result.anime[i].title + "\n";
+			  			titles = titles + "**["+ (i+1) + "]** " + result.anime[i].sn.replace(/\_/g," ") + "\n";
 			  		}
 
 			  		titles = titles+"\n**Please enter the number of the Anime you want to view** \n**Or type** `cancel` **to cancel the command**"
@@ -127,7 +128,7 @@ module.exports = class animeCommand extends Command {
 			  		msg.channel.send(embed)
 
 			  		for (var i = 30; i < result.anime.length; i++) {  			
-			  			titles2 = titles2 + "**["+ (i+1) + "]** " + result.anime[i].title + "\n";
+			  			titles2 = titles2 + "**["+ (i+1) + "]** " + result.anime[i].sn.replace(/\_/g," ") + "\n";
 			  		}
 
 			  		titles2 = titles2+"\n**Please enter the number of the Anime you want to view** \n**Or type** `cancel` **to cancel the command**"
