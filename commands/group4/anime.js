@@ -232,79 +232,81 @@ module.exports = class animeCommand extends Command {
             			inputAn(anarr)
             		}else{
             			var embed2 = new RichEmbed()
-	                	var csn = anarr[parseInt(collected.first().content,10)-1].fetch()
-	                	console.log(csn)
+	                	anarr[parseInt(collected.first().content,10)-1].fetch().then(csn => {
+	                		console.log(csn)
 	                	
-	                	/*var syn = "";
-	                	if(csn.synonyms.length > 0){
-				            for(var i = 0; i < csn.synonyms.length; i++){
-				                syn = syn+"`"+csn.synonyms[i]+"`";
-				                if(i+1 < csn.synonyms.length){
-				                    syn=syn+", ";
-				                }
-				            }
-				        }
+		                	/*var syn = "";
+		                	if(csn.synonyms.length > 0){
+					            for(var i = 0; i < csn.synonyms.length; i++){
+					                syn = syn+"`"+csn.synonyms[i]+"`";
+					                if(i+1 < csn.synonyms.length){
+					                    syn=syn+", ";
+					                }
+					            }
+					        }
 
-				        if(syn == '``'){
-				        	syn = "None";
-				        }else{
-				        	syn = syn.replace(/`/g,'');
-				        }
+					        if(syn == '``'){
+					        	syn = "None";
+					        }else{
+					        	syn = syn.replace(/`/g,'');
+					        }
 
-				        var eng = "";
-				        if(csn.english.length > 0){
-				            for(var i = 0; i < csn.english.length; i++){
-				                eng = eng+"`"+csn.english[i]+"`";
-				                if(i+1 < csn.english.length){
-				                    eng=eng+", ";
-				                }
-				            }
-				        }
+					        var eng = "";
+					        if(csn.english.length > 0){
+					            for(var i = 0; i < csn.english.length; i++){
+					                eng = eng+"`"+csn.english[i]+"`";
+					                if(i+1 < csn.english.length){
+					                    eng=eng+", ";
+					                }
+					            }
+					        }
 
-				        if(eng == '``'){
-				        	eng = "None";
-				        }else{
-				        	eng = eng.replace(/`/g,'');
-				        }
+					        if(eng == '``'){
+					        	eng = "None";
+					        }else{
+					        	eng = eng.replace(/`/g,'');
+					        }
 
-				        var desc = csn.synopsis.toString().replace(/<.*>/g,' ').replace(/&#039;/g,"'").replace(/\[.*\]/g,' ');
-				        if(desc.length > 2048){
-				        	desc = desc.substring(0,2047).substring(0,desc.lastIndexOf('.'))
-				        }
+					        var desc = csn.synopsis.toString().replace(/<.*>/g,' ').replace(/&#039;/g,"'").replace(/\[.*\]/g,' ');
+					        if(desc.length > 2048){
+					        	desc = desc.substring(0,2047).substring(0,desc.lastIndexOf('.'))
+					        }
 
-				        embed2.setTitle(csn.title,true)
-					  	embed2.setDescription("**Description**\n"+desc)
+					        embed2.setTitle(csn.title,true)
+						  	embed2.setDescription("**Description**\n"+desc)
 
-					  	
-					  	embed2.addField("English Title", eng + " ",true)
-					  	embed2.addField("Synonyms", syn + " ",true)
-					  	embed2.addField("Episodes", csn.episodes, true)
-					  	embed2.addField("Status", csn.status, true)
-					  	embed2.addField("Type", csn.type, true)
-					  	embed2.addField("Score", csn.score+"/10", true)
-					  	embed2.addField("Link", "https://myanimelist.net/anime/"+csn.id, true)
+						  	
+						  	embed2.addField("English Title", eng + " ",true)
+						  	embed2.addField("Synonyms", syn + " ",true)
+						  	embed2.addField("Episodes", csn.episodes, true)
+						  	embed2.addField("Status", csn.status, true)
+						  	embed2.addField("Type", csn.type, true)
+						  	embed2.addField("Score", csn.score+"/10", true)
+						  	embed2.addField("Link", "https://myanimelist.net/anime/"+csn.id, true)
 
-					  	var fromcspl = csn.start_date.toString().split('-');
-					  	var tocspl = csn.end_date.toString().split('-');
-					  	if(fromcspl[0] == "0000"){
-					  		var fromc = "No releasedate yet";
-					  		var toc = "";
-					  	}else{
-					  		if(tocspl[0] == "0000"){
-					  			var toc = "";
-					  			var fromc = "Will start airing in " + months[fromcspl[1]] + days[fromcspl[2]] + fromcspl[0];
-					  		}else{
-					  			var toc = months[tocspl[1]]  + days[tocspl[2]] + tocspl[0];
-					  			var fromc = months[fromcspl[1]] + days[fromcspl[2]] + fromcspl[0] + " to ";
-					  		}
-					  	}
+						  	var fromcspl = csn.start_date.toString().split('-');
+						  	var tocspl = csn.end_date.toString().split('-');
+						  	if(fromcspl[0] == "0000"){
+						  		var fromc = "No releasedate yet";
+						  		var toc = "";
+						  	}else{
+						  		if(tocspl[0] == "0000"){
+						  			var toc = "";
+						  			var fromc = "Will start airing in " + months[fromcspl[1]] + days[fromcspl[2]] + fromcspl[0];
+						  		}else{
+						  			var toc = months[tocspl[1]]  + days[tocspl[2]] + tocspl[0];
+						  			var fromc = months[fromcspl[1]] + days[fromcspl[2]] + fromcspl[0] + " to ";
+						  		}
+						  	}
 
-					  	
+						  	
 
-					  	embed2.setFooter(fromc + toc)
-					  	embed2.setThumbnail(csn.image.toString())*/
+						  	embed2.setFooter(fromc + toc)
+						  	embed2.setThumbnail(csn.image.toString())*/
 
-					  	msg.channel.send(embed2)
+						  	msg.channel.send(embed2)
+	                	})
+	                	
             		}
 
             		
