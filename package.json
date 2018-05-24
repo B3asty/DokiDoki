@@ -29,7 +29,6 @@
     "curl": "^0.1.4",
     "dblapi.js": "^1.2.0",
     "discord.js": "^11.3.2",
-    "discord.js-commando": "github:discordjs/Commando#11.2",
     "dotenv": "^5.0.1",
     "fs": "0.0.1-security",
     "git-all": "0.0.3",
