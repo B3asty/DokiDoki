@@ -232,10 +232,10 @@ module.exports = class animeCommand extends Command {
             			inputAn(anarr)
             		}else{
             			var embed2 = new RichEmbed()
-	                	var csn = anarr[parseInt(collected.first().content,10)-1]
-	                	//console.log(csn)
+	                	var csn = anarr[parseInt(collected.first().content,10)-1].fetch()
+	                	console.log(csn)
 	                	
-	                	var syn = "";
+	                	/*var syn = "";
 	                	if(csn.synonyms.length > 0){
 				            for(var i = 0; i < csn.synonyms.length; i++){
 				                syn = syn+"`"+csn.synonyms[i]+"`";
@@ -302,7 +302,7 @@ module.exports = class animeCommand extends Command {
 					  	
 
 					  	embed2.setFooter(fromc + toc)
-					  	embed2.setThumbnail(csn.image.toString())
+					  	embed2.setThumbnail(csn.image.toString())*/
 
 					  	msg.channel.send(embed2)
             		}
