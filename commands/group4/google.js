@@ -30,8 +30,8 @@ module.exports = class googleCommand extends Command {
 		var que = args.query;
 
 		var googleSearch = new GoogleSearch({
-		  key: process.env.googleapi,
-		  cx: process.env.googlecx
+		  key: 'AIzaSyDbMFIXtCiEDoY26mUBVgN35FlLV9MckKg ',
+		  cx: '016729059967415605183:avz5ft7tbxk'
 		});
 		 
 		 
