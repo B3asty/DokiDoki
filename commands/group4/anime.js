@@ -42,7 +42,7 @@ module.exports = class animeCommand extends Command {
 
 
 		const mal = new MALjs('DokiDokiBot', process.env.mal);
-		console.log(mal)
+		console.log(mal.MALjs)
 		const months = {
 				"00": "",
 	            "01": "January ",
