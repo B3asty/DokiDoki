@@ -57,7 +57,7 @@ const pool = new Pool({
 });
 client.on("message", message => {
 pool.connect();
-const query = pool.query(`SELECT * FROM XP WHERE ${message.author.id} = userid`).then(row => {
+pool.query(`SELECT * FROM XP WHERE userid = ${message.author.id}`).then(row => {
     if (!row) { pool.query("INSERT INTO XP (userid, xp, level) VALUES (?, ?, ?)", [message.author.id, 1, 1]);
     } else {
       let curLevel = Math.floor(0.01 * Math.sqrt(row.points + 0.01));
