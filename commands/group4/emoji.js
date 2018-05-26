@@ -51,11 +51,9 @@ module.exports = class emojiCommand extends Command {
 				    var moj = options.base +  options.size + "/" + icon + options.ext;
 				    embed.setImage(moj)
 				  }
-				).then(res => {
-					console.log(res)
-				}).catch(err => {
-					console.log(err)
-				})
+				)
+
+				console.log(moo.parse())
 				msg.channel.send(embed)
 			}
 
