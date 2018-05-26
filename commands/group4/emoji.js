@@ -26,10 +26,10 @@ module.exports = class emojiCommand extends Command {
 		const embed = new RichEmbed()
 			var mes = args.moji;
 			if(/\<a?\:.+\:[0-9]+\>/.test(mes)){
-				//var mojiName = mes.substring
+				var mojiName = mes.substring(mes.indexOf(":"), mes.lastIndexOf(":"))
 				var mojiID = mes.substring(1,mes.length-1).substring(mes.lastIndexOf(":"),mes.length)
 	            console.log(mes)
-	            //console.log(mojiID)
+	            console.log(mojiName)
 	            //console.log(mes.charAt(1))
 
 	            if(mes.charAt(1) == 'a'){
@@ -37,6 +37,7 @@ module.exports = class emojiCommand extends Command {
 	            }else{
 	            	var link = "https://cdn.discordapp.com/emojis/"+mojiID+".png"
 	            }
+	            embed.setTitle(mojiName)
 	            embed.setImage(link)
 	            embed.setFooter("ID: " + mojiID)
 	            msg.channel.send(embed)
