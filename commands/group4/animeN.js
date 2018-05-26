@@ -124,19 +124,50 @@ module.exports = class animenCommand extends Command {
 				inputAn(result.anime)
 
 		  	}else {
-		  		var res = result.anime[0];
+		  		var embed2 = new RichEmbed()
+	                	result.anime[0].fetch()
+	                	.then(csn => {
+	                		console.log(csn)
+	                		embed2.setTitle(csn.title)
+		                	embed2.setDescription(csn.description)
+		                	embed2.setThumbnail(csn.cover)
+		                	
+		                	
 
+							malScraper.getInfoFromName(csn.title)
+							  .then(res => {
+							  	console.log(res.englishTitle)
+							  	embed2.addField("English Title", res.englishTitle, true)
+							  	embed2.addField("Japanese Title", res.japaneseTitle, true)
+							  	embed2.addField("Episodes", res.episodes, true)
+							  	embed2.addField("Type", res.type, true)
+							  	embed2.addField("Status", res.status, true)
+							  	embed2.setFooter(res.aired)
 
-		  		malScraper.getInfoFromName(res.title)
-				  .then(res => {
-				  	
-				  })
-				  .catch(err => {
-				  	console.log(err)
-				  })
-		  		
+							  	var genres = "`"
+							  	for (var i = 0; i < res.genres.length; i++) {
+							  		genres = genres + res.genres[i] + "`";
+							  		if(i+1 < res.genres.length){
+							  			genres = genres + ", `"
+							  		}
+							  	}
+							  	embed2.addField("Genres", genres)
+							  	embed2.addField("Rating", res.rating)
+							  	embed2.addField("Link", "https://myanimelist.net/"+csn.path)
+							  	embed2.addField("Ranked", "#"+csn.ranked, true)
+		                		embed2.addField("Score", csn.score, true)
 
-				  msg.channel.send(embed)
+								msg.channel.send(embed2)
+							  })
+							  .catch(err => {
+							  	console.log(err)
+							  })
+
+							
+	                	})
+	                	.catch(err => {
+	                		console.log(err)
+	                	})
 			}
 
 		  }
@@ -168,8 +199,7 @@ module.exports = class animenCommand extends Command {
 	                		embed2.setTitle(csn.title)
 		                	embed2.setDescription(csn.description)
 		                	embed2.setThumbnail(csn.cover)
-		                	embed2.addField("Ranked", "#"+csn.ranked, true)
-		                	embed2.addField("Score", csn.score, true)
+		                	
 		                	
 
 							malScraper.getInfoFromName(csn.title)
@@ -192,6 +222,8 @@ module.exports = class animenCommand extends Command {
 							  	embed2.addField("Genres", genres)
 							  	embed2.addField("Rating", res.rating)
 							  	embed2.addField("Link", "https://myanimelist.net/"+csn.path)
+							  	embed2.addField("Ranked", "#"+csn.ranked, true)
+		                		embed2.addField("Score", csn.score, true)
 
 								msg.channel.send(embed2)
 							  })
