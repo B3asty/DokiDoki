@@ -85,7 +85,8 @@ module.exports = class animenCommand extends Command {
 
 		malScraper.getResultsFromSearch(anm)
 		  .then(res => {
-		  	console.log(res)
+		  	console.log(res[0])
+		  	console.log(res.length)
 		  })
 		  .catch(err => {
 		  	console.log(err)
