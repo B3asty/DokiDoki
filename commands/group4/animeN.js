@@ -85,19 +85,19 @@ module.exports = class animenCommand extends Command {
 
 		malScraper.getResultsFromSearch(anm)
 		  .then(res => {
-		  	console.log(res[0])
-		  	console.log(res.length)
+		  	
 
 		  	var animes = {};
 
 		  	//filter animes
 		  	for (var i = 0; i < res.length; i++) {
-		  		if(res.type === 'anime'){
+		  		if(res.type == 'anime'){
 		  			animes.add(res[i])
 		  		}
 		  	}
 
- 			
+ 			console.log(animes[0])
+		  	console.log(animes.length)
 		  	if(animes.length > 1){ //more than 1 result
 		  		var titles = "";
 		  		var titles2 = "";
