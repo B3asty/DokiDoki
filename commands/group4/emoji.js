@@ -43,7 +43,6 @@ module.exports = class emojiCommand extends Command {
 	            msg.channel.send(embed)
 			}else{
 				const moo = require('twemoji')
-				//var tx = moo.parse(' :poop: ')
 
 				moo.parse(
 				  args.moji,
@@ -52,8 +51,6 @@ module.exports = class emojiCommand extends Command {
 				    embed.setImage(moj)
 				  }
 				)
-
-				console.log(moo.parse(args.moji))
 				msg.channel.send(embed)
 			}
 
