@@ -26,8 +26,9 @@ module.exports = class emojiCommand extends Command {
 		const embed = new RichEmbed()
 			var mes = args.moji;
 			if(/\<a?\:.+\:[0-9]+\>/.test(mes)){
+				//var mojiName = mes.substring
 				var mojiID = mes.substring(1,mes.length-1).substring(mes.lastIndexOf(":"),mes.length)
-	            //console.log(mes)
+	            console.log(mes)
 	            //console.log(mojiID)
 	            //console.log(mes.charAt(1))
 
@@ -37,6 +38,7 @@ module.exports = class emojiCommand extends Command {
 	            	var link = "https://cdn.discordapp.com/emojis/"+mojiID+".png"
 	            }
 	            embed.setImage(link)
+	            embed.setFooter("ID: " + mojiID)
 	            msg.channel.send(embed)
 			}else{
 				const moo = require('twemoji')
@@ -45,6 +47,7 @@ module.exports = class emojiCommand extends Command {
 				moo.parse(
 				  args.moji,
 				  function(icon, options, variant) {
+				  	console.log(options)
 				    var moj = options.base +  options.size + "/" + icon + options.ext;
 				    embed.setImage(moj)
 				  }
