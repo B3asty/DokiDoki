@@ -168,7 +168,7 @@ module.exports = class animenCommand extends Command {
 	                		embed2.setTitle(csn.title)
 		                	embed2.setDescription(csn.description)
 		                	embed2.setThumbnail(csn.cover)
-		                	embed2.addField("Ranked", csn.ranked, true)
+		                	embed2.addField("Ranked", "#"+csn.ranked, true)
 		                	embed2.addField("Score", csn.score, true)
 		                	
 
