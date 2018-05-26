@@ -90,6 +90,7 @@ module.exports = class animenCommand extends Command {
 
 		  	var animes = {};
 
+		  	//filter animes
 		  	for (var i = 0; i < res.length; i++) {
 		  		if(res.type == 'anime'){
 		  			animes.add(res[i])
@@ -97,14 +98,14 @@ module.exports = class animenCommand extends Command {
 		  	}
 
  
-		  	if(res.length > 1){ //more than 1 result
-		  		if(res.length < 30){ //less than 30 results
+		  	if(animes.length > 1){ //more than 1 result
+		  		if(animes.length < 30){ //less than 30 results
 
 		  		}else{
 
 		  		}
 
-		  		inputAn(res)
+		  		inputAn(animes)
 		  	}else{ //Only 1 result
 
 		  	}
