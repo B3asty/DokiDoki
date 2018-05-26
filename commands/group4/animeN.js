@@ -3,13 +3,13 @@ const { RichEmbed } = require('discord.js');
 var mal = require('maljs');
 const MALjs = require('MALjs');
 
-module.exports = class animeNCommand extends Command {
+module.exports = class animenCommand extends Command {
 	constructor(client) {
 		super(client, {
-			name: 'animeN',
+			name: 'animen',
 			aliases: ['an'],
 			group: 'group4',
-			memberName: 'animeN',
+			memberName: 'animen',
 			description: 'Shows an anime.',
 			examples: ['anime Name'],
 
@@ -83,13 +83,13 @@ module.exports = class animeNCommand extends Command {
 
 	    const malScraper = require('mal-scraper')
 
-		/*malScraper.getResultsFromSearch(anm)
+		malScraper.getResultsFromSearch(anm)
 		  .then(res => {
 		  	console.log(res)
 		  })
 		  .catch(err => {
 		  	console.log(err)
-		  })*/
+		  })
 
 	}
 }
