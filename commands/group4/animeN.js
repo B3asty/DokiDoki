@@ -97,12 +97,39 @@ module.exports = class animenCommand extends Command {
 		  		}
 		  	}
 
- 
+ 			
 		  	if(animes.length > 1){ //more than 1 result
-		  		if(animes.length < 30){ //less than 30 results
+		  		var titles = "";
+		  		var titles2 = "";
+		  		embed.setTitle("Multiple Anime found");
+		  		embedst2.setTitle("Multiple Anime found");
+		  		if(animes.length < 30){
+		  			for (var i = 0; i < animes.length; i++) {  			
+			  			titles = titles + "**["+ (i+1) + "]** " + animes[i].name + "\n";
+			  		}
 
+			  		titles = titles+"\n**Please enter the number of the Anime you want to view** \n**Or type** `cancel` **to cancel the command**"
+			  		embed.setDescription(titles)
+
+			  		msg.channel.send(embed)
 		  		}else{
+		  			for (var i = 0; i < 30; i++) {  			
+			  			titles = titles + "**["+ (i+1) + "]** " + animes[i].name + "\n";
+			  		}
 
+			  		titles = titles+"\n**Please enter the number of the Anime you want to view** \n**Or type** `cancel` **to cancel the command**"
+			  		embed.setDescription(titles)
+
+			  		msg.channel.send(embed)
+
+			  		for (var i = 30; i < animes.length; i++) {  			
+			  			titles2 = titles2 + "**["+ (i+1) + "]** " + animes[i].name + "\n";
+			  		}
+
+			  		titles2 = titles2+"\n**Please enter the number of the Anime you want to view** \n**Or type** `cancel` **to cancel the command**"
+			  		embedst2.setDescription(titles2)
+
+			  		msg.channel.send(embedst2)
 		  		}
 
 		  		inputAn(animes)
