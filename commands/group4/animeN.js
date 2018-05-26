@@ -87,10 +87,38 @@ module.exports = class animenCommand extends Command {
 		  .then(res => {
 		  	console.log(res[0])
 		  	console.log(res.length)
+
+		  	var animes = {};
+
+		  	for (var i = 0; i < res.length; i++) {
+		  		if(res.type == 'anime'){
+		  			animes.add(res[i])
+		  		}
+		  	}
+
+ 
+		  	if(res.length > 1){ //more than 1 result
+		  		if(res.length < 30){ //less than 30 results
+
+		  		}else{
+
+		  		}
+
+		  		inputAn(res)
+		  	}else{ //Only 1 result
+
+		  	}
+
+
 		  })
 		  .catch(err => {
 		  	console.log(err)
 		  })
+
+		  function inputAn(anarr){
+
+
+		  }
 
 	}
 }
