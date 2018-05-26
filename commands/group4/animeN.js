@@ -168,14 +168,36 @@ module.exports = class animenCommand extends Command {
 	                		embed2.setTitle(csn.title)
 		                	embed2.setDescription(csn.description)
 		                	embed2.setThumbnail(csn.cover)
+		                	embed2.addField("Ranked", csn.ranked, true)
+		                	embed2.addField("Score", csn.score, true)
+		                	
 
 							malScraper.getInfoFromName(csn.title)
 							  .then(res => {
 							  	console.log(res)
+							  	embed2.addField("English Title", res.englishTitle, true)
+							  	embed2.addField("Japanese Title", res.japaneseTitle, true)
+							  	embed2.addField("Episodes", res.episodes, true)
+							  	embed2.addField("Type", res.type, true)
+							  	embed2.addField("Status", res.status, true)
+							  	embed2.setFooter(res.aired)
+
+							  	var genres = "`"
+							  	for (var i = 0; i < res.genres.length; i++) {
+							  		genres = genres + res.genres[i] + "`";
+							  		if(i+1 < res.genres.length){
+							  			genres = genres + ","
+							  		}
+							  	}
+							  	embed2.addField("Genres", genres)
+							  	embed2.addField("Rating", res.rating)
+
 							  })
 							  .catch(err => {
 							  	console.log(err)
 							  })
+
+							embed2.addField("Link", "https://myanimelist.net/"+csn.path)
 
 							msg.channel.send(embed2)
 	                	})
