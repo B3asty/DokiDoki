@@ -191,15 +191,15 @@ module.exports = class animenCommand extends Command {
 							  	}
 							  	embed2.addField("Genres", genres)
 							  	embed2.addField("Rating", res.rating)
+							  	embed2.addField("Link", "https://myanimelist.net/"+csn.path)
 
+								msg.channel.send(embed2)
 							  })
 							  .catch(err => {
 							  	console.log(err)
 							  })
 
-							embed2.addField("Link", "https://myanimelist.net/"+csn.path)
-
-							msg.channel.send(embed2)
+							
 	                	})
 	                	.catch(err => {
 	                		console.log(err)
