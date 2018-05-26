@@ -127,7 +127,6 @@ module.exports = class animenCommand extends Command {
 		  		var embed2 = new RichEmbed()
 	                	result.anime[0].fetch()
 	                	.then(csn => {
-	                		console.log(csn)
 	                		embed2.setTitle(csn.title)
 		                	embed2.setDescription(csn.description)
 		                	embed2.setThumbnail(csn.cover)
@@ -136,7 +135,6 @@ module.exports = class animenCommand extends Command {
 
 							malScraper.getInfoFromName(csn.title)
 							  .then(res => {
-							  	console.log(res.englishTitle)
 							  	embed2.addField("English Title", res.englishTitle, true)
 							  	embed2.addField("Japanese Title", res.japaneseTitle, true)
 							  	embed2.addField("Episodes", res.episodes, true)
@@ -204,7 +202,7 @@ module.exports = class animenCommand extends Command {
 
 							malScraper.getInfoFromName(csn.title)
 							  .then(res => {
-							  	console.log(res.englishTitle)
+							  	console.log(res)
 							  	embed2.addField("English Title", res.englishTitle, true)
 							  	embed2.addField("Japanese Title", res.japaneseTitle, true)
 							  	embed2.addField("Episodes", res.episodes, true)
