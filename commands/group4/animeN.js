@@ -83,13 +83,13 @@ module.exports = class animeNCommand extends Command {
 
 	    const malScraper = require('mal-scraper')
 
-		malScraper.getResultsFromSearch(anm)
+		/*malScraper.getResultsFromSearch(anm)
 		  .then(res => {
 		  	console.log(res)
 		  })
 		  .catch(err => {
 		  	console.log(err)
-		  })
+		  })*/
 
 	}
 }
