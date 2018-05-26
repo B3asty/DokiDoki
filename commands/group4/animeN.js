@@ -205,7 +205,6 @@ module.exports = class animenCommand extends Command {
 		  });
 
 
-	}
 	   
 
 		  function inputAn(anarr){
@@ -244,5 +243,6 @@ module.exports = class animenCommand extends Command {
           	console.log(err)
           })
 		}
+	}
 
 }
