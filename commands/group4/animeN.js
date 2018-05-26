@@ -81,31 +81,19 @@ module.exports = class animenCommand extends Command {
 	    var embed = new RichEmbed()
 	    var embedst2 = new RichEmbed()
 
-	    const malScraper = require('mal-scraper')
 
-		malScraper.getResultsFromSearch(anm)
-		  .then(res => {
-		  	
-
-		  	var animes = [];
-
-		  	//filter animes
-		  	for (var i = 0; i < res.length; i++) {
-		  		if(res[i].type == 'anime'){
-		  			animes.push(res[i])
-		  		}
-		  	}
-
- 			console.log(animes[0])
-		  	console.log(animes.length)
-		  	if(animes.length > 1){ //more than 1 result
+	    mal.quickSearch(anm)
+		  .then(result => {
+		  	console.log(result)
+		  	console.log(result.anime[0].mal)
+		  	if(result.anime.length > 1){
 		  		var titles = "";
 		  		var titles2 = "";
 		  		embed.setTitle("Multiple Anime found");
 		  		embedst2.setTitle("Multiple Anime found");
-		  		if(animes.length < 30){
-		  			for (var i = 0; i < animes.length; i++) {  			
-			  			titles = titles + "**["+ (i+1) + "]** " + animes[i].name + "\n";
+		  		if(result.anime.length < 30){
+		  			for (var i = 0; i < result.anime.length; i++) {  			
+			  			titles = titles + "**["+ (i+1) + "]** " + result.anime[i].sn.replace(/\_/g," ") + "\n";
 			  		}
 
 			  		titles = titles+"\n**Please enter the number of the Anime you want to view** \n**Or type** `cancel` **to cancel the command**"
@@ -114,7 +102,7 @@ module.exports = class animenCommand extends Command {
 			  		msg.channel.send(embed)
 		  		}else{
 		  			for (var i = 0; i < 30; i++) {  			
-			  			titles = titles + "**["+ (i+1) + "]** " + animes[i].name + "\n";
+			  			titles = titles + "**["+ (i+1) + "]** " + result.anime[i].sn.replace(/\_/g," ") + "\n";
 			  		}
 
 			  		titles = titles+"\n**Please enter the number of the Anime you want to view** \n**Or type** `cancel` **to cancel the command**"
@@ -122,8 +110,8 @@ module.exports = class animenCommand extends Command {
 
 			  		msg.channel.send(embed)
 
-			  		for (var i = 30; i < animes.length; i++) {  			
-			  			titles2 = titles2 + "**["+ (i+1) + "]** " + animes[i].name + "\n";
+			  		for (var i = 30; i < result.anime.length; i++) {  			
+			  			titles2 = titles2 + "**["+ (i+1) + "]** " + result.anime[i].sn.replace(/\_/g," ") + "\n";
 			  		}
 
 			  		titles2 = titles2+"\n**Please enter the number of the Anime you want to view** \n**Or type** `cancel` **to cancel the command**"
@@ -131,22 +119,130 @@ module.exports = class animenCommand extends Command {
 
 			  		msg.channel.send(embedst2)
 		  		}
+		  		
+				inputAn(result.anime)
 
-		  		inputAn(animes)
-		  	}else{ //Only 1 result
+		  	}else {
+		  		var res = result.anime[0];
+		  		var syn = "";
+	                	if(res.synonyms.length > 0){
+				            for(var i = 0; i < res.synonyms.length; i++){
+				                syn = syn+"`"+res.synonyms[i]+"`";
+				                if(i+1 < res.synonyms.length){
+				                    syn=syn+", ";
+				                }
+				            }
+				        }
 
-		  	}
+				        if(syn == '``'){
+				        	syn = "None";
+				        }else{
+				        	syn = syn.replace(/`/g,'');
+				        }
 
+				        var eng = "";
+				        if(res.english.length > 0){
+				            for(var i = 0; i < res.english.length; i++){
+				                eng = eng+"`"+res.english[i]+"`";
+				                if(i+1 < res.english.length){
+				                    eng=eng+", ";
+				                }
+				            }
+				        }
 
-		  })
-		  .catch(err => {
-		  	console.log(err)
-		  })
+				        if(eng == '``'){
+				        	eng = "None";
+				        }else{
+				        	eng = eng.replace(/`/g,'');
+				        }
 
-		  function inputAn(anarr){
+				        var desc = res.synopsis.toString().replace(/<.*>/g,' ').replace(/&#039;/g,"'").replace(/\[.*\]/g,' ');
+				        if(desc.length > 2048){
+				        	desc = desc.substring(0,2047).substring(0,desc.lastIndexOf('.'))
+				        }
 
+				        embed.setTitle(res.title,true)
+					  	embed.setDescription("**Description**\n"+desc)
+
+					  	
+					  	embed.addField("English Title", eng + " ",true)
+					  	embed.addField("Synonyms", syn + " ",true)
+					  	embed.addField("Episodes", res.episodes, true)
+					  	embed.addField("Status", res.status, true)
+					  	embed.addField("Type", res.type, true)
+					  	embed.addField("Score", res.score+"/10", true)
+					  	embed.addField("Link", "https://myanimelist.net/anime/"+res.id, true)
+
+					  	var fromcspl = res.start_date.toString().split('-');
+					  	var tocspl = res.end_date.toString().split('-');
+					  	if(fromcspl[0] == "0000"){
+					  		var fromc = "No releasedate yet";
+					  		var toc = "";
+					  	}else{
+					  		if(tocspl[0] == "0000"){
+					  			var toc = "";
+					  			var fromc = "Will start airing in " + months[fromcspl[1]] + days[fromcspl[2]] + fromcspl[0];
+					  		}else{
+					  			var toc = months[tocspl[1]]  + days[tocspl[2]] + tocspl[0];
+					  			var fromc = months[fromcspl[1]] + days[fromcspl[2]] + fromcspl[0] + " to ";
+					  		}
+					  	}
+
+					  	
+
+					  	embed.setFooter(fromc + toc)
+					  	embed.setThumbnail(res.image.toString())
+
+					  	msg.channel.send(embed)
+					  }
 
 		  }
 
+		  ) // contains the json result on success
+		  .catch(err => {
+		  	msg.channel.send("Something went wrong, please try again.")
+		  	console.log(err);
+		  });
+
+
 	}
+	   
+
+		  function inputAn(anarr){
+
+		  	msg.channel.awaitMessages(m => m.author.id == msg.author.id, { max: 1, time: 30000, errors: ['time'] })
+            .then(collected => {
+            		console.log(collected.first().content)
+            		if(collected.first().content == 'cancel'){
+            			msg.channel.send('Command canceled.')
+            		}else if(parseInt(collected.first().content,10)-1 == 'NaN' || parseInt(collected.first().content,10)-1 < 0){
+            			msg.channel.send('This is not a valid number, please try again.')
+            			inputAn(anarr)
+            		}else{
+            			var embed2 = new RichEmbed()
+	                	anarr[parseInt(collected.first().content,10)-1].fetch()
+	                	.then(csn => {
+	                		console.log(csn)
+	                	})
+	                	.catch(err => {
+	                		console.log(err)
+	                	})
+
+	                	const malScraper = require('mal-scraper')
+
+						malScraper.getResultsFromSearch(anm)
+						  .then(res => {
+						  	
+						  })
+						  .catch(err => {
+						  	console.log(err)
+						  })
+	                }
+ 
+		  })
+          .catch(err => {
+          	console.log(err)
+          })
+		}
+
 }
