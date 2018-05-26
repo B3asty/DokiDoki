@@ -26,7 +26,7 @@ module.exports = class emojiCommand extends Command {
 		const embed = new RichEmbed()
 			var mes = args.moji;
 			if(/\<a?\:.+\:[0-9]+\>/.test(mes)){
-				var mojiName = mes.substring(mes.indexOf(":"), mes.lastIndexOf(":"))
+				var mojiName = mes.substring(mes.indexOf(":")+1, mes.lastIndexOf(":"))
 				var mojiID = mes.substring(1,mes.length-1).substring(mes.lastIndexOf(":"),mes.length)
 	            console.log(mes)
 	            console.log(mojiName)
@@ -48,11 +48,14 @@ module.exports = class emojiCommand extends Command {
 				moo.parse(
 				  args.moji,
 				  function(icon, options, variant) {
-				  	console.log(options)
 				    var moj = options.base +  options.size + "/" + icon + options.ext;
 				    embed.setImage(moj)
 				  }
-				);
+				).then(res => {
+					console.log(res)
+				}).catch(err => {
+					console.log(err)
+				})
 				msg.channel.send(embed)
 			}
 
