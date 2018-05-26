@@ -174,7 +174,7 @@ module.exports = class animenCommand extends Command {
 
 							malScraper.getInfoFromName(csn.title)
 							  .then(res => {
-							  	console.log(res)
+							  	console.log(res.englishTitle)
 							  	embed2.addField("English Title", res.englishTitle, true)
 							  	embed2.addField("Japanese Title", res.japaneseTitle, true)
 							  	embed2.addField("Episodes", res.episodes, true)
