@@ -137,9 +137,11 @@ module.exports = class animenCommand extends Command {
 							  .then(res => {
 							  	embed2.addField("English Title", res.englishTitle, true)
 							  	embed2.addField("Japanese Title", res.japaneseTitle, true)
+							  	embed2.addField("Synonyms", res.synonyms, true)
 							  	embed2.addField("Episodes", res.episodes, true)
 							  	embed2.addField("Type", res.type, true)
 							  	embed2.addField("Status", res.status, true)
+							  	embed2.addField("Source", res.source, true)
 							  	embed2.setFooter(res.aired)
 
 							  	var genres = "`"
@@ -205,9 +207,11 @@ module.exports = class animenCommand extends Command {
 							  	console.log(res)
 							  	embed2.addField("English Title", res.englishTitle, true)
 							  	embed2.addField("Japanese Title", res.japaneseTitle, true)
+							  	embed2.addField("Synonyms", res.synonyms, true)
 							  	embed2.addField("Episodes", res.episodes, true)
 							  	embed2.addField("Type", res.type, true)
 							  	embed2.addField("Status", res.status, true)
+							  	embed2.addField("Source", res.source, true)
 							  	embed2.setFooter(res.aired)
 
 							  	var genres = "`"
