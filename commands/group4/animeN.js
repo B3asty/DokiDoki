@@ -87,12 +87,12 @@ module.exports = class animenCommand extends Command {
 		  .then(res => {
 		  	
 
-		  	var animes = {};
+		  	var animes = [];
 
 		  	//filter animes
 		  	for (var i = 0; i < res.length; i++) {
 		  		if(res[i].type == 'anime'){
-		  			animes.add(res[i])
+		  			animes.push(res[i])
 		  		}
 		  	}
 
