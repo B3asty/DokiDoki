@@ -186,7 +186,7 @@ module.exports = class animenCommand extends Command {
 							  	for (var i = 0; i < res.genres.length; i++) {
 							  		genres = genres + res.genres[i] + "`";
 							  		if(i+1 < res.genres.length){
-							  			genres = genres + ","
+							  			genres = genres + ", `"
 							  		}
 							  	}
 							  	embed2.addField("Genres", genres)
