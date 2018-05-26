@@ -53,7 +53,7 @@ module.exports = class emojiCommand extends Command {
 				  }
 				)
 
-				console.log(moo.parse())
+				console.log(moo.parse(args.moji))
 				msg.channel.send(embed)
 			}
 
