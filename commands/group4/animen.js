@@ -196,7 +196,7 @@ module.exports = class animenCommand extends Command {
 		// 					  	}
 		// 					  	embed2.addField("Genres", genres)
 		 					embed2.addField("Age Restrictions", atts.ageRating + " - " + atts.ageRatingGuide)
-		 					embed2.addField("Link", atts.links.self)
+		 					embed2.addField("Link", links.self)
 		 					embed2.addField("Popularity Rank", "#"+atts.popularityRank, true)
 		 					embed2.addField("Rating Rank", "#"+atts.ratingRank, true)
 		                 	embed2.addField("Rating", atts.averageRating, true)
