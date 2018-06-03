@@ -171,8 +171,8 @@ module.exports = class animenCommand extends Command {
              		}else{
              			var embed2 = new RichEmbed()
 	                 	var ani = anarr[parseInt(collected.first().content,10)-1]
-	                 		var atts = csn.attributes
-	                 		console.log(csn)
+	                 		var atts = ani.attributes
+	                 		console.log(ani)
 	                 		embed2.setTitle(atts.titles.en_jp)
 		                 	embed2.setDescription(atts.synopsis)
 		                 	embed2.setThumbnail(atts.posterImage[0])
@@ -195,11 +195,11 @@ module.exports = class animenCommand extends Command {
 		// 					  		}
 		// 					  	}
 		// 					  	embed2.addField("Genres", genres)
-		 					  	embed2.addField("Age Restrictions", atts.ageRating + " - " + atts.ageRatingGuide)
-		 					  	embed2.addField("Link", atts.link.self)
-		 					  	embed2.addField("Popularity Rank", "#"+atts.popularityRank, true)
-		 					  	embed2.addField("Rating Rank", "#"+atts.ratingRank, true)
-		                 		embed2.addField("Rating", atts.averageRating, true)
+		 					embed2.addField("Age Restrictions", atts.ageRating + " - " + atts.ageRatingGuide)
+		 					embed2.addField("Link", atts.link.self)
+		 					embed2.addField("Popularity Rank", "#"+atts.popularityRank, true)
+		 					embed2.addField("Rating Rank", "#"+atts.ratingRank, true)
+		                 	embed2.addField("Rating", atts.averageRating, true)
 
 		 						msg.channel.send(embed2)
 	                 }
