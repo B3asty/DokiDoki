@@ -81,7 +81,7 @@ module.exports = class animenCommand extends Command {
 	    var embed2 = new RichEmbed()
 
 
-	    kitsu.searchAnime(anm)
+	    kitsu.searchAnime(anm, 0)
 		  .then(result => {
 		  	console.log(result)
 		  // 	if(result.anime.length > 1){
