@@ -170,8 +170,7 @@ module.exports = class animenCommand extends Command {
              			inputAn(anarr)
              		}else{
              			var embed2 = new RichEmbed()
-	                 	anarr[parseInt(collected.first().content,10)-1]
-	                 	.then(csn => {
+	                 	var ani = anarr[parseInt(collected.first().content,10)-1]
 	                 		var atts = csn.attributes
 	                 		console.log(csn)
 	                 		embed2.setTitle(atts.titles.en_jp)
@@ -203,14 +202,6 @@ module.exports = class animenCommand extends Command {
 		                 		embed2.addField("Rating", atts.averageRating, true)
 
 		 						msg.channel.send(embed2)
-
-							
-	                 	})
-	                	.catch(err => {
-	                 		console.log(err)
-	                 	})
-
-
 	                 }
  
 		   })
