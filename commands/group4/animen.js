@@ -167,13 +167,13 @@ module.exports = class animenCommand extends Command {
 	  //               	})
 			// }
 
-		//   }
+		   }
 
-		//   ) // contains the json result on success
-		//   .catch(err => {
-		//   	msg.channel.send("Something went wrong, please try again.")
-		//   	console.log(err);
-		//   });
+		   ) // contains the json result on success
+		   .catch(err => {
+		   	msg.channel.send("Something went wrong, please try again.")
+		   	console.log(err);
+		   });
 
 
 
