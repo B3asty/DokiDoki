@@ -101,50 +101,7 @@ module.exports = class animenCommand extends Command {
 				inputAn(result)
 
 		   	}else {
-		 //  		var embed2 = new RichEmbed()
-	  //               	result.anime[0].fetch()
-	  //               	.then(csn => {
-	  //               		embed2.setTitle(csn.title)
-		 //                	embed2.setDescription(csn.description)
-		 //                	embed2.setThumbnail(csn.cover)
-		                	
-		                	
-
-			// 				malScraper.getInfoFromName(csn.title)
-			// 				  .then(res => {
-			// 				  	embed2.addField("English Title", res.englishTitle, true)
-			// 				  	embed2.addField("Japanese Title", res.japaneseTitle, true)
-			// 				  	embed2.addField("Synonyms", res.synonyms, true)
-			// 				  	embed2.addField("Episodes", res.episodes, true)
-			// 				  	embed2.addField("Type", res.type, true)
-			// 				  	embed2.addField("Status", res.status, true)
-			// 				  	embed2.addField("Source", res.source, true)
-			// 				  	embed2.setFooter(res.aired)
-
-			// 				  	var genres = "`"
-			// 				  	for (var i = 0; i < res.genres.length; i++) {
-			// 				  		genres = genres + res.genres[i] + "`";
-			// 				  		if(i+1 < res.genres.length){
-			// 				  			genres = genres + ", `"
-			// 				  		}
-			// 				  	}
-			// 				  	embed2.addField("Genres", genres)
-			// 				  	embed2.addField("Rating", res.rating)
-			// 				  	embed2.addField("Link", "https://myanimelist.net/"+csn.path)
-			// 				  	embed2.addField("Ranked", "#"+csn.ranked, true)
-		 //                		embed2.addField("Score", csn.score, true)
-
-			// 					msg.channel.send(embed2)
-			// 				  })
-			// 				  .catch(err => {
-			// 				  	console.log(err)
-			// 				  })
-
-							
-	  //               	})
-	  //               	.catch(err => {
-	  //               		console.log(err)
-	  //               	})
+		 
 			}
 
 		   }
@@ -162,7 +119,6 @@ module.exports = class animenCommand extends Command {
 
 		   	msg.channel.awaitMessages(m => m.author.id == msg.author.id, { max: 1, time: 30000, errors: ['time'] })
              .then(collected => {
-  //           		console.log(collected.first().content)
              		if(collected.first().content == 'cancel'){
              			msg.channel.send('Command canceled.')
              		}else if(parseInt(collected.first().content,10)-1 == 'NaN' || parseInt(collected.first().content,10)-1 < 0){
@@ -184,24 +140,15 @@ module.exports = class animenCommand extends Command {
 		 					embed2.addField("Episodes", atts.episodeCount + " á " + atts.episodeLength + " minutes", true)
 		 					embed2.addField("Type", atts.showType, true)
 		 					embed2.addField("Status", atts.status, true)
-		// 					embed2.addField("Source", res.source, true)
-		 					embed2.setFooter(atts.startDate + " to " + atts.endDate)
-		 					console.log(ani.relationships)
-		// 					  	var genres = "`"
-		// 					  	for (var i = 0; i < res.genres.length; i++) {
-		// 					  		genres = genres + res.genres[i] + "`";
-		// 					  		if(i+1 < res.genres.length){
-		// 					  			genres = genres + ", `"
-		// 					  		}
-		// 					  	}
-		// 					  	embed2.addField("Genres", genres)
 		 					embed2.addField("Age Restrictions", atts.ageRating + " - " + atts.ageRatingGuide)
-		 					embed2.addField("Link", links.self)
+		 					embed2.addField("Link", ani.links.self)
 		 					embed2.addField("Popularity Rank", "#"+atts.popularityRank, true)
 		 					embed2.addField("Rating Rank", "#"+atts.ratingRank, true)
 		                 	embed2.addField("Rating", atts.averageRating, true)
 
-		 						msg.channel.send(embed2)
+		 					embed2.setFooter(atts.startDate + " to " + atts.endDate)
+
+		 					msg.channel.send(embed2)
 	                 }
  
 		   })
