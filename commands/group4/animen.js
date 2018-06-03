@@ -84,7 +84,6 @@ module.exports = class animenCommand extends Command {
 	    kitsu.searchAnime(anm, 0)
 		  .then(result => {
 		  	//console.log(result[0])
-		   	if(result.length > 1){
 		   		var titles = "";
 		   		var titles2 = "";
 		   		embed.setTitle("Multiple Anime found");
@@ -99,11 +98,6 @@ module.exports = class animenCommand extends Command {
 			   		msg.channel.send(embed)
 		  		
 				inputAn(result)
-
-		   	}else {
-		 
-			}
-
 		   }
 
 		   ) // contains the json result on success
@@ -137,7 +131,9 @@ module.exports = class animenCommand extends Command {
 								embed2.setImage(atts.coverImage.large)
 		                 	}
 
-		 					embed2.addField("English Title", atts.titles.en, true)
+		                 	if(atts.titles.en){
+		 						embed2.addField("English Title", atts.titles.en, true)
+		                 	}
 							embed2.addField("Japanese Title", atts.titles.ja_jp, true)
 							if(atts.abbreviatedTitles){
 								embed2.addField("Synonyms", atts.abbreviatedTitles, true)
@@ -164,7 +160,7 @@ module.exports = class animenCommand extends Command {
 		                 	}else if(atts.startDate && !atts.endDate){
 		                 		embed2.setFooter(atts.startDate)
 		                 	}else{
-		                 		embed2.setFooter("TBA")
+		                 		embed2.setFooter(atts.tba)
 		                 	}
 
 
