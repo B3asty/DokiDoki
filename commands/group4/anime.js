@@ -121,7 +121,7 @@ module.exports = class animenCommand extends Command {
              			var embed2 = new RichEmbed()
 	                 	var ani = anarr[parseInt(collected.first().content,10)-1]
 	                 		var atts = ani.attributes
-	                 		//console.log(ani)
+	                 		console.log(ani)
 	                 		embed2.setTitle(atts.canonicalTitle)
 		                 	embed2.setDescription(atts.synopsis)
 		                 	embed2.setThumbnail(atts.posterImage.small)
@@ -133,7 +133,7 @@ module.exports = class animenCommand extends Command {
 							if(atts.titles.ja_jp){
 								embed2.addField("Japanese Title", atts.titles.ja_jp, true)
 							}
-							if(atts.abbreviatedTitles){
+							if(atts.abbreviatedTitles.length > 0){
 								embed2.addField("Synonyms", atts.abbreviatedTitles, true)
 							}
 
@@ -145,7 +145,7 @@ module.exports = class animenCommand extends Command {
 		 					embed2.addField("Type", atts.showType, true)
 		 					embed2.addField("Status", atts.status, true)
 		 					if(atts.ageRating){
-		 						embed2.addField("Age Restrictions", atts.ageRating + atts.ageRatingGuide)
+		 						embed2.addField("Age Restrictions", atts.ageRating + " " + atts.ageRatingGuide)
 		 					}
 		 					if(ani.links){
 		 						embed2.addField("Link", ani.links.self)
