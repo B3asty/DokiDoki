@@ -83,7 +83,7 @@ module.exports = class animenCommand extends Command {
 
 	    kitsu.searchAnime(anm, 0)
 		  .then(result => {
-		  	console.log(result[0])
+		  	//console.log(result[0])
 		   	if(result.length > 1){
 		   		var titles = "";
 		   		var titles2 = "";
@@ -98,7 +98,7 @@ module.exports = class animenCommand extends Command {
 
 			   		msg.channel.send(embed)
 		  		
-				// inputAn(result.anime)
+				inputAn(result)
 
 		   	}else {
 		 //  		var embed2 = new RichEmbed()
@@ -158,39 +158,36 @@ module.exports = class animenCommand extends Command {
 
 
 
-		//   function inputAn(anarr){
+		   function inputAn(anarr){
 
-		//   	msg.channel.awaitMessages(m => m.author.id == msg.author.id, { max: 1, time: 30000, errors: ['time'] })
-  //           .then(collected => {
+		   	msg.channel.awaitMessages(m => m.author.id == msg.author.id, { max: 1, time: 30000, errors: ['time'] })
+             .then(collected => {
   //           		console.log(collected.first().content)
-  //           		if(collected.first().content == 'cancel'){
-  //           			msg.channel.send('Command canceled.')
-  //           		}else if(parseInt(collected.first().content,10)-1 == 'NaN' || parseInt(collected.first().content,10)-1 < 0){
-  //           			msg.channel.send('This is not a valid number, please try again.')
-  //           			inputAn(anarr)
-  //           		}else{
-  //           			var embed2 = new RichEmbed()
-	 //                	anarr[parseInt(collected.first().content,10)-1].fetch()
-	 //                	.then(csn => {
-	 //                		console.log(csn)
-	 //                		embed2.setTitle(csn.title)
-		//                 	embed2.setDescription(csn.description)
-		//                 	embed2.setThumbnail(csn.cover)
-		                	
-		                	
+             		if(collected.first().content == 'cancel'){
+             			msg.channel.send('Command canceled.')
+             		}else if(parseInt(collected.first().content,10)-1 == 'NaN' || parseInt(collected.first().content,10)-1 < 0){
+             			msg.channel.send('This is not a valid number, please try again.')
+             			inputAn(anarr)
+             		}else{
+             			var embed2 = new RichEmbed()
+	                 	anarr[parseInt(collected.first().content,10)-1]
+	                 	.then(csn => {
+	                 		var atts = csn.attributes
+	                 		console.log(csn)
+	                 		embed2.setTitle(atts.titles.en_jp)
+		                 	embed2.setDescription(atts.synopsis)
+		                 	embed2.setThumbnail(atts.posterImage[0])
+				
 
-		// 					malScraper.getInfoFromName(csn.title)
-		// 					  .then(res => {
-		// 					  	console.log(res)
-		// 					  	embed2.addField("English Title", res.englishTitle, true)
-		// 					  	embed2.addField("Japanese Title", res.japaneseTitle, true)
-		// 					  	embed2.addField("Synonyms", res.synonyms, true)
-		// 					  	embed2.addField("Episodes", res.episodes, true)
-		// 					  	embed2.addField("Type", res.type, true)
-		// 					  	embed2.addField("Status", res.status, true)
-		// 					  	embed2.addField("Source", res.source, true)
-		// 					  	embed2.setFooter(res.aired)
-
+		 					embed2.addField("English Title", atts.titles.en, true)
+							embed2.addField("Japanese Title", atts.titles.ja_jp, true)
+		 					embed2.addField("Synonyms", atts.abbreviatedTitles, true)
+		 					embed2.addField("Episodes", atts.episodeCount + " á " + atts.episodeLength + " minutes", true)
+		 					embed2.addField("Type", atts.showType, true)
+		 					embed2.addField("Status", atts.status, true)
+		// 					embed2.addField("Source", res.source, true)
+		 					embed2.setFooter(att.startDate + " to " + att.endDate)
+		 					console.log(atts.relationships.genres)
 		// 					  	var genres = "`"
 		// 					  	for (var i = 0; i < res.genres.length; i++) {
 		// 					  		genres = genres + res.genres[i] + "`";
@@ -199,31 +196,28 @@ module.exports = class animenCommand extends Command {
 		// 					  		}
 		// 					  	}
 		// 					  	embed2.addField("Genres", genres)
-		// 					  	embed2.addField("Rating", res.rating)
-		// 					  	embed2.addField("Link", "https://myanimelist.net/"+csn.path)
-		// 					  	embed2.addField("Ranked", "#"+csn.ranked, true)
-		//                 		embed2.addField("Score", csn.score, true)
+		 					  	embed2.addField("Age Restrictions", atts.ageRating + " - " + atts.ageRatingGuide)
+		 					  	embed2.addField("Link", atts.link.self)
+		 					  	embed2.addField("Popularity Rank", "#"+atts.popularityRank, true)
+		 					  	embed2.addField("Rating Rank", "#"+atts.ratingRank, true)
+		                 		embed2.addField("Rating", atts.averageRating, true)
 
-		// 						msg.channel.send(embed2)
-		// 					  })
-		// 					  .catch(err => {
-		// 					  	console.log(err)
-		// 					  })
+		 						msg.channel.send(embed2)
 
 							
-	 //                	})
-	 //                	.catch(err => {
-	 //                		console.log(err)
-	 //                	})
+	                 	})
+	                	.catch(err => {
+	                 		console.log(err)
+	                 	})
 
 
-	 //                }
+	                 }
  
-		//   })
-  //         .catch(err => {
-  //         	console.log(err)
-  //         })
-		// }
+		   })
+           .catch(err => {
+           	console.log(err)
+          })
+		 }
 	}
 
 }
