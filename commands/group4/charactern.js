@@ -127,11 +127,11 @@ module.exports = class characterCommand extends Command {
 		                 	embed2.setThumbnail(atts.image.original)
 		                 	embed2.setImage(atts.image.original)
 
-		                 	if(atts.titles.en){
-		 						embed2.addField("English Title", ani.names.en, true)
+		                 	if(atts.names.en){
+		 						embed2.addField("English Title", atts.names.en, true)
 		                 	}
-		                 	if(atts.titles.ja_jp){
-								embed2.addField("Japanese Title", ani.names.ja_jp, true)
+		                 	if(atts.names.ja_jp){
+								embed2.addField("Japanese Title", atts.names.ja_jp, true)
 							}
 		 					msg.channel.send(embed2)
 	                 }
