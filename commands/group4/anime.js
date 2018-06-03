@@ -133,10 +133,11 @@ module.exports = class animenCommand extends Command {
 							if(atts.titles.ja_jp){
 								embed2.addField("Japanese Title", atts.titles.ja_jp, true)
 							}
-							if(atts.abbreviatedTitles.length > 0){
-								embed2.addField("Synonyms", atts.abbreviatedTitles, true)
+							if(atts.abbreviatedTitles){
+								if(atts.abbreviatedTitles.length > 0){
+									embed2.addField("Synonyms", atts.abbreviatedTitles, true)
+								}
 							}
-
 							if(atts.episodeCount && atts.episodeLength){
 								embed2.addField("Episodes", atts.episodeCount + " á " + atts.episodeLength + " minutes", true)
 		 					}else if(atts.episodeCount){
