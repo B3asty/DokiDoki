@@ -5,12 +5,12 @@ var kitsu = require('node-kitsu')
 module.exports = class animenCommand extends Command {
 	constructor(client) {
 		super(client, {
-			name: 'animen',
-			aliases: ['nan'],
+			name: 'mangan',
+			aliases: ['man'],
 			group: 'group4',
-			memberName: 'animen',
-			description: 'Shows an anime.',
-			examples: ['anime Name'],
+			memberName: 'mangan',
+			description: 'Shows a manga.',
+			examples: ['manga Name'],
 
 			args: [
 				{
@@ -81,13 +81,12 @@ module.exports = class animenCommand extends Command {
 	    var embed2 = new RichEmbed()
 
 
-	    kitsu.searchAnime(anm, 0)
+	    kitsu.searchManga(anm, 0)
 		  .then(result => {
-		  	//console.log(result[0])
+		  	console.log(result[0])
 		   		var titles = "";
 		   		var titles2 = "";
-		   		embed.setTitle("Multiple Anime found");
-		   		embedst2.setTitle("Multiple Anime found");
+		   		embed.setTitle("Multiple Manga found");
 		   			for (var i = 0; i < result.length; i++) {  			
 			   			titles = titles + "**["+ (i+1) + "]** " + result[i].attributes.canonicalTitle + "\n";
 			   		}
@@ -97,7 +96,7 @@ module.exports = class animenCommand extends Command {
 
 			   		msg.channel.send(embed)
 		  		
-				inputAn(result)
+				//inputAn(result)
 		   }
 
 		   ) // contains the json result on success
