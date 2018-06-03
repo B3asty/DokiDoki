@@ -124,7 +124,7 @@ module.exports = class mangaCommand extends Command {
 	                 		console.log(ani)
 	                 		embed2.setTitle(atts.canonicalTitle)
 		                 	embed2.setDescription(atts.synopsis)
-		                 	emif(atts.posterImage){
+		                 	if(atts.posterImage){
 			                 	embed2.setImage(atts.posterImage.medium)
 		                 	}
 							if(atts.coverImage){
