@@ -88,15 +88,15 @@ module.exports = class characterCommand extends Command {
 		   		var titles2 = "";
 		   		embed.setTitle("Multiple Characters found");
 		   			for (var i = 0; i < result.length; i++) {  			
-			   			//titles = titles + "**["+ (i+1) + "]** " + result[i].attributes.canonicalTitle + "\n";
+			   			titles = titles + "**["+ (i+1) + "]** " + result[i].attributes.name + "\n";
 			   		}
 
-			   		titles = titles+"\n**Please enter the number of the Anime you want to view** \n**Or type** `cancel` **to cancel the command**"
+			   		titles = titles+"\n**Please enter the number of the Character you want to view** \n**Or type** `cancel` **to cancel the command**"
 			   		embed.setDescription(titles)
 
 			   		msg.channel.send(embed)
 		  		
-				//inputAn(result)
+				inputAn(result)
 		   }
 
 		   ) // contains the json result on success
@@ -122,50 +122,17 @@ module.exports = class characterCommand extends Command {
 	                 	var ani = anarr[parseInt(collected.first().content,10)-1]
 	                 		var atts = ani.attributes
 	                 		console.log(ani)
-	                 		embed2.setTitle(atts.titles.canonicalTitle)
-		                 	embed2.setDescription(atts.synopsis)
-		                 	embed2.setThumbnail(atts.posterImage.small)
-							embed2.setImage(atts.coverImage.large)
+	                 		embed2.setTitle(atts.name)
+		                 	embed2.setDescription(atts.description)
+		                 	embed2.setThumbnail(atts.image.original)
+		                 	embed2.setImage(atts.image.original)
 
 		                 	if(atts.titles.en){
-		 						embed2.addField("English Title", atts.titles.en, true)
+		 						embed2.addField("English Title", atts.names.en, true)
 		                 	}
 		                 	if(atts.titles.ja_jp){
-								embed2.addField("Japanese Title", atts.titles.ja_jp, true)
+								embed2.addField("Japanese Title", atts.names.ja_jp, true)
 							}
-							if(atts.abbreviatedTitles){
-								embed2.addField("Synonyms", atts.abbreviatedTitles, true)
-							}
-							if(atts.chapterCount){
-								embed2.addField("Chapters", atts.chapterCount, true)
-		 					}
-		 					if(atts.mangaType){
-		 						embed2.addField("Type", atts.mangaType, true)
-		 					}else{
-		 						embed2.addField("Type", ani.type, true)
-		 					}
-		 					embed2.addField("Status", atts.status, true)
-		 					if(atts.ageRating){
-		 						embed2.addField("Age Restrictions", atts.ageRating + atts.ageRatingGuide)
-		 					}
-		 					if(ani.links){
-		 						embed2.addField("Link", ani.links.self)
-		 					}
-		 					embed2.addField("Popularity Rank", "#"+atts.popularityRank, true)
-		 					if(atts.averageRating){
-		 						embed2.addField("Rating Rank", "#"+atts.ratingRank, true)
-		                 		embed2.addField("Rating", atts.averageRating, true)
-		 					}
-		 					
-		                 	if(atts.startDate && atts.endDate){
-		 						embed2.setFooter(atts.startDate + " to " + atts.endDate)
-		                 	}else if(atts.startDate && !atts.endDate){
-		                 		embed2.setFooter(atts.startDate)
-		                 	}else{
-		                 		embed2.setFooter(atts.tba)
-		                 	}
-
-
 		 					msg.channel.send(embed2)
 	                 }
  

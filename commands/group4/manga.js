@@ -91,7 +91,7 @@ module.exports = class mangaCommand extends Command {
 			   			titles = titles + "**["+ (i+1) + "]** " + result[i].attributes.canonicalTitle + "\n";
 			   		}
 
-			   		titles = titles+"\n**Please enter the number of the Anime you want to view** \n**Or type** `cancel` **to cancel the command**"
+			   		titles = titles+"\n**Please enter the number of the Manga you want to view** \n**Or type** `cancel` **to cancel the command**"
 			   		embed.setDescription(titles)
 
 			   		msg.channel.send(embed)
@@ -122,7 +122,7 @@ module.exports = class mangaCommand extends Command {
 	                 	var ani = anarr[parseInt(collected.first().content,10)-1]
 	                 		var atts = ani.attributes
 	                 		//console.log(ani)
-	                 		embed2.setTitle(atts.titles.canonicalTitle)
+	                 		embed2.setTitle(atts.canonicalTitle)
 		                 	embed2.setDescription(atts.synopsis)
 		                 	embed2.setThumbnail(atts.posterImage.small)
 							embed2.setImage(atts.coverImage.large)
