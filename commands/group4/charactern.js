@@ -2,21 +2,21 @@ const { Command } = require('discord.js-commando')
 const { RichEmbed } = require('discord.js');
 var kitsu = require('node-kitsu')
 
-module.exports = class mangaCommand extends Command {
+module.exports = class characterCommand extends Command {
 	constructor(client) {
 		super(client, {
-			name: 'manga',
-			aliases: ['man'],
+			name: 'charactern',
+			aliases: ['nchar'],
 			group: 'group4',
-			memberName: 'manga',
-			description: 'Shows a manga.',
-			examples: ['manga Name'],
+			memberName: 'charactern',
+			description: 'Shows a character.',
+			examples: ['character Name'],
 
 			args: [
 				{
 					key: 'name',
 					label: 'user',
-					prompt: 'Which manga would you like to see?',
+					prompt: 'Which character would you like to see?',
 					type: 'string'
 				}
 			]
@@ -81,14 +81,14 @@ module.exports = class mangaCommand extends Command {
 	    var embed2 = new RichEmbed()
 
 
-	    kitsu.searchManga(anm, 0)
+	    kitsu.findCharacter(anm, 0)
 		  .then(result => {
-		  	//console.log(result[0])
+		  	console.log(result[0])
 		   		var titles = "";
 		   		var titles2 = "";
-		   		embed.setTitle("Multiple Manga found");
+		   		embed.setTitle("Multiple Characters found");
 		   			for (var i = 0; i < result.length; i++) {  			
-			   			titles = titles + "**["+ (i+1) + "]** " + result[i].attributes.canonicalTitle + "\n";
+			   			//titles = titles + "**["+ (i+1) + "]** " + result[i].attributes.canonicalTitle + "\n";
 			   		}
 
 			   		titles = titles+"\n**Please enter the number of the Anime you want to view** \n**Or type** `cancel` **to cancel the command**"
@@ -96,7 +96,7 @@ module.exports = class mangaCommand extends Command {
 
 			   		msg.channel.send(embed)
 		  		
-				inputAn(result)
+				//inputAn(result)
 		   }
 
 		   ) // contains the json result on success
@@ -121,7 +121,7 @@ module.exports = class mangaCommand extends Command {
              			var embed2 = new RichEmbed()
 	                 	var ani = anarr[parseInt(collected.first().content,10)-1]
 	                 		var atts = ani.attributes
-	                 		//console.log(ani)
+	                 		console.log(ani)
 	                 		embed2.setTitle(atts.titles.canonicalTitle)
 		                 	embed2.setDescription(atts.synopsis)
 		                 	embed2.setThumbnail(atts.posterImage.small)
