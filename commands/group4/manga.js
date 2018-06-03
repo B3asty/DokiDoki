@@ -121,7 +121,7 @@ module.exports = class mangaCommand extends Command {
              			var embed2 = new RichEmbed()
 	                 	var ani = anarr[parseInt(collected.first().content,10)-1]
 	                 		var atts = ani.attributes
-	                 		//console.log(ani)
+	                 		console.log(ani)
 	                 		embed2.setTitle(atts.canonicalTitle)
 		                 	embed2.setDescription(atts.synopsis)
 		                 	emif(atts.posterImage){
