@@ -132,6 +132,7 @@ module.exports = class animenCommand extends Command {
 	                 		embed2.setTitle(atts.titles.en_jp)
 		                 	embed2.setDescription(atts.synopsis)
 		                 	embed2.setThumbnail(atts.posterImage[0])
+		                 	console.log(atts.posterImage[0])
 				
 
 		 					embed2.addField("English Title", atts.titles.en, true)
