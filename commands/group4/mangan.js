@@ -96,7 +96,7 @@ module.exports = class animenCommand extends Command {
 
 			   		msg.channel.send(embed)
 		  		
-				//inputAn(result)
+				inputAn(result)
 		   }
 
 		   ) // contains the json result on success
@@ -122,7 +122,7 @@ module.exports = class animenCommand extends Command {
 	                 	var ani = anarr[parseInt(collected.first().content,10)-1]
 	                 		var atts = ani.attributes
 	                 		console.log(ani)
-	                 		embed2.setTitle(atts.titles.en_jp)
+	                 		embed2.setTitle(atts.titles.canonicalTitle)
 		                 	embed2.setDescription(atts.synopsis)
 		                 	embed2.setThumbnail(atts.posterImage.small)
 
@@ -133,21 +133,27 @@ module.exports = class animenCommand extends Command {
 		                 	if(atts.titles.en){
 		 						embed2.addField("English Title", atts.titles.en, true)
 		                 	}
-							embed2.addField("Japanese Title", atts.titles.ja_jp, true)
+		                 	if(atts.titles.ja_jp){
+								embed2.addField("Japanese Title", atts.titles.ja_jp, true)
+							}
 							if(atts.abbreviatedTitles){
 								embed2.addField("Synonyms", atts.abbreviatedTitles, true)
 							}
-							if(atts.episodeCount && atts.episodeLength){
-								embed2.addField("Episodes", atts.episodeCount + " á " + atts.episodeLength + " minutes", true)
-		 					}else if(atts.episodeCount){
-		 						embed2.addField("Episodes", atts.episodeCount, true)
+							if(atts.chapterCount){
+								embed2.addField("Chapters", atts.chapterCount, true)
 		 					}
-		 					embed2.addField("Type", atts.showType, true)
+		 					if(atts.mangaType){
+		 						embed2.addField("Type", atts.mangaType, true)
+		 					}else{
+		 						embed2.addField("Type", ani.type, true)
+		 					}
 		 					embed2.addField("Status", atts.status, true)
 		 					if(atts.ageRating){
 		 						embed2.addField("Age Restrictions", atts.ageRating + " - " + atts.ageRatingGuide)
 		 					}
-		 					embed2.addField("Link", ani.links.self)
+		 					if(ani.links){
+		 						embed2.addField("Link", ani.links.self)
+		 					}
 		 					embed2.addField("Popularity Rank", "#"+atts.popularityRank, true)
 		 					if(atts.averageRating){
 		 						embed2.addField("Rating Rank", "#"+atts.ratingRank, true)
