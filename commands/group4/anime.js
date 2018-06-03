@@ -145,7 +145,7 @@ module.exports = class animenCommand extends Command {
 		 					embed2.addField("Type", atts.showType, true)
 		 					embed2.addField("Status", atts.status, true)
 		 					if(atts.ageRating){
-		 						embed2.addField("Age Restrictions", atts.ageRating + " - " + atts.ageRatingGuide)
+		 						embed2.addField("Age Restrictions", atts.ageRating + atts.ageRatingGuide)
 		 					}
 		 					if(ani.links){
 		 						embed2.addField("Link", ani.links.self)
