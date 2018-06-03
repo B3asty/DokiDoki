@@ -186,7 +186,7 @@ module.exports = class animenCommand extends Command {
 		 					embed2.addField("Status", atts.status, true)
 		// 					embed2.addField("Source", res.source, true)
 		 					embed2.setFooter(atts.startDate + " to " + atts.endDate)
-		 					console.log(atts.relationships.genres)
+		 					console.log(ani.relationships)
 		// 					  	var genres = "`"
 		// 					  	for (var i = 0; i < res.genres.length; i++) {
 		// 					  		genres = genres + res.genres[i] + "`";
