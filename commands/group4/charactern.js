@@ -121,7 +121,7 @@ module.exports = class characterCommand extends Command {
              			var embed2 = new RichEmbed()
 	                 	var ani = anarr[parseInt(collected.first().content,10)-1]
 	                 		var atts = ani.attributes
-	                 		console.log(ani.relationships)
+	                 		console.log(ani.relationships.primaryMedia.links.self)
 	                 		embed2.setTitle(atts.name)
 		                 	embed2.setDescription(atts.description.replace(/\<br\/\>/g, "\n").replace(/\<span\sclass\=\"spoiler\"\>.*\<\/span\>/g, ""))
 		                 	embed2.setThumbnail(atts.image.original)
