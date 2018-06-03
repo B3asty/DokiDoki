@@ -84,43 +84,23 @@ module.exports = class animenCommand extends Command {
 	    kitsu.searchAnime(anm, 0)
 		  .then(result => {
 		  	console.log(result)
-		  // 	if(result.anime.length > 1){
-		  // 		var titles = "";
-		  // 		var titles2 = "";
-		  // 		embed.setTitle("Multiple Anime found");
-		  // 		embedst2.setTitle("Multiple Anime found");
-		  // 		if(result.anime.length < 30){
-		  // 			for (var i = 0; i < result.anime.length; i++) {  			
-			 //  			titles = titles + "**["+ (i+1) + "]** " + result.anime[i].sn.replace(/\_/g," ") + "\n";
-			 //  		}
+		   	if(result.length > 1){
+		   		var titles = "";
+		   		var titles2 = "";
+		   		embed.setTitle("Multiple Anime found");
+		   		embedst2.setTitle("Multiple Anime found");
+		   			for (var i = 0; i < result.length; i++) {  			
+			   			titles = titles + "**["+ (i+1) + "]** " + result[i].canonicalTitle;
+			   		}
 
-			 //  		titles = titles+"\n**Please enter the number of the Anime you want to view** \n**Or type** `cancel` **to cancel the command**"
-			 //  		embed.setDescription(titles)
+			   		titles = titles+"\n**Please enter the number of the Anime you want to view** \n**Or type** `cancel` **to cancel the command**"
+			   		embed.setDescription(titles)
 
-			 //  		msg.channel.send(embed)
-		  // 		}else{
-		  // 			for (var i = 0; i < 30; i++) {  			
-			 //  			titles = titles + "**["+ (i+1) + "]** " + result.anime[i].sn.replace(/\_/g," ") + "\n";
-			 //  		}
-
-			 //  		titles = titles+"\n**Please enter the number of the Anime you want to view** \n**Or type** `cancel` **to cancel the command**"
-			 //  		embed.setDescription(titles)
-
-			 //  		msg.channel.send(embed)
-
-			 //  		for (var i = 30; i < result.anime.length; i++) {  			
-			 //  			titles2 = titles2 + "**["+ (i+1) + "]** " + result.anime[i].sn.replace(/\_/g," ") + "\n";
-			 //  		}
-
-			 //  		titles2 = titles2+"\n**Please enter the number of the Anime you want to view** \n**Or type** `cancel` **to cancel the command**"
-			 //  		embedst2.setDescription(titles2)
-
-			 //  		msg.channel.send(embedst2)
-		  // 		}
+			   		msg.channel.send(embed)
 		  		
 				// inputAn(result.anime)
 
-		 //  	}else {
+		   	}else {
 		 //  		var embed2 = new RichEmbed()
 	  //               	result.anime[0].fetch()
 	  //               	.then(csn => {
@@ -165,7 +145,7 @@ module.exports = class animenCommand extends Command {
 	  //               	.catch(err => {
 	  //               		console.log(err)
 	  //               	})
-			// }
+			}
 
 		   }
 
