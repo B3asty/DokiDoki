@@ -83,14 +83,14 @@ module.exports = class animenCommand extends Command {
 
 	    kitsu.searchAnime(anm, 0)
 		  .then(result => {
-		  	console.log(result)
+		  	console.log(result[0])
 		   	if(result.length > 1){
 		   		var titles = "";
 		   		var titles2 = "";
 		   		embed.setTitle("Multiple Anime found");
 		   		embedst2.setTitle("Multiple Anime found");
 		   			for (var i = 0; i < result.length; i++) {  			
-			   			titles = titles + "**["+ (i+1) + "]** " + result[i].canonicalTitle;
+			   			titles = titles + "**["+ (i+1) + "]** " + result[i].canonicalTitle + "\n";
 			   		}
 
 			   		titles = titles+"\n**Please enter the number of the Anime you want to view** \n**Or type** `cancel` **to cancel the command**"
