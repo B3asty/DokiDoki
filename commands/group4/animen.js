@@ -139,17 +139,34 @@ module.exports = class animenCommand extends Command {
 
 		 					embed2.addField("English Title", atts.titles.en, true)
 							embed2.addField("Japanese Title", atts.titles.ja_jp, true)
-		 					embed2.addField("Synonyms", atts.abbreviatedTitles, true)
-		 					embed2.addField("Episodes", atts.episodeCount + " á " + atts.episodeLength + " minutes", true)
+							if(atts.abbreviatedTitles){
+								embed2.addField("Synonyms", atts.abbreviatedTitles, true)
+							}
+							if(atts.episodeCount && atts.episodeLength){
+								embed2.addField("Episodes", atts.episodeCount + " á " + atts.episodeLength + " minutes", true)
+		 					}else if(atts.episodeCount){
+		 						embed2.addField("Episodes", atts.episodeCount, true)
+		 					}
 		 					embed2.addField("Type", atts.showType, true)
 		 					embed2.addField("Status", atts.status, true)
-		 					embed2.addField("Age Restrictions", atts.ageRating + " - " + atts.ageRatingGuide)
+		 					if(atts.ageRating){
+		 						embed2.addField("Age Restrictions", atts.ageRating + " - " + atts.ageRatingGuide)
+		 					}
 		 					embed2.addField("Link", ani.links.self)
 		 					embed2.addField("Popularity Rank", "#"+atts.popularityRank, true)
-		 					embed2.addField("Rating Rank", "#"+atts.ratingRank, true)
-		                 	embed2.addField("Rating", atts.averageRating, true)
+		 					if(atts.averageRating){
+		 						embed2.addField("Rating Rank", "#"+atts.ratingRank, true)
+		                 		embed2.addField("Rating", atts.averageRating, true)
+		 					}
+		 					
+		                 	if(atts.startDate && atts.endDate){
+		 						embed2.setFooter(atts.startDate + " to " + atts.endDate)
+		                 	}else if(atts.startDate && !atts.endDate){
+		                 		embed2.setFooter(atts.startDate)
+		                 	}else{
+		                 		embed2.setFooter("TBA")
+		                 	}
 
-		 					embed2.setFooter(atts.startDate + " to " + atts.endDate)
 
 		 					msg.channel.send(embed2)
 	                 }
