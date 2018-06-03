@@ -164,13 +164,12 @@ module.exports = class animenCommand extends Command {
 		                 	}else{
 		                 		embed2.setFooter(atts.tba)
 		                 	}
-
-
 		 					msg.channel.send(embed2)
 	                 }
  
 		   })
            .catch(err => {
+           	msg.channel.send("Something went wrong, please try again. \nIf it still doesn't work, please send a bug report with the `bug` command, include the command you used and the Anime you searched for.")
            	console.log(err)
           })
 		 }

@@ -171,6 +171,8 @@ module.exports = class mangaCommand extends Command {
  
 		   })
            .catch(err => {
+
+           	msg.channel.send("Something went wrong, please try again. \nIf it still doesn't work, please send a bug report with the `bug` command, include the command you used and the Manga you searched for.")
            	console.log(err)
           })
 		 }
