@@ -124,9 +124,12 @@ module.exports = class mangaCommand extends Command {
 	                 		//console.log(ani)
 	                 		embed2.setTitle(atts.canonicalTitle)
 		                 	embed2.setDescription(atts.synopsis)
-		                 	embed2.setThumbnail(atts.posterImage.small)
-							embed2.setImage(atts.coverImage.large)
-
+		                 	emif(atts.posterImage){
+			                 	embed2.setImage(atts.posterImage.medium)
+		                 	}
+							if(atts.coverImage){
+			                 	embed2.setImage(atts.coverImage.large)
+		                 	}
 		                 	if(atts.titles.en){
 		 						embed2.addField("English Title", atts.titles.en, true)
 		                 	}
