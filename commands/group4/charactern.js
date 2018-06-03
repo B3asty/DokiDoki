@@ -123,15 +123,15 @@ module.exports = class characterCommand extends Command {
 	                 		var atts = ani.attributes
 	                 		console.log(ani)
 	                 		embed2.setTitle(atts.name)
-		                 	embed2.setDescription(atts.description)
+		                 	embed2.setDescription(atts.description.replace(/\<br\/\>/g, "\n").replace(/\<span\sclass\=\"spoiler\"\>.*\<\/span\>/g, ""))
 		                 	embed2.setThumbnail(atts.image.original)
 		                 	embed2.setImage(atts.image.original)
 
 		                 	if(atts.names.en){
-		 						embed2.addField("English Title", atts.names.en, true)
+		 						embed2.addField("English Name", atts.names.en, true)
 		                 	}
 		                 	if(atts.names.ja_jp){
-								embed2.addField("Japanese Title", atts.names.ja_jp, true)
+								embed2.addField("Japanese Name", atts.names.ja_jp, true)
 							}
 		 					msg.channel.send(embed2)
 	                 }
