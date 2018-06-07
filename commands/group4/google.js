@@ -30,11 +30,13 @@ module.exports = class googleCommand extends Command {
 		 
 		google.resultsPerPage = 8
 		var nextCounter = 0
+		var quer = args.query
 		 
-		google(args.query, function (err, res){
+		google(quer, function (err, res){
 		  if (err) console.error(err)
 
-		  	console.log(res.links[0])
+		  
+		  console.log(res.links[0])
 		 
 		  for (var i = 0; i < res.links.length; ++i) {
 		    var link = res.links[i];
