@@ -44,7 +44,10 @@ module.exports = class googleCommand extends Command {
 		 
 		  for (var i = 0; i < res.links.length; ++i) {
 		    var link = res.links[i];
-		    embed.addField("["+link.title+"]("+link.link+")", link.description, true)
+		    var linktitle = "["+link.title+"]("+link.link+")"
+		    console.log(linktitle)
+		    console.log(link.description)
+		    //embed.addField(linktitle, link.description, true)
 		    //console.log(link.title + ' - ' + link.href)
 		    //console.log(link.description + "\n")
 		  }
