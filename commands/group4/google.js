@@ -31,18 +31,25 @@ module.exports = class googleCommand extends Command {
 		google.resultsPerPage = 8
 		var nextCounter = 0
 		var quer = args.query
+
+		var embed = new RichEmbed()
 		 
 		google(quer, function (err, res){
 		  if (err) console.error(err)
 
-		  
+		  embed.setTitle("Google Search for " + quer)
+		  embed.setThumbnail("https://cognitiveseo.com/blog/wp-content/uploads/2017/10/1000px-Google_-G-_Logo.svg_.png")
+
 		  console.log(res.links[0])
 		 
 		  for (var i = 0; i < res.links.length; ++i) {
 		    var link = res.links[i];
+		    embed.addField("["+link.title+"]("+link.link+")", link.description, true)
 		    //console.log(link.title + ' - ' + link.href)
 		    //console.log(link.description + "\n")
 		  }
+
+		  msg.channel.send(embed)
 		 
 		  if (nextCounter < 4) {
 		    nextCounter += 1
