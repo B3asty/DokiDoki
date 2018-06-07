@@ -43,6 +43,7 @@ module.exports = class googleCommand extends Command {
 		  var embed = new RichEmbed()
 		  embed.setTitle("Your search results")
 		  console.log(response)
+		  console.log(error)
 		  
 
 		  
