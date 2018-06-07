@@ -47,9 +47,10 @@ module.exports = class googleCommand extends Command {
 		    	embed.addField(linktitle, link.description, true)
 		    }
 		  }
+		  
+		msg.channel.send(embed)
 		})
 
-		msg.channel.send(embed)
 
 	}
 }
