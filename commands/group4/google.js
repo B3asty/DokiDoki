@@ -48,6 +48,5 @@ module.exports = class googleCommand extends Command {
 		  }
 		})
 
-		});
 	}
 }
