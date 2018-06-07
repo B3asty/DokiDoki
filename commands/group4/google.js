@@ -28,7 +28,7 @@ module.exports = class googleCommand extends Command {
 
 		var google = require('google')
 		 
-		google.resultsPerPage = 8
+		google.resultsPerPage = 5
 		var nextCounter = 0
 		var quer = args.query
 
@@ -43,11 +43,10 @@ module.exports = class googleCommand extends Command {
 		  for (var i = 0; i < res.links.length; ++i) {
 		    var link = res.links[i];
 		    if(link.title && link.href && link.description){
-		    	var linktitle = "["+link.title+"]("+link.href+")"
-		    	embed.addField(linktitle, link.description, true)
+		    	embed.addField(link,title, link.description+"\n"+"[More]("+link.href+")\n")
 		    }
 		  }
-		  
+
 		msg.channel.send(embed)
 		})
 
