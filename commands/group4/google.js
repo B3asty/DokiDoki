@@ -39,26 +39,17 @@ module.exports = class googleCommand extends Command {
 
 		  embed.setTitle("Google Search for " + quer)
 		  embed.setThumbnail("https://cognitiveseo.com/blog/wp-content/uploads/2017/10/1000px-Google_-G-_Logo.svg_.png")
-
-		  console.log(res.links[0])
 		 
 		  for (var i = 0; i < res.links.length; ++i) {
 		    var link = res.links[i];
-		    var linktitle = "["+link.title+"]("+link.link+")"
-		    console.log(linktitle)
-		    console.log(link.description)
-		    //embed.addField(linktitle, link.description, true)
-		    //console.log(link.title + ' - ' + link.href)
-		    //console.log(link.description + "\n")
-		  }
-
-		  msg.channel.send(embed)
-		 
-		  if (nextCounter < 4) {
-		    nextCounter += 1
-		    if (res.next) res.next()
+		    if(link.title && link.href && link.description){
+		    	var linktitle = "["+link.title+"]("+link.href+")"
+		    	embed.addField(linktitle, link.description, true)
+		    }
 		  }
 		})
+
+		msg.channel.send(embed)
 
 	}
 }
