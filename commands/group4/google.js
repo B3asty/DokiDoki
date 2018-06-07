@@ -28,7 +28,7 @@ module.exports = class googleCommand extends Command {
 
 		var google = require('google')
 		 
-		google.resultsPerPage = 5
+		google.resultsPerPage = 6
 		var nextCounter = 0
 		var quer = args.query
 
