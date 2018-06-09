@@ -125,7 +125,7 @@ module.exports = class characterCommand extends Command {
 	                 		if(atts.description){
 	                 			var des = atts.description.replace(/\<br\/\>/g, "\n").replace(/\<span\sclass\=\"spoiler\"\>(.|[\n\r])*\<\/span\>/g, "")
 	                 			if(des.length > 2048){
-	                 				des = des.substring(0,2048).substring(0,des.lastIndexOf("."))
+	                 				des = des.substring(0,2048).substring(0,des.lastIndexOf(".")+1)
 	                 			}
 	                 			embed2.setDescription(des)	
 	                 		}
