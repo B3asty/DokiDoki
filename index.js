@@ -3,12 +3,6 @@ const { RichEmbed } = require('discord.js');
 const oneLine = require('common-tags').oneLine;
 const sqlite = require('sqlite');
 const path = require('path');
-const { Pool } = require('pg',"discord.js","discord.js-commando");
-const pool = new Client({
-  connectionString: process.env.DATABASE_URL,
-  ssl: true,
-});
-
 const client = new CommandoClient({
     commandPrefix: '<',
     unknownCommandResponse: false,
@@ -74,6 +68,11 @@ client.registry
   });
 
 client.on("message", (message) => {
+const { Pool } = require('pg',"discord.js","discord.js-commando");
+const pool = new Client({
+  connectionString: process.env.DATABASE_URL,
+  ssl: true,
+});
 pool.connect();
 const  query = pool.query(`SELECT * FROM XP WHERE userid = ${message.author.id}`).then(row => {
     if (!row) { pool.query("INSERT INTO XP (userid, xp, level) VALUES (?, ?, ?)", [message.author.id, 0, 0]);
@@ -83,9 +82,10 @@ const  query = pool.query(`SELECT * FROM XP WHERE userid = ${message.author.id}`
         row.level = curLevel;
         pool.query(`UPDATE XP SET level = ${row.level} WHERE userid = ${message.author.id}`)
         message.reply(`You've leveled up to level **${curLevel}**!`)
-      }
-  }
-})
+     		 }
+ 	 }
+});
+});
 
 //Login 
 client.login(process.env.token);
