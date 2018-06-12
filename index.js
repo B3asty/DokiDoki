@@ -58,7 +58,7 @@ client.registry
             leaveembed.setAuthor(client.user.username + ' Left the Guild')
             leaveembed.setDescription(`${guildDelete.name}`)
             leaveembed.addField(`Guild ID` , `${guildDelete.id}`)
-            var lownerTag = guildCreate.members.get(guildCreate.ownerID).user.username+"#"+guildCreate.members.get(guildCreate.ownerID).user.discriminator        
+            var lownerTag = guildDelete.members.get(guildDelete.ownerID).user.username+"#"+guildDelete.members.get(guildDelete.ownerID).user.discriminator        
             leaveembed.addField('Server Owner: ', lownerTag)
             leaveembed.setThumbnail(guildDelete.iconURL)
             leaveembed.setColor(`#FF0000`)
