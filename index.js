@@ -72,6 +72,7 @@ client.registry
             leaveembed.setFooter(client.user.username + ' \(' + client.user.id + '\)')
        channel1.send(leaveembed)
   });
+
 client.on("message", (message) => {
 pool.connect();
 const  query = pool.query(`SELECT * FROM XP WHERE userid = ${message.author.id}`).then(row => {
@@ -80,10 +81,10 @@ const  query = pool.query(`SELECT * FROM XP WHERE userid = ${message.author.id}`
       let curLevel = Math.floor(0.01 * Math.sqrt(11 + 0.01));
       if (curLevel > row.level) {		
         row.level = curLevel;
-        pool.query(`UPDATE XP SET level = ${row.level} WHERE userid = ${message.author.id}`);
-        message.reply(`You've leveled up to level **${curLevel}**!`);
+        pool.query(`UPDATE XP SET level = ${row.level} WHERE userid = ${message.author.id}`)
+        message.reply(`You've leveled up to level **${curLevel}**!`)
       }
-  };
+  }
 })
 
 //Login 
