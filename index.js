@@ -43,10 +43,8 @@ client.registry
             joinembed.addField(`Guild ID` , `${guildCreate.id}`)
             joinembed.addField('Member Count', `${guildCreate.memberCount}`, true)
             joinembed.addField('Channel Count ' , ` ${guildCreate.channels.array().length}`, true)
-            console.log(guildCreate)
-            var joiedguild = this.client.guilds.get('${guildCreate.id}')
-            var joinedownerTag = joinedguild.members.get(joinedguild.ownerID).username+'#'+guild.members.get(joinedguild.ownerID).discriminator
-            joinembed.addField('Server Owner ', joinedownerTag)
+            console.log(guildCreate.members)
+           joinembed.addField('Server Owner ', guildCreate.owner)
             joinembed.setThumbnail(guildCreate.iconURL)
             joinembed.setColor(`RANDOM`)
             joinembed.setFooter(client.user.username + ' \(' + client.user.id + '\)')
