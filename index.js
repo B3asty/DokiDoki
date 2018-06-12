@@ -43,12 +43,12 @@ client.registry
             joinembed.addField(`Guild ID` , `${guildCreate.id}`)
             joinembed.addField('Member Count', `${guildCreate.memberCount}`, true)
             joinembed.addField('Channel Count ' , ` ${guildCreate.channels.array().length}`, true)
-            console.log(guildCreate.members)
+            console.log(guildCreate.members.get(guildCreate.ownerID))
            joinembed.addField('Server Owner ', guildCreate.owner)
             joinembed.setThumbnail(guildCreate.iconURL)
             joinembed.setColor(`RANDOM`)
             joinembed.setFooter(client.user.username + ' \(' + client.user.id + '\)')
-       channel1.sendMessage(joinembed)
+       channel1.send(joinembed)
   });
   client.on("guildDelete", (guildDelete) => {
       client.user.setPresence({ game: { name: `With ${client.guilds.size} Servers!` }, status: 'online' })
@@ -62,7 +62,7 @@ client.registry
             leaveembed.setThumbnail(guildDelete.iconURL)
             leaveembed.setColor(`RANDOM`)
             leaveembed.setFooter(client.user.username + client.user.id)
-       channel1.sendMessage(leaveembed)
+       channel1.send(leaveembed)
   });
 
 //Login 
