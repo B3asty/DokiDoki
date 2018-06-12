@@ -3,7 +3,9 @@ const { RichEmbed } = require('discord.js');
 const oneLine = require('common-tags').oneLine;
 const sqlite = require('sqlite');
 const path = require('path');
-const client = new CommandoClient({
+
+const { Pool } = require('pg',"discord.js","discord.js-commando");
+const { client , pool } = new CommandoClient({
     commandPrefix: '<',
     unknownCommandResponse: false,
     owner: ['193021560792154112', '111469545637605376'],
@@ -68,11 +70,6 @@ client.registry
   });
 
 client.on("message", (message) => {
-const { Pool } = require('pg',"discord.js","discord.js-commando");
-const pool = new Client({
-  connectionString: process.env.DATABASE_URL,
-  ssl: true,
-});
 pool.connect();
 const  query = pool.query(`SELECT * FROM XP WHERE userid = ${message.author.id}`).then(row => {
     if (!row) { pool.query("INSERT INTO XP (userid, xp, level) VALUES (?, ?, ?)", [message.author.id, 0, 0]);
