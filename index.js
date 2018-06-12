@@ -3,9 +3,7 @@ const { RichEmbed } = require('discord.js');
 const oneLine = require('common-tags').oneLine;
 const sqlite = require('sqlite');
 const path = require('path');
-
-const { Pool } = require('pg',"discord.js","discord.js-commando");
-const { client , pool } = new CommandoClient({
+const client = new CommandoClient({
     commandPrefix: '<',
     unknownCommandResponse: false,
     owner: ['193021560792154112', '111469545637605376'],
@@ -69,7 +67,7 @@ client.registry
        channel1.send(leaveembed)
   });
 
-client.on("message", (message) => {
+/*client.on("message", (message) => {
 pool.connect();
 const  query = pool.query(`SELECT * FROM XP WHERE userid = ${message.author.id}`).then(row => {
     if (!row) { pool.query("INSERT INTO XP (userid, xp, level) VALUES (?, ?, ?)", [message.author.id, 0, 0]);
@@ -82,7 +80,7 @@ const  query = pool.query(`SELECT * FROM XP WHERE userid = ${message.author.id}`
      		 }
  	 }
 });
-});
+});*/
 
 //Login 
 client.login(process.env.token);
