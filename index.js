@@ -62,7 +62,7 @@ client.registry
             leaveembed.addField('Server Owner: ', lownerTag)
             leaveembed.setThumbnail(guildDelete.iconURL)
             leaveembed.setColor(`#FF0000`)
-            leaveembed.setFooter(client.user.username + client.user.id)
+            leaveembed.setFooter(client.user.username + ' \(' + client.user.id + '\)')
        channel1.send(leaveembed)
   });
 
