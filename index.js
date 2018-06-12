@@ -3,7 +3,7 @@ const { RichEmbed } = require('discord.js');
 const oneLine = require('common-tags').oneLine;
 const sqlite = require('sqlite');
 const path = require('path');
-const { pool } = require('pg',"discord.js","discord.js-commando");
+const { Pool } = require('pg',"discord.js","discord.js-commando");
 const pool = new Client({
   connectionString: process.env.DATABASE_URL,
   ssl: true,
