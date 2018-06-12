@@ -43,10 +43,11 @@ client.registry
             joinembed.addField(`Guild ID` , `${guildCreate.id}`)
             joinembed.addField('Member Count', `${guildCreate.memberCount}`, true)
             joinembed.addField('Channel Count ' , ` ${guildCreate.channels.array().length}`, true)
-            console.log(guildCreate.members.get(guildCreate.ownerID))
-           joinembed.addField('Server Owner ', guildCreate.owner)
+            var jownerTag = guildCreate.members.get(guildCreate.ownerID).user.username+"#"+guildCreate.members.get(guildCreate.ownerID).user.discriminator
+            console.log(jownerTag)
+           joinembed.addField('Server Owner ', jownerTag)
             joinembed.setThumbnail(guildCreate.iconURL)
-            joinembed.setColor(`RANDOM`)
+            joinembed.setColor(`#FF0000`)
             joinembed.setFooter(client.user.username + ' \(' + client.user.id + '\)')
        channel1.send(joinembed)
   });
@@ -60,7 +61,7 @@ client.registry
             leaveembed.addField(`Guild ID` , `${guildDelete.id}`)
             leaveembed.addField('Server Owner: ', guildDelete.owner)
             leaveembed.setThumbnail(guildDelete.iconURL)
-            leaveembed.setColor(`RANDOM`)
+            leaveembed.setColor(`#00FF00`)
             leaveembed.setFooter(client.user.username + client.user.id)
        channel1.send(leaveembed)
   });
