@@ -44,10 +44,9 @@ client.registry
             joinembed.addField('Member Count', `${guildCreate.memberCount}`, true)
             joinembed.addField('Channel Count ' , ` ${guildCreate.channels.array().length}`, true)
             var jownerTag = guildCreate.members.get(guildCreate.ownerID).user.username+"#"+guildCreate.members.get(guildCreate.ownerID).user.discriminator
-            console.log(jownerTag)
            joinembed.addField('Server Owner ', jownerTag)
             joinembed.setThumbnail(guildCreate.iconURL)
-            joinembed.setColor(`#FF0000`)
+            joinembed.setColor(`#00FF00`)
             joinembed.setFooter(client.user.username + ' \(' + client.user.id + '\)')
        channel1.send(joinembed)
   });
@@ -59,9 +58,10 @@ client.registry
             leaveembed.setAuthor(client.user.username + ' Left the Guild')
             leaveembed.setDescription(`${guildDelete.name}`)
             leaveembed.addField(`Guild ID` , `${guildDelete.id}`)
-            leaveembed.addField('Server Owner: ', guildDelete.owner)
+            var lownerTag = guildCreate.members.get(guildCreate.ownerID).user.username+"#"+guildCreate.members.get(guildCreate.ownerID).user.discriminator        
+            leaveembed.addField('Server Owner: ', lownerTag)
             leaveembed.setThumbnail(guildDelete.iconURL)
-            leaveembed.setColor(`#00FF00`)
+            leaveembed.setColor(`#FF0000`)
             leaveembed.setFooter(client.user.username + client.user.id)
        channel1.send(leaveembed)
   });
