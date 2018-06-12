@@ -3,12 +3,19 @@ const { RichEmbed } = require('discord.js');
 const oneLine = require('common-tags').oneLine;
 const sqlite = require('sqlite');
 const path = require('path');
+const { pool } = require('pg',"discord.js","discord.js-commando");
+const pool = new Client({
+  connectionString: process.env.DATABASE_URL,
+  ssl: true,
+});
+
 const client = new CommandoClient({
     commandPrefix: '<',
     unknownCommandResponse: false,
     owner: ['193021560792154112', '111469545637605376'],
     disableEveryone: true,      
 });
+
 sqlite.open(path.join(__dirname, "settings.sqlite3")).then((db) => {
     client.setProvider(new SQLiteProvider(db));
 });
@@ -65,6 +72,19 @@ client.registry
             leaveembed.setFooter(client.user.username + ' \(' + client.user.id + '\)')
        channel1.send(leaveembed)
   });
+client.on("message", (message) => {
+pool.connect();
+const  query = pool.query(`SELECT * FROM XP WHERE userid = ${message.author.id}`).then(row => {
+    if (!row) { pool.query("INSERT INTO XP (userid, xp, level) VALUES (?, ?, ?)", [message.author.id, 0, 0]);
+    } else {
+      let curLevel = Math.floor(0.01 * Math.sqrt(11 + 0.01));
+      if (curLevel > row.level) {		
+        row.level = curLevel;
+        pool.query(`UPDATE XP SET level = ${row.level} WHERE userid = ${message.author.id}`);
+        message.reply(`You've leveled up to level **${curLevel}**!`);
+      }
+  };
+})
 
 //Login 
 client.login(process.env.token);
