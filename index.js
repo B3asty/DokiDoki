@@ -78,15 +78,16 @@ client.registry
       connectionString: process.env.DATABASE_URL || process.env.HEROKU_POSTGRESQL_BLUE_URL,
       ssl: true
     });
+
     pool.connect();
     const query = pool.query(`SELECT * FROM XP WHERE userid ="${message.author.id}"`).then(row => {
       if(!row){
-        pool.query(`INSERT INTO XP (userid, points, level) VALUES (?, ?, ?,)`, [message.author.id, 1, 0]);
+        pool.query(`INSERT INTO XP (userid, xp, level) VALUES (?, ?, ?,)`, [message.author.id, 1, 0]);
       }else{
         let curlevel = Math.floor(0.1 * Math.sqrt(row.xp + 0.1));
         if (curLevel > row.level) {
         row.level = curLevel;
-        pool.query(`UPDATE XP SET level = ${row.level} WHERE userid = ${message.author.id}`);
+        pool.query(`UPDATE XP SET level = ${row.level} WHERE userid ="${message.author.id}"`);
       }
       }
     });
