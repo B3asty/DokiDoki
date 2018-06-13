@@ -68,8 +68,7 @@ client.registry
        channel1.send(leaveembed)
   });
 
-
-  client.on("message", (message) => {
+client.on("message", (message) => {
   if (message.author.bot) return;
   if (message.channel.type === "dm") return;
 
@@ -86,16 +85,15 @@ client.registry
       if(!row){
         pool.query(`INSERT INTO XP (userid, xp, level) VALUES (?, ?, ?,)`, [message.author.id, 1, 0]);
       }else{
-	let curlevel = Math.floor(0.1 * Math.sqrt(row.xp + 0.1));
-	row.level = curlevel;
+  let curlevel = Math.floor(0.1 * Math.sqrt(row.xp + 0.1));
+  row.level = curlevel;
         if (curlevel > row.level) {
         pool.query(`UPDATE XP SET level = ${row.level} WHERE userid ="${message.author.id}"`)
-	.then(res => {
+  .then(res => {
         pool.release()
         console.log(res.rows[0])
-	}}
-      })
-      }
+  }
+      }}
     })
   });
 
