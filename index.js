@@ -76,7 +76,7 @@ client.registry
     const xp = Math.random(Math.floor() * 1.5);
     console.log(xp);
 
-    const { Pool } = require('pg');
+    const { Pool, Client } = require('pg');
     const pool = new Pool({
       connectionString: process.env.DATABASE_URL,
       ssl: true
@@ -92,7 +92,11 @@ client.registry
         pool.query(`UPDATE XP SET level = ${row.level} WHERE userid ="${message.author.id}"`);
       }
       }
-    }).catch();
+	.then(res => {
+        pool.release()
+        console.log(res.rows[0])
+      })
+    })
   });
 
 
