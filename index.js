@@ -92,10 +92,11 @@ client.on("message", (message) => {
   .then(res => {
         pool.release()
         console.log(res.rows[0])
-  }
-      }}
-    })
-  });
+})
+}
+}
+})
+});
 
 
 
