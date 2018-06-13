@@ -93,7 +93,7 @@ client.registry
 	.then(res => {
         pool.release()
         console.log(res.rows[0])
-	}
+	}}
       })
       }
     })
