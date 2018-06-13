@@ -89,13 +89,13 @@ client.registry
 	let curlevel = Math.floor(0.1 * Math.sqrt(row.xp + 0.1));
 	row.level = curlevel;
         if (curlevel > row.level) {
-        pool.query(`UPDATE XP SET level = ${row.level} WHERE userid ="${message.author.id}"`);
-      }
-      }
+        pool.query(`UPDATE XP SET level = ${row.level} WHERE userid ="${message.author.id}"`)
 	.then(res => {
         pool.release()
         console.log(res.rows[0])
+	}
       })
+      }
     })
   });
 
