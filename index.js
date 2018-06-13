@@ -78,18 +78,17 @@ client.registry
 
     const { Pool } = require('pg');
     const pool = new Pool({
-      connectionString: process.env.DATABASE_URL || process.env.HEROKU_POSTGRESQL_BLUE_URL,
+      connectionString: process.env.DATABASE_URL,
       ssl: true
     });
-
     pool.connect();
     const query = pool.query(`SELECT * FROM XP`).then(row => {
       if(!row){
         pool.query(`INSERT INTO XP (userid, xp, level) VALUES (?, ?, ?,)`, [message.author.id, 1, 0]);
       }else{
-        let curlevel = Math.floor(0.1 * Math.sqrt(row.xp + 0.1));
+	let curlevel = Math.floor(0.1 * Math.sqrt(row.xp + 0.1));
+	row.level = curlevel;
         if (curlevel > row.level) {
-        row.level = curlevel;
         pool.query(`UPDATE XP SET level = ${row.level} WHERE userid ="${message.author.id}"`);
       }
       }
