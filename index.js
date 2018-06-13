@@ -1,4 +1,5 @@
 const { CommandoClient, SQLiteProvider } = require('discord.js-commando');
+const pg = require('pg');
 const { RichEmbed } = require('discord.js');
 const oneLine = require('common-tags').oneLine;
 const sqlite = require('sqlite');
@@ -66,6 +67,32 @@ client.registry
             leaveembed.setFooter(client.user.username + ' \(' + client.user.id + '\)')
        channel1.send(leaveembed)
   });
+
+
+  client.on("message", (message) => {
+    const xp = Math.random(Math.floor() * 1.5);
+    console.log(xp);
+
+    const { Pool } = require('pg');
+    const pool = new Pool({
+      connectionString: process.env.DATABASE_URL || process.env.HEROKU_POSTGRESQL_BLUE_URL,
+      ssl: true
+    });
+    pool.connect();
+    const query = pool.query(`SELECT * FROM XP WHERE userid ="${message.author.id}"`).then(row => {
+      if(!row){
+        pool.query(`INSERT INTO XP (userid, points, level) VALUES (?, ?, ?,)`, [message.author.id, 1, 0]);
+      }else{
+        let curlevel = Math.floor(0.1 * Math.sqrt(row.xp + 0.1));
+        if (curLevel > row.level) {
+        row.level = curLevel;
+        pool.query(`UPDATE XP SET level = ${row.level} WHERE userId = ${message.author.id}`);
+      }
+      }
+    });
+  });
+
+
 
 /*client.on("message", (message) => {
 pool.connect();
