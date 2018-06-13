@@ -70,6 +70,9 @@ client.registry
 
 
   client.on("message", (message) => {
+  if (message.author.bot) return;
+  if (message.channel.type === "dm") return;
+
     const xp = Math.random(Math.floor() * 1.5);
     console.log(xp);
 
@@ -85,12 +88,12 @@ client.registry
         pool.query(`INSERT INTO XP (userid, xp, level) VALUES (?, ?, ?,)`, [message.author.id, 1, 0]);
       }else{
         let curlevel = Math.floor(0.1 * Math.sqrt(row.xp + 0.1));
-        if (curLevel > row.level) {
-        row.level = curLevel;
+        if (curlevel > row.level) {
+        row.level = curlevel;
         pool.query(`UPDATE XP SET level = ${row.level} WHERE userid ="${message.author.id}"`);
       }
       }
-    });
+    }).catch();
   });
 
 
