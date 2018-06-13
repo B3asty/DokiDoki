@@ -69,12 +69,8 @@ client.registry
   });
 
 client.on("message", (message) => {
-  if (message.author.bot) return;
-  if (message.channel.type === "dm") return;
-
-    const xp = Math.random(Math.floor() * 1.5);
+    const xp = Math.random(Math.floor() * 1);
     console.log(xp);
-
     const { Pool, Client } = require('pg');
     const pool = new Pool({
       connectionString: process.env.DATABASE_URL,
@@ -85,17 +81,13 @@ client.on("message", (message) => {
       if(!row){
         pool.query(`INSERT INTO XP (userid, xp, level) VALUES (?, ?, ?,)`, [message.author.id, 1, 0]);
       }else{
-  let curlevel = Math.floor(0.1 * Math.sqrt(row.xp + 0.1));
-  row.level = curlevel;
+        let curlevel = Math.floor(0.1 * Math.sqrt(row.xp + 0.1));
+          row.level = curlevel;
         if (curlevel > row.level) {
         pool.query(`UPDATE XP SET level = ${row.level} WHERE userid ="${message.author.id}"`)
-  .then(res => {
-        pool.release()
-        console.log(res.rows[0])
-})
 }
 }
-})
+}).then(res => {pool.release()})
 });
 
 
