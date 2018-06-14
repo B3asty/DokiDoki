@@ -80,16 +80,19 @@ client.on("message", (message) => {
       let min = 4
       let max = 15
       return Math.floor(Math.random() * (max - min + 1)) + min;
-    }
+    };
+    function curlvl(row){
+      let min = 0
+      let max = 1000
+      return Math.floor(0.1 * Math.sqrt(row.xp + 0.1));
+    };
     pool.query(`SELECT * FROM XP WHERE userid = '${message.author.id}'`, (err, row) => {
       if(err) throw err;
-      let curlevel = Math.floor(0.1 * Math.sqrt(row.xp + 0.1));
-      row.level = curlevel;
       let sql;
       if(row.length < 1) {
-          sql = `INSERT INTO XP (userid, xp, level) VALUES ('${message.author.id}', ${xpgen()}, ${curlevel})`
+          sql = `INSERT INTO XP (userid, xp, level) VALUES ('${message.author.id}', ${xpgen()}, ${curlvl})`
       } else {
-        sql = `UPDATE XP SET xp = ${xpgen + xpgen} WHERE userid = '${message.author.id}'`
+        sql = `UPDATE XP SET xp = ${xpgen + curlvl} WHERE userid = '${message.author.id}'`
       }
       pool.query(sql);
     })
