@@ -66,7 +66,6 @@ client.registry
             leaveembed.setFooter(client.user.username + ' \(' + client.user.id + '\)')
        channel1.send(leaveembed)
   });
-
 client.on("message", (message) => {
     const { Pool } = require('pg');
     const pool = new Pool({
@@ -77,7 +76,7 @@ client.on("message", (message) => {
       if(err) throw err; 
       console.log('Connected to PostgresSQL');
     })
-    function xp(){
+    function xpgen(){
       let min = 4
       let max = 15
       return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -90,12 +89,10 @@ client.on("message", (message) => {
       if(row.length < 1) {
           sql = `INSERT INTO XP (userid, xp, level) VALUES ('${message.author.id}', ${xp()}, ${curlevel})`
       } else {
-        let xp = row[0].xp;
         sql = `UPDATE XP SET xp = ${xp + xp} WHERE userid = '${message.author.id}'`
       }
       con.query(sql);
     })
   });
-
 //Login 
 client.login(process.env.token);
