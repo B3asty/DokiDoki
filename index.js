@@ -82,7 +82,7 @@ client.on("message", (message) => {
       let max = 15
       return Math.floor(Math.random() * (max - min + 1)) + min;
     }
-    pool.query(`SELECT * FROM XP WHERE userid = '${message.author.id}'`, (err, rows) => {
+    pool.query(`SELECT * FROM XP WHERE userid = '${message.author.id}'`, (err, row) => {
       if(err) throw err;
       let curlevel = Math.floor(0.1 * Math.sqrt(row.xp + 0.1));
       row.level = curlevel;
@@ -90,7 +90,7 @@ client.on("message", (message) => {
       if(rows.length < 1) {
           sql = `INSERT INTO XP (userid, xp, level) VALUES ('${message.author.id}', ${xp()}, ${curlevel})`
       } else {
-        let xp = rows[0].xp;
+        let xp = row[0].xp;
         sql = `UPDATE XP SET xp = ${xp + xp} WHERE userid = '${message.author.id}'`
       }
       con.query(sql);
