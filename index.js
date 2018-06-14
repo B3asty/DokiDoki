@@ -80,20 +80,20 @@ client.on("message", async message => {
       if(err) throw err; 
       console.log('Connected to PostgresSQL');
     })
-    pool.query(`SELECT * FROM XP WHERE userid = '${message.author.id}'`, (err, rows) => {
     function generateXp(){
-      return Math.floor(Math.random() * (20 - 5 + 1)) + 5;
+      Math.floor(Math.random() * (20 - 5 + 1)) + 5;
     };
     function curlvl(){
-      return Math.floor(0.1 * Math.sqrt(rows.xp + 0.1));
+      Math.floor(0.1 * Math.sqrt(rows.xp + 0.1));
     };
+    pool.query(`SELECT * FROM xp WHERE userid = '${message.author.id}'`, (err, rows) => {
       if(err) throw err;
       let sql;
-      if(!rows.length < 1) {
-          sql = `INSERT INTO XP (userid, xp, level) VALUES ('${message.author.id}', ${generateXp()}, ${curlvl})`
+      if(rows.length < 1) {
+          sql = `INSERT INTO xp (userid, xp, level) VALUES ('${message.author.id}', ${generateXp()}, ${curlvl()})`
       } else {
-	let xp = rows.xp
-        sql = `UPDATE XP SET xp = ${ + {generateXp}} WHERE userid = '${message.author.id}'`
+        let xp = rows.xp;
+        sql = `UPDATE xp SET xp = ${xp + {generateXp}} WHERE userid = '${message.author.id}'`
       }
       pool.query(sql, console.log);
     })
