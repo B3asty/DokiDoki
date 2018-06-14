@@ -67,55 +67,35 @@ client.registry
        channel1.send(leaveembed)
   });
 
-/*client.on("message", (message) => {
-    const newxp = Math.random(Math.floor() * 1);
-    console.log(newxp);
-    const { Pool, Client } = require('pg');
+client.on("message", (message) => {
+    const { Pool } = require('pg');
     const pool = new Pool({
       connectionString: process.env.DATABASE_URL,
       ssl: true
     });
-    pool.connect();
-    pool.query('select * from XP where userid ='+message.author.id+'')
-    .then(row => {
-      //console.log(row)
-      if(!row){
-        pool.query('INSERT INTO XP (userid, xp, level) VALUES ('+message.author.id+', 1, 0,)');
-        var res = pool.query('select * from XP where userid ='+message.author.id+'').then(res => console.log("A"+res.xp))
-      }else{
-        var res = pool.query('select xp from XP where userid ='+message.author.id+'').then(res => console.log(res[0]))
-       // pool.query('update XP set xp = '+(row.xp+newxp)+' where userid ='+message.author.id+'')
-        //console.log(row.xp)
-        let curlevel = Math.floor(0.1 * Math.sqrt(row.xp + 0.1));
-          row.level = curlevel;
-        if (curlevel > row.level) {     
-          pool.query('UPDATE XP SET level = '+curlevel+' WHERE userid ='+message.author.id+'')
-          msg.channel.send('You leveled Up!')
-         // console.log(row.level)
-        }
-      }    
-      pool.end()
+    pool.connect(err => {
+      if(err) throw err; 
+      console.log('Connected to PostgresSQL');
     })
-
-
-});*/
-
-
-
-/*client.on("message", (message) => {
-pool.connect();
-const  query = pool.query(`SELECT * FROM XP WHERE userid = ${message.author.id}`).then(row => {
-    if (!row) { pool.query("INSERT INTO XP (userid, xp, level) VALUES (?, ?, ?)", [message.author.id, 0, 0]);
-    } else {
-      let curLevel = Math.floor(0.01 * Math.sqrt(11 + 0.01));
-      if (curLevel > row.level) {		
-        row.level = curLevel;
-        pool.query(`UPDATE XP SET level = ${row.level} WHERE userid = ${message.author.id}`)
-        message.reply(`You've leveled up to level **${curLevel}**!`)
-     		 }
- 	 }
-});
-});*/
+    function xp(){
+      let min = 4
+      let max = 15
+      return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+    pool.query(`SELECT * FROM XP WHERE id = '${message.author.id}'`, (err, rows) => {
+      if(err) throw err;
+      let curlevel = Math.floor(0.1 * Math.sqrt(row.xp + 0.1));
+      row.level = curlevel;
+      let sql;
+      if(rows.length < 1) {
+          sql = `INSERT INTO XP (userid, xp, level) VALUES ('${message.author.id}', ${xp()}, ${curLevel})`
+      } else {
+        let xp = rows[0].xp;
+        sql = `UPDATE XP SET xp = ${xp + xp} WHERE userid = '${message.author.id}'`
+      }
+      con.query(sql);
+    })
+  });
 
 //Login 
 client.login(process.env.token);
