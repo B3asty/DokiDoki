@@ -67,7 +67,7 @@ client.registry
        channel1.send(leaveembed)
   });
 
-client.on("message", (message) => {
+/*client.on("message", (message) => {
     const newxp = Math.random(Math.floor() * 1);
     console.log(newxp);
     const { Pool, Client } = require('pg');
@@ -98,7 +98,7 @@ client.on("message", (message) => {
     })
 
 
-});
+});*/
 
 
 
