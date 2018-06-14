@@ -9,6 +9,11 @@ const client = new CommandoClient({
     owner: ['193021560792154112', '111469545637605376'],
     disableEveryone: true,      
 });
+  const { Pool } = require('pg');
+  const pool = new Pool({
+    connectionString: process.env.DATABASE_URL,
+    ssl: true
+  });
 
 sqlite.open(path.join(__dirname, "settings.sqlite3")).then((db) => {
     client.setProvider(new SQLiteProvider(db));
@@ -68,35 +73,27 @@ client.registry
   });
 
 
-client.on("message", (message) => {
-    const { Pool } = require('pg');
-    const pool = new Pool({
-      connectionString: process.env.DATABASE_URL,
-      ssl: true
-    });
+client.on("message", async message => {
     pool.connect(err => {
       if(err) throw err; 
       console.log('Connected to PostgresSQL');
     })
-    function xp() {
-      let min = 4
-      let max = 15
-      Math.floor(Math.random() * (max - min + 1)) + min;
+    pool.query(`SELECT * FROM XP WHERE userid = '${message.author.id}'`, (err, rows) => {
+    function generateXp(){
+      Math.floor(Math.random() * (20 - 5 + 1)) + 5;
     };
-    function curlvl() {
-      let min = 0
-      let max = 1000
-      Math.floor(0.1 * Math.sqrt(row.xp + 0.1));
+    function curlvl(){
+      Math.floor(0.1 * Math.sqrt(rows.xp + 0.1));
     };
-    pool.query(`SELECT * FROM XP WHERE userid = '${message.author.id}'`, (err, row) => {
       if(err) throw err;
       let sql;
-      if(row.length < 1) {
-          sql = `INSERT INTO XP (userid, xp, level) VALUES ('${message.author.id}', ${xp()}, ${curlvl})`
+      if(rows.length < 1) {
+          sql = `INSERT INTO XP (userid, xp, level) VALUES ('${message.author.id}', ${generateXp()}, ${curlvl})`
       } else {
-        sql = `UPDATE XP SET xp = ${xp + curlvl} WHERE userid = '${message.author.id}'`
+        let xp = rows[0].xp;
+        sql = `UPDATE XP SET xp = ${xp + {generateXp}} WHERE userid = '${message.author.id}'`
       }
-      pool.query(sql);
+      pool.query(sql, console.log);
     })
   });
 //Login 
