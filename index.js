@@ -92,7 +92,7 @@ client.on("message", (message) => {
       if(err) throw err;
       let sql;
       if(row.length < 1) {
-          sql = `INSERT INTO XP (userid, xp, level) VALUES ('${message.author.id}', ${xp()}, ${curlvl})`
+          sql = `INSERT INTO XP (userid, xp, level) VALUES ('${message.author.id}', ${xp()}, ${curlvl()})`
       } else {
         sql = `UPDATE XP SET xp = ${xp + curlvl} WHERE userid = '${message.author.id}'`
       }
