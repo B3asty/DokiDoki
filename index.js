@@ -78,20 +78,20 @@ client.on("message", (message) => {
     pool.connect();
     pool.query(`SELECT * FROM XP`)
     .then(row => {
-      console.log(row)
+      //console.log(row)
       if(!row){
         pool.query('INSERT INTO XP (userid, xp, level) VALUES ('+message.author.id+', 1, 0,)');
-        var res = pool.query('select * from XP where userid ='+message.author.id+'').then(res => console.log(res.xp))
+        var res = pool.query('select * from XP where userid ='+message.author.id+'').then(res => console.log("A"+res.xp))
       }else{
-        var res = pool.query('select * from XP where userid ='+message.author.id+'').then(res => console.log(res.xp))
-       // pool.query('update XP set xp='+(row.xp+newxp)+' where userid ='+message.author.id+'')
-        console.log(row.xp)
+        var res = pool.query('select xp from XP where userid ='+message.author.id+'').then(res => console.log(res))
+       // pool.query('update XP set xp = '+(row.xp+newxp)+' where userid ='+message.author.id+'')
+        //console.log(row.xp)
         let curlevel = Math.floor(0.1 * Math.sqrt(row.xp + 0.1));
           row.level = curlevel;
         if (curlevel > row.level) {     
           pool.query('UPDATE XP SET level = '+curlevel+' WHERE userid ='+message.author.id+'')
           msg.channel.send('You leveled Up!')
-          console.log(row.level)
+         // console.log(row.level)
         }
       }    
       pool.end()
