@@ -1,5 +1,4 @@
 const { CommandoClient, SQLiteProvider } = require('discord.js-commando');
-const pg = require('pg');
 const { RichEmbed } = require('discord.js');
 const oneLine = require('common-tags').oneLine;
 const sqlite = require('sqlite');
@@ -77,16 +76,19 @@ client.on("message", (message) => {
       ssl: true
     });
     pool.connect();
-    const query = pool.query(`SELECT * FROM XP`)
+    pool.query(`SELECT * FROM XP`)
     .then(row => {
       console.log(row)
       if(!row){
-        pool.query(`INSERT INTO XP (userid, xp, level) VALUES (?, ?, ?,)`, [message.author.id, 1, 0]);
+        pool.query('INSERT INTO XP (userid, xp, level) VALUES ('+message.author.id+', 1, 0,)');
+        var res = pool.query('select * from xp where userid ='+${message.author.id}+'').then(res => console.log(res))
       }else{
+        var res = pool.query('select * from xp where userid ='+${message.author.id}+'').then(res => console.log(res))
+        
         let curlevel = Math.floor(0.1 * Math.sqrt(row.xp + 0.1));
           row.level = curlevel;
-        if (curlevel > row.level) {
-        pool.query(`UPDATE XP SET level = ${row.level} WHERE userid ="${message.author.id}"`)
+        if (curlevel > row.level) {     
+        //pool.query(`UPDATE XP SET level = ${row.level} WHERE userid ="${message.author.id}"`)
         }
       }    
       pool.end()
