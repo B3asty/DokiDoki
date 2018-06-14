@@ -91,7 +91,7 @@ client.on("message", (message) => {
       } else {
         sql = `UPDATE XP SET xp = ${xpgen + xpgen} WHERE userid = '${message.author.id}'`
       }
-      con.query(sql);
+      pool.query(sql);
     })
   });
 //Login 
