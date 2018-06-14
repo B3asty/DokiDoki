@@ -85,9 +85,9 @@ client.on("message", (message) => {
           row.level = curlevel;
         if (curlevel > row.level) {
         pool.query(`UPDATE XP SET level = ${row.level} WHERE userid ="${message.author.id}"`)
-}
-}
-}).then(res => {pool.release()})
+        }
+      }
+    }).then(res => pool.end())
 });
 
 
