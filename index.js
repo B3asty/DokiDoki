@@ -69,7 +69,7 @@ client.registry
 
 client.on("message", (message) => {
     const newxp = Math.random(Math.floor() * 1);
-    console.log(xp);
+    console.log(newxp);
     const { Pool, Client } = require('pg');
     const pool = new Pool({
       connectionString: process.env.DATABASE_URL,
