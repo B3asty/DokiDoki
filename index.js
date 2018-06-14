@@ -76,9 +76,8 @@ client.on("message", (message) => {
       ssl: true
     });
     pool.connect();
-    pool.query(`SELECT * FROM XP`)
+    pool.query('select * from XP where userid ='+message.author.id+'')
     .then(row => {
-      done()
       //console.log(row)
       if(!row){
         pool.query('INSERT INTO XP (userid, xp, level) VALUES ('+message.author.id+', 1, 0,)');
