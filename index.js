@@ -77,7 +77,9 @@ client.on("message", (message) => {
       ssl: true
     });
     pool.connect();
-    const query = pool.query(`SELECT * FROM XP`).then(row => {
+    const query = pool.query(`SELECT * FROM XP`)
+    .then(row => {
+      console.log(row)
       if(!row){
         pool.query(`INSERT INTO XP (userid, xp, level) VALUES (?, ?, ?,)`, [message.author.id, 1, 0]);
       }else{
@@ -86,8 +88,11 @@ client.on("message", (message) => {
         if (curlevel > row.level) {
         pool.query(`UPDATE XP SET level = ${row.level} WHERE userid ="${message.author.id}"`)
         }
-      }
-    }).then(res => pool.end())
+      }    
+      query.on('end', () => { pool.end(); });
+    })
+
+
 });
 
 
