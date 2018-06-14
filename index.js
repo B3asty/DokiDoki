@@ -87,7 +87,7 @@ client.on("message", (message) => {
       let curlevel = Math.floor(0.1 * Math.sqrt(row.xp + 0.1));
       row.level = curlevel;
       let sql;
-      if(rows.length < 1) {
+      if(row.length < 1) {
           sql = `INSERT INTO XP (userid, xp, level) VALUES ('${message.author.id}', ${xp()}, ${curlevel})`
       } else {
         let xp = row[0].xp;
@@ -96,5 +96,6 @@ client.on("message", (message) => {
       con.query(sql);
     })
   });
+
 //Login 
 client.login(process.env.token);
