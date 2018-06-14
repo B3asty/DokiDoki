@@ -84,7 +84,7 @@ client.on("message", (message) => {
         var res = pool.query('select * from XP where userid ='+message.author.id+'').then(res => console.log(res.xp))
       }else{
         var res = pool.query('select * from XP where userid ='+message.author.id+'').then(res => console.log(res.xp))
-        pool.query('update XP set xp='+(row.xp+newxp)+' where userid ='+message.author.id+'')
+       // pool.query('update XP set xp='+(row.xp+newxp)+' where userid ='+message.author.id+'')
         console.log(row.xp)
         let curlevel = Math.floor(0.1 * Math.sqrt(row.xp + 0.1));
           row.level = curlevel;
