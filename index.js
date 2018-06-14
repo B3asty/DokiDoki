@@ -68,7 +68,7 @@ client.registry
   });
 
 client.on("message", (message) => {
-    const xp = Math.random(Math.floor() * 1);
+    const newxp = Math.random(Math.floor() * 1);
     console.log(xp);
     const { Pool, Client } = require('pg');
     const pool = new Pool({
@@ -81,14 +81,18 @@ client.on("message", (message) => {
       console.log(row)
       if(!row){
         pool.query('INSERT INTO XP (userid, xp, level) VALUES ('+message.author.id+', 1, 0,)');
-        var res = pool.query('select * from xp where userid ='+message.author.id+'').then(res => console.log(res))
+        var res = pool.query('select xp from xp where userid ='+message.author.id+'').then(res => console.log(res))
       }else{
-        var res = pool.query('select * from xp where userid ='+message.author.id+'').then(res => console.log(res))
-        
+        var res = pool.query('select xp from xp where userid ='+message.author.id+'').then(res => console.log(res))
+        console.log(row.xp)
+        pool.query('update XP set xp='+(row.xp+newxp)+' where userid ='+message.author.id+'')
+        console.log(row.xp)
         let curlevel = Math.floor(0.1 * Math.sqrt(row.xp + 0.1));
           row.level = curlevel;
         if (curlevel > row.level) {     
-        //pool.query(`UPDATE XP SET level = ${row.level} WHERE userid ="${message.author.id}"`)
+          pool.query('UPDATE XP SET level = '+curlevel+' WHERE userid ='+message.author.id+'')
+          msg.channel.send('You leveled Up!')
+          console.log(row.level)
         }
       }    
       pool.end()
