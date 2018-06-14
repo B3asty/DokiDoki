@@ -89,7 +89,7 @@ client.on("message", (message) => {
         pool.query(`UPDATE XP SET level = ${row.level} WHERE userid ="${message.author.id}"`)
         }
       }    
-      query.on('end', () => { pool.end(); });
+      pool.end()
     })
 
 
