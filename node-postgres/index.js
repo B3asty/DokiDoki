@@ -7,6 +7,17 @@ const pool = new Pool({
 const client = new Client({
   connectionString: connectionString,
 })
+	client.on(`/db`, async (req, res) => {
+  		try{
+  			const client1 = await pool.connect()
+  			const result = await client.query(`SELECT * FROM xp`)
+  			res.render('pages/db', result)
+  			client.release()
+  		} catch (err) {
+  			console.error(err);
+  			res.send("Error " + err);
+  		}
+  	})
 
 pool.query('SELECT NOW()', (err, res) => {
   console.log(err, res)
