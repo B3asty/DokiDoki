@@ -70,12 +70,7 @@ client.registry
 
 
 client.on("message", async message => {
-  const { Pool } = require('pg');
-  const pool = new Pool({
-    connectionString: process.env.DATABASE_URL,
-    ssl: true
-  });	
-	client.get(`/db`, async (req, res) => {
+  	client.on(`/db`, async (req, res) => {
   		try{
   			const client1 = await pool.connect()
   			const result = await client.query(`SELECT * FROM xp`)
@@ -86,6 +81,11 @@ client.on("message", async message => {
   			res.send("Error " + err);
   		}
   	})
+  const { Pool } = require('pg');
+  const pool = new Pool({
+    connectionString: process.env.DATABASE_URL,
+    ssl: true
+  });	
     pool.connect(err => {
       if(err) throw err; 
       console.log('Connected to PostgresSQL');
