@@ -70,7 +70,7 @@ client.registry
 
 
 client.on("message", async message => {
-  const { Pool } = require('pg');
+  const { Pool } = require('./node-postgres/index.js');
   const pool = new Pool({
     connectionString: process.env.DATABASE_URL,
     ssl: true
