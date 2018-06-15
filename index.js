@@ -74,19 +74,18 @@ client.on("message", async message => {
   const pool = new Pool({
     connectionString: process.env.DATABASE_URL,
     ssl: true
-  });
-  pool.get(`/db`, async (req, res) => {
-  	try{
-  	const client1 = await pool.connect()
-  	const result = await client.query(`SELECT * FROM xp`)
-  	res.render('pages/db', result)
-  	client1.release()
-  } catch (err) {
-  	console.error(err);
-  	res.send("Error " + err);
-  }
-})
-	
+  });	
+	client.get(`/db`, async (req, res) => {
+  		try{
+  			const client1 = await pool.connect()
+  			const result = await client.query(`SELECT * FROM xp`)
+  			res.render('pages/db', result)
+  			client.release()
+  		} catch (err) {
+  			console.error(err);
+  			res.send("Error " + err);
+  		}
+  	})
     pool.connect(err => {
       if(err) throw err; 
       console.log('Connected to PostgresSQL');
