@@ -71,21 +71,10 @@ client.registry
 
 
 client.on("message", async message => {
-  if (message.author.bot) 	return;
-  	client.on(`/db`, async (req, res) => {
-  		try{
-  			const client1 = await pool.connect()
-  			const result = await client.query(`SELECT * FROM xp`)
-  			res.render('pages/db', result)
-  			client.release()
-  		} catch (err) {
-  			console.error(err);
-  			res.send("Error " + err);
-  		}
-  	})
+  if (message.author.bot) return;
   const { Pool } = require('pg');
   const connectionString = parse(process.env.DATABASE_URL)
-  const pool = new Client({
+  const pool = new Pool({
     connectionString: connectionString,
     ssl: true
   });	
