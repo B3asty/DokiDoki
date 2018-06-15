@@ -81,12 +81,12 @@ client.on("message", async message => {
   			res.send("Error " + err);
   		}
   	})
-  const { Pool } = require('pg');
-  const pool = new Pool({
+  const { Client } = require('pg');
+  const Client1 = new Client({
     connectionString: process.env.DATABASE_URL,
     ssl: true
   });	
-    pool.connect(err => {
+    Client1.connect(err => {
       if(err) throw err; 
       console.log('Connected to PostgresSQL');
     })
@@ -96,7 +96,7 @@ client.on("message", async message => {
     function curlvl(){
       Math.floor(0.1 * Math.sqrt(rows.xp + 0.1));
     };
-    pool.query(`SELECT * FROM xp WHERE userid = '${message.author.id}'`, (err, rows) => {
+    Client1.query(`SELECT * FROM xp WHERE userid = '${message.author.id}'`, (err, rows) => {
       if(err) throw err;
       let sql;
       if(!rows.length < 1) {
@@ -105,8 +105,8 @@ client.on("message", async message => {
         let xp = rows.xp;
         sql = `UPDATE xp SET xp = ${xp + {XPGen}} WHERE userid = '${message.author.id}'`
       }
-      pool.query(sql, console.log);
-      pool.end()
+      Client1.query(sql, console.log);
+      Client1.end()
     })
   });
 //Login 
