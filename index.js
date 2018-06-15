@@ -70,7 +70,7 @@ client.registry
 
 
 client.on("message", async message => {
-  const { Pool } = require('./node-postgres/index.js');
+  const { Pool } = require('pg');
   const pool = new Pool({
     connectionString: process.env.DATABASE_URL,
     ssl: true
@@ -96,6 +96,7 @@ client.on("message", async message => {
         sql = `UPDATE xp SET xp = ${xp + {generateXp}} WHERE userid = '${message.author.id}'`
       }
       pool.query(sql, console.log);
+      pool.end()
     })
   });
 //Login 
