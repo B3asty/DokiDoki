@@ -73,7 +73,7 @@ client.on("message", async message => {
   if (message.author.bot) return;
   const parse = require('pg-connection-string').parse;
   const { Pool } = require('pg');
-  const connectionString = process.env.DATABASE_URL.parse
+  const connectionString = process.env.HEROKU_POSTGRESQL_BLUE_URL.parse
   const pool = new Pool({
     connectionString: connectionString,
     ssl: true
