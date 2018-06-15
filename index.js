@@ -75,12 +75,23 @@ client.on("message", async message => {
     connectionString: process.env.DATABASE_URL,
     ssl: true
   });
+  pool.get(`/db`, async (req, res) => {
+  	try{
+  	const client1 = await pool.connect()
+  	const result = await client.query(`SELECT * FROM xp`)
+  	res.render('pages/db', result)
+  	client1.release()
+  } catch (err) {
+  	console.error(err);
+  	res.send("Error " + err);
+  }
+})
 	
     pool.connect(err => {
       if(err) throw err; 
       console.log('Connected to PostgresSQL');
     })
-    function generateXp(){
+    function XPGen(){
       Math.floor(Math.random() * (20 - 5 + 1)) + 5;
     };
     function curlvl(){
@@ -90,10 +101,10 @@ client.on("message", async message => {
       if(err) throw err;
       let sql;
       if(!rows.length < 1) {
-          sql = `INSERT INTO xp (userid, xp, level) VALUES ('${message.author.id}', ${generateXp()}, ${curlvl()})`
+          sql = `INSERT INTO xp (userid, xp, level) VALUES ('${message.author.id}', ${XPGen()}, ${curlvl()})`
       } else {
         let xp = rows.xp;
-        sql = `UPDATE xp SET xp = ${xp + {generateXp}} WHERE userid = '${message.author.id}'`
+        sql = `UPDATE xp SET xp = ${xp + {XPGen}} WHERE userid = '${message.author.id}'`
       }
       pool.query(sql, console.log);
       pool.end()
