@@ -1,4 +1,5 @@
 const { CommandoClient, SQLiteProvider } = require('discord.js-commando');
+const parse = require('pg-connection-string').parse;
 const { RichEmbed } = require('discord.js');
 const oneLine = require('common-tags').oneLine;
 const sqlite = require('sqlite');
@@ -70,6 +71,7 @@ client.registry
 
 
 client.on("message", async message => {
+  if (message.author.bot) 	return;
   	client.on(`/db`, async (req, res) => {
   		try{
   			const client1 = await pool.connect()
@@ -81,12 +83,13 @@ client.on("message", async message => {
   			res.send("Error " + err);
   		}
   	})
-  const { Client } = require('pg');
-  const Client1 = new Client({
-    connectionString: process.env.DATABASE_URL,
+  const { Pool } = require('pg');
+  const connectionString = parse(process.env.DATABASE_URL)
+  const pool = new Client({
+    connectionString: connectionString,
     ssl: true
   });	
-    Client1.connect(err => {
+    pool.connect(err => {
       if(err) throw err; 
       console.log('Connected to PostgresSQL');
     })
@@ -96,7 +99,7 @@ client.on("message", async message => {
     function curlvl(){
       Math.floor(0.1 * Math.sqrt(rows.xp + 0.1));
     };
-    Client1.query(`SELECT * FROM xp WHERE userid = '${message.author.id}'`, (err, rows) => {
+    pool.query(`SELECT * FROM xp WHERE userid = '${message.author.id}'`, (err, rows) => {
       if(err) throw err;
       let sql;
       if(!rows.length < 1) {
@@ -105,8 +108,7 @@ client.on("message", async message => {
         let xp = rows.xp;
         sql = `UPDATE xp SET xp = ${xp + {XPGen}} WHERE userid = '${message.author.id}'`
       }
-      Client1.query(sql, console.log);
-      Client1.end()
+      pool.query(sql, console.log);
     })
   });
 //Login 
