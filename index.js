@@ -105,7 +105,7 @@ if (message.author.bot) return;
       pool.query(sql, console.log);
      pool.end(err => {
       if(err) throw err; 
-      console.log('Connected to PostgresSQL');
+      console.log('Logged to PostgresSQL');
 	})
   });
 
