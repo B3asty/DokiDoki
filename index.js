@@ -70,7 +70,7 @@ client.registry
 
 
 
-client.on("message", async message => {
+client.on("message", async (message) => {
 if (message.author.bot) return;
 	const parse = require("pg-connection-string");
 	const { Pool } = require ('pg');	
@@ -100,16 +100,15 @@ if (message.author.bot) return;
           sql = `INSERT INTO xp (userid, xp, level) VALUES ('${message.author.id}', ${XPGen()}, ${curlvl()})`
       } else {
         let xp = rows.xp;
-        sql = `UPDATE xp SET xp = ${xp + {XPGen}} WHERE userid = '${message.author.id}'`
+        sql = `UPDATE xp SET xp = ${xp + XPGen} WHERE userid = '${message.author.id}'`
       }
-        pool.query(sql, 'COMMIT', (err) => {
-          if (err) {
-            console.error('Error committing transaction', err.stack)
-          };
-          pool.end();
-		});
-	});
-});
+      pool.query(sql, console.log);
+     pool.end(err => {
+      if(err) throw err; 
+      console.log('Connected to PostgresSQL');
+	})
+  });
+
 	    
 //Login 
 client.login(process.env.token);
