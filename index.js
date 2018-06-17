@@ -90,8 +90,7 @@ if (message.author.bot) return;
     })
       const xp = Math.floor(Math.random() * (20 - 5 + 1)) + 5;
 
-    pool.query(`SELECT * FROM xp WHERE userid = '${message.author.id}'`, null,
-        {useArray: true}, (err, rows) => {
+    pool.query(`SELECT * FROM xp WHERE userid = '${message.author.id}'`, {useArray: true}, (err, rows) => {
       if(err) throw err;
       let sql;
       if (rows.length < 1) {
