@@ -71,14 +71,7 @@ client.registry
 
 client.on("message", async message => {
   if (message.author.bot) return;
-	
-  const parse = require('pg-connection-string').parse;
-  const { Pool } = require('pg');
-  const connectionString = process.env.DATABASE_URL
-  const pool = new Pool({
-    connectionString: connectionString,
-    ssl: true
-  });	
+	var pool = require ('././clientpool.js');	
     pool.connect(err => {
       if(err) throw err; 
       console.log('Connected to PostgresSQL');
