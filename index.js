@@ -93,11 +93,11 @@ if (message.author.bot) return;
     pool.query(`SELECT * FROM xp WHERE userid = '${message.author.id}'`, {useArray: true}, (err, rows) => {
       if(err) throw err;
       let sql;
-      if (rows.length < 1){
-	  const curlvl = Math.floor(0.1 * Math.sqrt(rows.xp + 0.1));
-          sql = `INSERT INTO xp(userid, xp, level) VALUES(${message.author.id}, 0, 0)`
+      if (!rows.length < 1){
+	const curlvl = Math.floor(0.1 * Math.sqrt(rows.xp + 0.1));
+	sql = `INSERT INTO xp(userid, xp, level) VALUES(${message.author.id}, 0, 0)`
       } else {
-        let xp = rows.xp;
+        let xp >= rows.xp;
         sql = `UPDATE xp SET xp = ${xp + xp} WHERE userid = '${message.author.id}'`
       }
       pool.query(sql, console.log);
