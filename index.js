@@ -92,6 +92,7 @@ const pool = require ('./node-postgres/pool.js');
         sql = `UPDATE xp SET xp = ${xp + {XPGen}} WHERE userid = '${message.author.id}'`
       }
       pool.query(sql, console.log);
+      pool.end()
     })
   });
 //Login 
