@@ -70,10 +70,11 @@ client.registry
 
 
 client.on("message", async message => {
-if (message.author.bot) return;
+	if (message.author.bot) return;
+const parse = require("pg-connection-string");
 const { Pool } = require ('pg');	
 const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
+  connectionString: process.env.DATABASE_URL.parse,
   port: 5432,
   host: process.env.dbhost,
   database: process.env.db,
@@ -101,8 +102,8 @@ const pool = new Pool({
         sql = `UPDATE xp SET xp = ${xp + {XPGen}} WHERE userid = '${message.author.id}'`
       }
       pool.query(sql, console.log);
-      pool.end()
     })
+    pool.end()
   });
 //Login 
 client.login(process.env.token);
