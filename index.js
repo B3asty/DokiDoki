@@ -71,7 +71,17 @@ client.registry
 
 client.on("message", async message => {
 if (message.author.bot) return;
-const pool = require ('./node-postgres/pool.js');	
+const Pool = require ('pg');	
+const pool = new Pool={
+  connectionString: process.env.DATABASE_URL,
+  port: 5432,
+  host: process.env.dbhost,
+  database: process.env.db,
+  user: process.env.user,
+  password: process.env.password,
+  ssl: true,
+  idleTimeoutMillis: 50000
+};
     pool.connect(err => {
       if(err) throw err; 
       console.log('Connected to PostgresSQL');
