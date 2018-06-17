@@ -73,14 +73,9 @@ client.on("message", async message => {
   if (message.author.bot) return;
   const parse = require('pg-connection-string').parse;
   const { Pool } = require('pg');
-  const connectionString = process.env.DATABASE_URL;
+  const connectionString = process.env.DATABASE_URL.parse;
   const pool = new Pool({
     connectionString: connectionString,
-	    host:process.env.DATABASE_URL,
-            port:process.env.DATABASE_URL,
-            database:process.env.DATABASE_URL,
-            username: process.env.DATABASE_URL,
-            password: process.env.DATABASE_URL,
     ssl: true
   });	
     pool.connect(err => {
