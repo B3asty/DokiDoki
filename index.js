@@ -70,8 +70,8 @@ client.registry
 
 
 client.on("message", async message => {
+if (message.author.bot) return;
 const pool = require ('./node-postgres/pool.js');	
-  if (message.author.bot) return;
     pool.connect(err => {
       if(err) throw err; 
       console.log('Connected to PostgresSQL');
