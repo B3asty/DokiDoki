@@ -1,8 +1,9 @@
 const pg = require('pg');
+const parse = require("pg-connection-string");
 
 const config = {
-  connectString: process.env.DATABASE_URL,
-  port: 5432,
+  connectString: process.env.DATABASE_URL.parse,
+
   ssl: true,
   idleTimeoutMillis: 50000
 };
@@ -17,5 +18,4 @@ pool.query('SELECT * FROM xp', (err, res) => {
   }
   pool.end();
 })  
-
 module.exports = pool;
