@@ -80,7 +80,6 @@ client.on("message", async message => {
     ssl: true
   });	
     pool.connect(err => {
-	connectionString: connectionString,
       if(err) throw err; 
       console.log('Connected to PostgresSQL');
     })
