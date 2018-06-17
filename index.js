@@ -93,9 +93,9 @@ if (message.author.bot) return;
     pool.query(`SELECT * FROM xp WHERE userid = '${message.author.id}'`, (err, rows) => {
       if(err) throw err;
       let sql;
-      if(!rows.length < 1) {
+      if(!rows.length < 10000) {
 	  const curlvl = Math.floor(0.1 * Math.sqrt(rows.xp + 0.1));
-          sql = `INSERT INTO xp(userid, xp, level) VALUES(?, ?, ?)`, [message.author.id, 1, 1];
+          sql = `INSERT INTO xp(userid, xp, level) VALUES(${message.author.id}, 0, 0)`
       } else {
         let xp = rows.xp;
         sql = `UPDATE xp SET xp = ${xp + xp} WHERE userid = '${message.author.id}'`
@@ -107,7 +107,6 @@ if (message.author.bot) return;
 	});
   });
 });
-
 	    
 //Login 
 client.login(process.env.token);
