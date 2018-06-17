@@ -1,16 +1,18 @@
-const pg = require('pg');
+const PG = require('pg');
 
-const config = {
-  user: process.env.DATABASE_URL,
-  database: process.env.DATABASE_URL,
-  password: process.env.DATABASE_URL,
-  host: process.env.DATABASE_URL,
-  port: 5432,
-  max: 10,
+const pg = new Client({
+  connectionString: process.env.DATABASE_URL,
   ssl: true,
-  idleTimeoutMillis: 50000
-};
+});
 
-var pool = new pg.Pool(config);
+pg.connect();
+
+pg.query('SELECT table_schema,table_name FROM information_schema.tables;', (err, res) => {
+  if (err) throw err;
+  for (let row of res.rows) {
+    console.log(JSON.stringify(row));
+  }
+  client.end();
+})
 
 module.exports = pool;
