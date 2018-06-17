@@ -93,7 +93,7 @@ if (message.author.bot) return;
     pool.query(`SELECT * FROM xp WHERE userid = '${message.author.id}'`, (err, rows) => {
       if(err) throw err;
       let sql;
-      if(!rows) {
+      if(!rows.lenght) {
 	  const curlvl = Math.floor(0.1 * Math.sqrt(rows.xp + 0.1));
           sql = `INSERT INTO xp(userid, xp, level) VALUES(${message.author.id}, 0, 0)`
       } else {
