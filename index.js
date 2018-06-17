@@ -95,7 +95,7 @@ if (message.author.bot) return;
       let sql;
       if(!rows.length < 1) {
 	  const curlvl = Math.floor(0.1 * Math.sqrt(rows.xp + 0.1));
-          sql = `INSERT INTO xp (userid, xp, level) VALUES ('${message.author.id}', ${xp}, ${curlvl})`
+          sql = `INSERT INTO xp(userid, xp, level) VALUES(?, ?, ?)`, [message.author.id, 1, 1];
       } else {
         let xp = rows.xp;
         sql = `UPDATE xp SET xp = ${xp + xp} WHERE userid = '${message.author.id}'`
