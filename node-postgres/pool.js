@@ -3,11 +3,11 @@ const parse = require("pg-connection-string");
 
 const config = {
   connectonString: process.env.DATABASE_URL.parse,
-  port: 5432,
-  host: "ec2-54-225-96-191.compute-1.amazonaws.com",
-  database: "d3u98tvto5gblt",
-  user: "mncmdnttojdsku",
-  password: "3849194dc1c60408b302cd9991f3ce27e08827998d5029ae25080e6bf09ee779",
+  port: process.env.port,
+  host: process.env.host,
+  database: process.env.db,
+  user: process.env.user,
+  password: process.env.password,
   ssl: true,
   idleTimeoutMillis: 50000
 };
@@ -22,4 +22,5 @@ pool.query('SELECT * FROM xp', (err, res) => {
   }
   pool.end();
 })  
+
 module.exports = pool;
