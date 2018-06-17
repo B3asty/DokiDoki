@@ -1,4 +1,4 @@
-const PG = require('pg');
+const pg = require('pg');
 
 const config = {
   user: process.env.DATABASE_URL,
@@ -20,4 +20,5 @@ pool.query('SELECT * FROM xp', (err, res) => {
   }
   pool.end();
 })  
+
 module.exports = pool;
