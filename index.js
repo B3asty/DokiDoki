@@ -95,6 +95,7 @@ if (message.author.bot) return;
     pool.query(`SELECT * FROM xp WHERE userid = '${message.author.id}'`, (err, rows) => {
       if(err) throw err;
       let sql;
+       const { rows } = await pool.query`INSERT INTO xp (userid, xp, level) VALUES ('${message.author.id}', ${xp}, ${curlvl})`)
       if(!rows.length < 1) {
           sql = `INSERT INTO xp (userid, xp, level) VALUES ('${message.author.id}', ${xp}, ${curlvl})`
       } else {
