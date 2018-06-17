@@ -70,7 +70,7 @@ client.registry
 
 
 client.on("message", async message => {
-const pool = require ('.node-postgres/pool.js');	
+const pool = require ('./node-postgres/pool.js');	
   if (message.author.bot) return;
     pool.connect(err => {
       if(err) throw err; 
