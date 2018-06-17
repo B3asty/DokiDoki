@@ -1,10 +1,7 @@
 const pg = require('pg');
 
 const config = {
-  user: process.env.DATABASE_URL,
-  database: process.env.DATABASE_URL,
-  password: process.env.DATABASE_URL,
-  host: process.env.DATABASE_URL,
+  connectString: process.env.DATABASE_URL,
   port: 5432,
   ssl: true,
   idleTimeoutMillis: 50000
