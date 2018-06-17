@@ -3,7 +3,10 @@ const parse = require("pg-connection-string");
 
 const config = {
   connectonString: process.env.DATABASE_URL.parse,
-
+  port: 5432,
+  host: "ec2-54-225-96-191.compute-1.amazonaws.com",
+  database: "d3u98tvto5gblt",
+  user: "mncmdnttojdsku",
   ssl: true,
   idleTimeoutMillis: 50000
 };
