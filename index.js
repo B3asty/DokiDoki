@@ -71,22 +71,24 @@ client.registry
 
 client.on("message", async message => {
   if (message.author.bot) return;
+	
   const parse = require('pg-connection-string').parse;
   const { Pool } = require('pg');
-  const connectionString = process.env.DATABASE_URL.parse;
+  const connectionString = process.env.DATABASE_URL
   const pool = new Pool({
     connectionString: connectionString,
     ssl: true
   });	
     pool.connect(err => {
+	connectionString: connectionString,
       if(err) throw err; 
       console.log('Connected to PostgresSQL');
     })
     function XPGen(){
-      Math.floor(Math.random() * (20 - 5 + 1)) + 5;
+      return Math.floor(Math.random() * (20 - 5 + 1)) + 5;
     };
     function curlvl(){
-      Math.floor(0.1 * Math.sqrt(rows.xp + 0.1));
+      return Math.floor(0.1 * Math.sqrt(rows.xp + 0.1));
     };
     pool.query(`SELECT * FROM xp WHERE userid = '${message.author.id}'`, (err, rows) => {
       if(err) throw err;
