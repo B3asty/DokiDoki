@@ -2,7 +2,7 @@ const pg = require('pg');
 const parse = require("pg-connection-string");
 
 const config = {
-  connectString: process.env.DATABASE_URL.parse,
+  connectonString: process.env.DATABASE_URL.parse,
 
   ssl: true,
   idleTimeoutMillis: 50000
