@@ -1,8 +1,8 @@
 const pg = require('pg');
 const parse = require("pg-connection-string");
 
-const config = {
-  connectonString: process.env.DATABASE_URL.parse,
+var config = {
+  connectionString: process.env.DATABASE_URL.parse,
   port: 5432,
   host: process.env.dbhost,
   database: process.env.db,
