@@ -106,8 +106,9 @@ if (message.author.bot) return;
      pool.end(err => {
       if(err) throw err; 
       console.log('Logged to PostgresSQL');
-	})
+	});
   });
+});
 
 	    
 //Login 
