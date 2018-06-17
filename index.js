@@ -101,9 +101,11 @@ const pool = new Pool({
         let xp = rows.xp;
         sql = `UPDATE xp SET xp = ${xp + {XPGen}} WHERE userid = '${message.author.id}'`
       }
-      pool.query(sql, console.log);
-    })
-    pool.end()
-  });
+        pool.query(sql, 'COMMIT', (err) => {
+          if (err) {
+            console.error('Error committing transaction', err.stack)
+          }
+          pool.end()
+});
 //Login 
 client.login(process.env.token);
