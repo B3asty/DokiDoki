@@ -88,15 +88,13 @@ if (message.author.bot) return;
       if(err) throw err; 
       console.log('Connected to PostgresSQL');
     })
-	
       const xp = Math.floor(Math.random() * (20 - 5 + 1)) + 5;
-      const curlvl = Math.floor(0.1 * Math.sqrt(rows.xp + 0.1));
 
     pool.query(`SELECT * FROM xp WHERE userid = '${message.author.id}'`, (err, rows) => {
       if(err) throw err;
       let sql;
-       const { rows } = await pool.query`INSERT INTO xp (userid, xp, level) VALUES ('${message.author.id}', ${xp}, ${curlvl})`)
       if(!rows.length < 1) {
+	  const curlvl = Math.floor(0.1 * Math.sqrt(rows.xp + 0.1));
           sql = `INSERT INTO xp (userid, xp, level) VALUES ('${message.author.id}', ${xp}, ${curlvl})`
       } else {
         let xp = rows.xp;
