@@ -84,8 +84,8 @@ module.exports = class pokemonCommand extends Command {
         embed.addField("Names", names, true)
         embed.addField("Base Stats", "**HP:** "+ p.base_stats.hp + "\n**ATK:** " + p.base_stats.atk + "\n**DEF:** " + p.base_stats.def + "\n**SP ATK:** " + p.base_stats.sp_atk + "\n**SP DEF:** " + p.base_stats.sp_def + "\n**SPEED:** " + p.base_stats.speed, true)
         embed.addField("Types", p.types, true)
-        embed.addField("Leveling Rate", p.leveling_rate)
-        embed.addField("Egg Groups", p.egg_groups)
+        embed.addField("Leveling Rate", p.leveling_rate, true)
+        embed.addField("Egg Groups", p.egg_groups, true)
 
         var evs = "";
         if(p.evolution_from){
@@ -117,7 +117,7 @@ module.exports = class pokemonCommand extends Command {
         embed.addField("Weight", p.weight_eu + " / " + p.weight_us, true)
         embed.addField("Color", p.color, true)
         if(p.gender_ratios){
-            embed.addField("Gender Ratio", p.gender_ratios.male + "% Male, " + p.gender_ratios.female+ "% Female")
+            embed.addField("Gender Ratio", p.gender_ratios.male + "% Male, " + p.gender_ratios.female+ "% Female", true)
         }
         
         msg.channel.send(embed)
