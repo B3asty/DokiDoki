@@ -101,7 +101,7 @@ module.exports = class pokemonCommand extends Command {
                 }
             }
         }
-        embed.addField("Evolutions" evs)
+        embed.addField("Evolutions", evs, true)
         embed.addBlankField()
         embed.addField("Category", p.categories.en)
         embed.addField("Height", p.height_eu + " / " + p.height_us, true)
