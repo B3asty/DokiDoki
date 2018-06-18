@@ -23,11 +23,15 @@ module.exports = class pokemonCommand extends Command {
 	async run(msg, args) {
            const embed = new RichEmbed()
            var poke = args.name.charAt(0).toUpperCase() + args.name.slice(1);
-            oakdexPokedex.findPokemon(poke, function(p) {
+            oakdexPokedex.findPokemon(poke)
+            .then(p => {
+
                 console.log(p);
               //embed.setTitle('#'+p.national_id+ " "+names.en)
               embed.setThumbnail()
-               
-            });    
+            })
+            .throw(err => {
+                console.log(err)
+            })   
         }
 	};
