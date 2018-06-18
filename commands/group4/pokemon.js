@@ -28,6 +28,7 @@ module.exports = class pokemonCommand extends Command {
             var temp = poke.split(" ")
             poke = temp[0] + " " + temp[1].charAt(0).toUpperCase + temp[1].slice(1)
         }
+        console.log(poke)
         oakdexPokedex.findPokemon(poke, function(p) {
             console.log(p);
           embed.setTitle('#'+p.national_id+ " "+p.names.en)
