@@ -91,7 +91,6 @@ if (message.author.bot) return;
 
     pool.query(`SELECT xp, level FROM xp WHERE userid = '${message.author.id}'`, (err, rows) => {
 	    
-    const curlvl = Math.floor(0.1 * Math.sqrt(rows.xp + 0.1));
     const xpgen = Math.floor(Math.random() * (20 - 5 + 1)) + 5;
 	    
     if(err) throw err;
