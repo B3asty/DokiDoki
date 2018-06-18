@@ -35,22 +35,22 @@ module.exports = class pokemonCommand extends Command {
             thum = thum + "/sun-moon/dex/normal/"
           }else if(p.pokedex_entries.X){
             embed.setDescription(p.pokedex_entries.X.en + "\n\n" + p.pokedex_entries.Y.en)
-            thum = thum + "/x-y/dex/normal/"
+            thum = thum + "/x-y/normal/"
           }else if(p.pokedex_entries.Black){
             embed.setDescription(p.pokedex_entries.Black.en + "\n\n" + p.pokedex_entries.White.en)
-            thum = thum + "/black-white/dex/normal/"
+            thum = thum + "/black-white/normal/"
           }else if(p.pokedex_entries.Diamond){
             embed.setDescription(p.pokedex_entries.Diamond.en + "\n\n" + p.pokedex_entries.Pearl.en + "\n\n" + p.pokedex_entries.Platinum.en)
-            thum = thum + "/diamond-pearl/dex/normal/"
+            thum = thum + "/diamond-pearl/normal/"
           }else if(p.pokedex_entries.Ruby){
             embed.setDescription(p.pokedex_entries.Ruby.en + "\n\n" + p.pokedex_entries.Sapphire.en+ "\n\n" + p.pokedex_entries.Emerald.en)
-            thum = thum + "/ruby-sapphire/dex/normal/"
+            thum = thum + "/ruby-sapphire/normal/"
           }else if(p.pokedex_entries.Gold){
             embed.setDescription(p.pokedex_entries.Gold.en + "\n\n" + p.pokedex_entries.Silver.en+ "\n\n" + p.pokedex_entries.Crystal.en)
-            thum = thum + "/silver/dex/normal/"
+            thum = thum + "/silver/normal/"
           }else if(p.pokedex_entries.Red){
             embed.setDescription(p.pokedex_entries.Red.en + "\n\n" + p.pokedex_entries.Yellow.en)
-            thum = thum + "/red-blue/dex/normal/"
+            thum = thum + "/red-blue/normal/"
           }
 
 
