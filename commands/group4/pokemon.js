@@ -23,8 +23,9 @@ module.exports = class pokemonCommand extends Command {
 
 	async run(msg, args) {
            const embed = new RichEmbed()
+           var poks = args.name.toLowerCase().replace(" ", "-");
 
-           pok.getPokemon(args.name)
+           pok.getPokemon(poks)
            .then(poki => {
                 var poke = args.name.charAt(0).toUpperCase() + args.name.slice(1);
                 oakdexPokedex.findPokemon(poke, function(p) {
@@ -40,6 +41,7 @@ module.exports = class pokemonCommand extends Command {
                 });    
            })
            .catch(err => {
+            msg.channel.send("Pokemon not Found")
             console.log(err)
            })
            
