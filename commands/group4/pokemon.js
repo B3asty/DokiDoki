@@ -95,11 +95,13 @@ module.exports = class pokemonCommand extends Command {
                     evs = evs + "Happiness -> **" + p.evolutions[i].to + "**" 
                 }
                 if(p.evolutions[i].conditions){
-                    console.log(p.evolutions[i].conditions)
+                    evs = evs + " (" + p.evolutions[i].conditions+")\n"
+                }else{
+                    evs = evs + "\n"
                 }
             }
         }
-        embed.addField("Evolutions")
+        embed.addField("Evolutions" evs)
         embed.addBlankField()
         embed.addField("Category", p.categories.en)
         embed.addField("Height", p.height_eu + " / " + p.height_us, true)
