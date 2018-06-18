@@ -26,7 +26,7 @@ module.exports = class pokemonCommand extends Command {
             oakdexPokedex.findPokemon(poke, function(p) {
                 console.log(p);
               embed.setTitle('#'+p.national_id+ " "+p.names.en)
-              var sprite = "../../node_modules/oakdex-pokedex-sprites/icons/"+p.national_id+".png";
+              var sprite = "http://localhost:25000/node_modules/oakdex-pokedex-sprites/icons/"+p.national_id+".png";
               embed.setThumbnail(sprite)
 
               msg.channel.send(embed)
