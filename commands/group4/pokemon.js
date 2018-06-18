@@ -110,7 +110,10 @@ module.exports = class pokemonCommand extends Command {
                 }
             }
         }
-        embed.addField("Evolutions", evs, true)
+        if(p.evolution_from || p.evolutions.length > 0){
+            embed.addField("Evolutions", evs, true)
+        }
+        
 
         embed.addField("Leveling Rate", p.leveling_rate, true)
 
