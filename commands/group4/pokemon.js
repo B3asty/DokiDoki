@@ -84,7 +84,12 @@ module.exports = class pokemonCommand extends Command {
         embed.addField("Names", names, true)
         embed.addField("Base Stats", "**HP:** "+ p.base_stats.hp + "\n**ATK:** " + p.base_stats.atk + "\n**DEF:** " + p.base_stats.def + "\n**SP ATK:** " + p.base_stats.sp_atk + "\n**SP DEF:** " + p.base_stats.sp_def + "\n**SPEED:** " + p.base_stats.speed, true)
         embed.addField("Types", p.types, true)
+        embed.addField("Leveling Rate", p.leveling_rate)
+
         var evs = "";
+        if(p.evolution_from){
+            evs = evs + "Evolves from: **" + p.evolution_from + "**\n\n"
+        }
         if(p.evolutions.length > 0){
             for(var i = 0; i < p.evolutions.length; i++){
                 if(p.evolutions[i].item){
@@ -104,12 +109,16 @@ module.exports = class pokemonCommand extends Command {
             }
         }
         embed.addField("Evolutions", evs, true)
+
         embed.addBlankField()
         embed.addField("Category", p.categories.en)
         embed.addField("Height", p.height_eu + " / " + p.height_us, true)
         embed.addField("Weight", p.weight_eu + " / " + p.weight_us, true)
         embed.addField("Color", p.color, true)
-
+        if(p.gender_ratios){
+            embed.addField("Gender Ratio", p.gender_ratios.male + "% Male, " + p.gender_ratios.female+ "% Female")
+        }
+        
         msg.channel.send(embed)
 
 
