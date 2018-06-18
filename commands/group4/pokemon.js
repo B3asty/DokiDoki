@@ -34,14 +34,33 @@ module.exports = class pokemonCommand extends Command {
                   var sprite = poki.sprites.front_default;
                   embed.setThumbnail(sprite)
 
-                  embed.setDescription(p.pokedex_entries.Sun.en + "\n" + p.pokedex_entries.Moon.en)
-
+                  if(p.pokedex_entries.Sun){
+                    embed.setDescription(p.pokedex_entries.Sun.en + "\n\n" + p.pokedex_entries.Moon.en)
+                  }else if(p.pokedex_entries.X){
+                    embed.setDescription(p.pokedex_entries.X.en + "\n\n" + p.pokedex_entries.Y.en)
+                  }
+                  
                   embed.addField("Names", "JP: " + p.names.jp + "\nFR: " + p.names.fr + "\nDE: " + p.names.de)
                   msg.channel.send(embed)
                    
                 });    
            })
            .catch(err => {
+            var poke = args.name.charAt(0).toUpperCase() + args.name.slice(1);
+                oakdexPokedex.findPokemon(poki.id, function(p) {
+                    console.log(p);
+                  embed.setTitle('#'+p.national_id+ " "+p.names.en)
+
+                  if(p.pokedex_entries.Sun){
+                    embed.setDescription(p.pokedex_entries.Sun.en + "\n\n" + p.pokedex_entries.Moon.en)
+                  }else if(p.pokedex_entries.X){
+                    embed.setDescription(p.pokedex_entries.X.en + "\n\n" + p.pokedex_entries.Y.en)
+                  }
+                  
+                  embed.addField("Names", "JP: " + p.names.jp + "\nFR: " + p.names.fr + "\nDE: " + p.names.de)
+                  msg.channel.send(embed)
+                   
+                });
             msg.channel.send("Pokemon not Found")
             console.log(err)
            })
