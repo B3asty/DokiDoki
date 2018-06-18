@@ -69,7 +69,7 @@ module.exports = class pokemonCommand extends Command {
                     console.log(p);
                   embed.setTitle('#'+p.national_id+ " "+p.names.en)
                   if(p.names.en == "Mimikyu"){
-                    embed.setThumbnail("http://pokemondb.net/pokedex/mimikyu")
+                    embed.setThumbnail("https://img.pokemondb.net/sprites/sun-moon/dex/normal/mimikyu.png")
                   }
 
                   if(p.pokedex_entries.Sun){
