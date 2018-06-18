@@ -93,7 +93,7 @@ module.exports = class pokemonCommand extends Command {
             for (var i = 0; i < p.abilities.length; i++) {
                 ab = ab + p.abilities[i].name
                 if(p.abilities[i].hidden){
-                    ab = ab + "(hidden)\n"
+                    ab = ab + " (hidden)\n"
                 }else{
                     ab = ab + "\n"
                 }
@@ -131,7 +131,9 @@ module.exports = class pokemonCommand extends Command {
         
 
         embed.addField("Leveling Rate", p.leveling_rate, true)
-        embed.addField("Catch Rate", p.catch_rate, true)
+        if(p.catch_rate){
+            embed.addField("Catch Rate", p.catch_rate, true)
+        }
 
         embed.addBlankField()
         embed.addField("Category", p.categories.en)
