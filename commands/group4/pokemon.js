@@ -82,8 +82,10 @@ module.exports = class pokemonCommand extends Command {
           }
           
           embed.addField("Names", names, true)
-          embed.addField("Base Stats", p.base_stats.join("\n"))
-
+          embed.addField("Base Stats", "**HP:** "+ p.base_stats.hp + "\n**ATK:** " + p.base_stats.atk + "\n**DEF:** " + p.base_stats.def + "\n**SP ATK:** " + p.base_stats.sp_atk + "\n**SP DEF:** " + p.base_stats.sp_def + "\n**SPEED:** " + p.base_stats.speed, true)
+          embed.addField("Height", p.height_eu + " / " + p.height_us, true)
+          embed.addField("Weight", p.weight_eu + " / " + p.weight_us, true)
+          embed.addField("Types", p.types, true)
           msg.channel.send(embed)
 
 
