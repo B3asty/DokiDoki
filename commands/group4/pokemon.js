@@ -162,6 +162,6 @@ module.exports = class pokemonCommand extends Command {
                 });
             console.log(err)
            })*/
-           
+           }
         }
 	};
