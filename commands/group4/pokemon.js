@@ -28,7 +28,7 @@ module.exports = class pokemonCommand extends Command {
            pok.getPokemon(poks)
            .then(poki => {
                 var poke = args.name.charAt(0).toUpperCase() + args.name.slice(1);
-                oakdexPokedex.findPokemon(poke, function(p) {
+                oakdexPokedex.findPokemon(poki.id, function(p) {
                     console.log(p);
                   embed.setTitle('#'+p.national_id+ " "+p.names.en)
                   var sprite = poki.sprites.front_default;
