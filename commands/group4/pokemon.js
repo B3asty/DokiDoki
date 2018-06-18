@@ -24,8 +24,9 @@ module.exports = class pokemonCommand extends Command {
            const embed = new RichEmbed()
            var poke = args.name;
             oakdexPokedex.findPokemon(poke, function(p) {
-              // returns data/pokemon/eevee.json
-              console.log(p); // Eeevee
+              embed.setTitle('#'+p.national_id+ " "+names.en)
+              embed.setThumbnail()
+              console.log(p); 
             });    
         }
 	};

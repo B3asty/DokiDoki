@@ -97,8 +97,8 @@ if (message.author.bot) return;
     if (rows.length < 1){
 		sql = `INSERT INTO XP(userid, xp, level) VALUES('${message.author.id}', 0, 0)`
     } else {
-    	let curxp = rows.xp[3];
-        sql = `UPDATE XP SET xp = ${curxp + xpgen} WHERE userid = '${message.author.id}'`
+    	//let curxp = rows.xp[3];
+      //  sql = `UPDATE XP SET xp = ${curxp + xpgen} WHERE userid = '${message.author.id}'`
      }
      pool.query(sql, console.log);
      pool.end(err => {
