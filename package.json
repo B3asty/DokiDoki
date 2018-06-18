@@ -59,6 +59,7 @@
     "node-fetch": "^2.1.2",
     "node-kitsu": "^1.0.1",
     "node.js": "0.0.0",
+    "oakdex-pokedex": "^0.2.2",
     "os": "^0.1.1",
     "pg": "^6.4.2",
     "pg-connection-string": "^2.0.0",
