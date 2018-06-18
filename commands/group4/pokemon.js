@@ -34,8 +34,9 @@ module.exports = class pokemonCommand extends Command {
                   var sprite = poki.sprites.front_default;
                   embed.setThumbnail(sprite)
 
-                 // embed.setDescription(p.pokedex_entries.'Ultra Sun'.en + "\n" + p.pokedex_entries.'Ultra Moon'.en)
+                  embed.setDescription(p.pokedex_entries.Sun.en + "\n" + p.pokedex_entries.Moon.en)
 
+                  embed.addField("Names", "JP: " + p.names.jp + "\nFR: " + p.names.fr + "\nDE: " + p.names.de)
                   msg.channel.send(embed)
                    
                 });    
