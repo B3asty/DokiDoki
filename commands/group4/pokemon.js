@@ -29,7 +29,7 @@ module.exports = class pokemonCommand extends Command {
           embed.setTitle('#'+p.national_id+ " "+p.names.en)
 
            
-          var thum = "https://img.pokemondb.net/sprites/"
+          var thum = "https://img.pokemondb.net/sprites"
           if(p.pokedex_entries.Sun){
             embed.setDescription(p.pokedex_entries.Sun.en + "\n\n" + p.pokedex_entries.Moon.en)
             thum = thum + "/sun-moon/dex/normal/"
