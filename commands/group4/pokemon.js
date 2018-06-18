@@ -83,9 +83,11 @@ module.exports = class pokemonCommand extends Command {
           
         embed.addField("Names", names, true)
         embed.addField("Base Stats", "**HP:** "+ p.base_stats.hp + "\n**ATK:** " + p.base_stats.atk + "\n**DEF:** " + p.base_stats.def + "\n**SP ATK:** " + p.base_stats.sp_atk + "\n**SP DEF:** " + p.base_stats.sp_def + "\n**SPEED:** " + p.base_stats.speed, true)
+        embed.addBlankField()
+
         embed.addField("Types", p.types, true)
         embed.addField("Egg Groups", p.egg_groups, true)
-
+        embed.addBlankField()
         var evs = "";
         if(p.evolution_from){
             evs = evs + "Evolves from: **" + p.evolution_from + "**\n\n"
@@ -109,7 +111,7 @@ module.exports = class pokemonCommand extends Command {
             }
         }
         embed.addField("Evolutions", evs, true)
-        
+
         embed.addField("Leveling Rate", p.leveling_rate, true)
 
         embed.addBlankField()
