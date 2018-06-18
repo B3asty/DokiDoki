@@ -24,9 +24,10 @@ module.exports = class pokemonCommand extends Command {
            const embed = new RichEmbed()
            var poke = args.name;
             oakdexPokedex.findPokemon(poke, function(p) {
-              embed.setTitle('#'+p.national_id+ " "+names.en)
+                console.log(p);
+              //embed.setTitle('#'+p.national_id+ " "+names.en)
               embed.setThumbnail()
-              console.log(p); 
+               
             });    
         }
 	};
