@@ -93,6 +93,8 @@ module.exports = class pokemonCommand extends Command {
                     evs = evs + "Lv. " + p.evolutions[i].level + " -> **" + p.evolutions[i].to + "**" 
                 }else if(p.evolutions[i].happiness){
                     evs = evs + "Happiness -> **" + p.evolutions[i].to + "**" 
+                }else if(p.evolutions[i].level_up){
+                    evs = evs + "Level Up -> **" + p.evolutions[i].to + "**" 
                 }
                 if(p.evolutions[i].conditions){
                     evs = evs + " (" + p.evolutions[i].conditions+")\n"
