@@ -89,19 +89,17 @@ if (message.author.bot) return;
       console.log('Connected to PostgresSQL');
     })
 
-    pool.query(`SELECT xp, level FROM xp WHERE userid = '${message.author.id}'`, (err, rows) => {
-	    
-    const xpgen = Math.floor(Math.random() * (20 - 5 + 1)) + 2;
-	    
+    pool.query(`SELECT xp, level FROM XP WHERE userid = '${message.author.id}'`, {useArray: true}, (err, rows) => {
+    const curlvl = Math.floor(0.1 * Math.sqrt(rows.xp + 0.1));
+    const xpgen = Math.floor(Math.random() * (20 - 5 + 1)) + 5;
     if(err) throw err;
       	let sql;
-	    
-    if (!rows){
-	sql = `INSERT INTO xp(userid, xp, level) VALUES('${message.author.id}', 10, 1)`
+    if (rows.length < 1){
+		sql = `INSERT INTO XP(userid, xp, level) VALUES('${message.author.id}', 0, 0)`
     } else {
-        sql = `UPDATE xp SET xp = ${rows.xp + xpgen} WHERE userid = '${message.author.id}'`
-     };
-	    
+    	let curxp = rows.xp();
+        sql = `UPDATE XP SET xp = ${curxp + xpgen} WHERE userid = '${message.author.id}'`
+     }
      pool.query(sql, console.log);
      pool.end(err => {
       if(err) throw err; 
