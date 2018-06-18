@@ -70,7 +70,7 @@ client.registry
 
 
 
-client.on("message", async (message) => {
+client.on("message", (message) => {
 if (message.author.bot) return;
 	const parse = require("pg-connection-string");
 	const { Pool } = require ('pg');	
@@ -107,6 +107,7 @@ if (message.author.bot) return;
 	});
   });
 });
+
 	    
 //Login 
 client.login(process.env.token);
