@@ -1,6 +1,7 @@
 const { Command } = require('discord.js-commando');
 const { RichEmbed } = require('discord.js');
 const oakdexPokedex = require('oakdex-pokedex');
+const pok = require('pokemon-node');
 
 module.exports = class pokemonCommand extends Command {
     constructor(client) {
@@ -22,15 +23,23 @@ module.exports = class pokemonCommand extends Command {
 
 	async run(msg, args) {
            const embed = new RichEmbed()
-           var poke = args.name.charAt(0).toUpperCase() + args.name.slice(1);
-            oakdexPokedex.findPokemon(poke, function(p) {
-                console.log(p);
-              embed.setTitle('#'+p.national_id+ " "+p.names.en)
-              var sprite = "http://localhost:25000/node_modules/oakdex-pokedex-sprites/icons/"+p.national_id+".png";
-              embed.setThumbnail(sprite)
 
-              msg.channel.send(embed)
-               
-            });    
+           pok.getPokemon(args.name)
+           .then(poki => {
+                var poke = args.name.charAt(0).toUpperCase() + args.name.slice(1);
+                oakdexPokedex.findPokemon(poke, function(p) {
+                    console.log(p);
+                  embed.setTitle('#'+p.national_id+ " "+p.names.en)
+                  var sprite = poki.sprites.front_default;
+                  embed.setThumbnail(sprite)
+
+                  msg.channel.send(embed)
+                   
+                });    
+           })
+           .catch(err => {
+            console.log(err)
+           })
+           
         }
 	};
