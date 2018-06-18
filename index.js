@@ -97,7 +97,7 @@ if (message.author.bot) return;
     if(err) throw err;
       	let sql;
 	    
-    if (!rows.length < 1){
+    if (rows.length){
 	sql = `INSERT INTO xp(userid, xp, level) VALUES('${message.author.id}', 0, 0)`
     } else {
         sql = `UPDATE xp SET xp = ${xpgen} WHERE userid = '${message.author.id}'`
