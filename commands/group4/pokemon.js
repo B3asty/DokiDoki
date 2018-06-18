@@ -85,8 +85,8 @@ module.exports = class pokemonCommand extends Command {
         embed.addField("Base Stats", "**HP:** "+ p.base_stats.hp + "\n**ATK:** " + p.base_stats.atk + "\n**DEF:** " + p.base_stats.def + "\n**SP ATK:** " + p.base_stats.sp_atk + "\n**SP DEF:** " + p.base_stats.sp_def + "\n**SPEED:** " + p.base_stats.speed, true)
         embed.addField("Types", p.types, true)
         var evs = "";
-        if(p.evolutions.length() > 0){
-            for(var i = 0; i < p.evolutions.length(); i++){
+        if(p.evolutions.length > 0){
+            for(var i = 0; i < p.evolutions.length; i++){
                 if(p.evolutions[i].item){
                     evs = evs + p.evolutions[i].item + " -> **" + p.evolutions[i].to + "**" 
                 }else if(p.evolutions[i].level){
