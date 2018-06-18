@@ -24,6 +24,10 @@ module.exports = class pokemonCommand extends Command {
 	async run(msg, args) {
         const embed = new RichEmbed()
         var poke = args.name.charAt(0).toUpperCase() + args.name.slice(1);
+        if(poke.indexOf(" ") > 0){
+            var temp = poke.split(" ")
+            poke = temp[0] + temp[1].charAt(0).toUpperCase + temp[1].slice(1)
+        }
         oakdexPokedex.findPokemon(poke, function(p) {
             console.log(p);
           embed.setTitle('#'+p.national_id+ " "+p.names.en)
@@ -54,7 +58,7 @@ module.exports = class pokemonCommand extends Command {
           }
 
 
-          thum = thum+p.names.en.toLowerCase()+".png"
+          thum = thum+p.names.en.toLowerCase().replace(" ","-")+".png"
           console.log(thum)
         embed.setThumbnail(thum)
           
