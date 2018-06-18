@@ -81,7 +81,8 @@ module.exports = class pokemonCommand extends Command {
             names = names + "**IT:** " + p.names.it + "\n"
           }
           
-          embed.addField("Names", names)
+          embed.addField("Names", names, true)
+          embed.addField("Base Stats", p.base_stats.join("\n"))
 
           msg.channel.send(embed)
 
