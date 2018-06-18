@@ -26,7 +26,7 @@ module.exports = class pokemonCommand extends Command {
         var poke = args.name.charAt(0).toUpperCase() + args.name.slice(1);
         if(poke.indexOf(" ") > 0){
             var temp = poke.split(" ")
-            poke = temp[0] + " " + temp[1].charAt(0).toUpperCase + temp[1].slice(1)
+            poke = temp[1].charAt(0).toUpperCase + temp[1].slice(1)
         }
         console.log(poke)
         oakdexPokedex.findPokemon(poke, function(p) {
