@@ -87,6 +87,19 @@ module.exports = class pokemonCommand extends Command {
 
         embed.addField("Types", p.types, true)
         embed.addField("Egg Groups", p.egg_groups, true)
+
+        var ab = "";
+        if(p.abilities.length > 0){
+            for (var i = 0; i < p.abilities.length; i++) {
+                ab = ab + p.abilities[i].name
+                if(p.abilities[i].hidden){
+                    ab = ab + "(hidden)\n"
+                }else{
+                    ab = ab + "\n"
+                }
+            }   
+        }
+        embed.addField("Abilities", ab,true)
         embed.addBlankField()
         var evs = "";
         if(p.evolution_from){
@@ -118,6 +131,7 @@ module.exports = class pokemonCommand extends Command {
         
 
         embed.addField("Leveling Rate", p.leveling_rate, true)
+        embed.addField("Catch Rate", p.catch_rate, true)
 
         embed.addBlankField()
         embed.addField("Category", p.categories.en)
