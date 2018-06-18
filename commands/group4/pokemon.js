@@ -39,15 +39,33 @@ module.exports = class pokemonCommand extends Command {
                   }else if(p.pokedex_entries.X){
                     embed.setDescription(p.pokedex_entries.X.en + "\n\n" + p.pokedex_entries.Y.en)
                   }
+
+                  var names = "";
+
+                  if(p.names.jp){
+                    names = names + "**JP:** " + p.names.jp + "\n"
+                  }
+                  if(p.names.de){
+                    names = names + "**DE:** " + p.names.de + "\n"
+                  }
+                  if(p.names.fr){
+                    names = names + "**FR:** " + p.names.fr + "\n"
+                  }
+                  if(p.names.es){
+                    names = names + "**ES:** " + p.names.es + "\n"
+                  }
+                  if(p.names.it){
+                    names = names + "**IT:** " + p.names.it + "\n"
+                  }
                   
-                  embed.addField("Names", "JP: " + p.names.jp + "\nFR: " + p.names.fr + "\nDE: " + p.names.de)
+                  embed.addField("Names", names)
                   msg.channel.send(embed)
                    
                 });    
            })
            .catch(err => {
             var poke = args.name.charAt(0).toUpperCase() + args.name.slice(1);
-                oakdexPokedex.findPokemon(poki.id, function(p) {
+                oakdexPokedex.findPokemon(poke, function(p) {
                     console.log(p);
                   embed.setTitle('#'+p.national_id+ " "+p.names.en)
 
@@ -57,11 +75,29 @@ module.exports = class pokemonCommand extends Command {
                     embed.setDescription(p.pokedex_entries.X.en + "\n\n" + p.pokedex_entries.Y.en)
                   }
                   
-                  embed.addField("Names", "JP: " + p.names.jp + "\nFR: " + p.names.fr + "\nDE: " + p.names.de)
+                  var names = "";
+
+                  if(p.names.jp){
+                    names = names + "**JP:** " + p.names.jp + "\n"
+                  }
+                  if(p.names.de){
+                    names = names + "**DE:** " + p.names.de + "\n"
+                  }
+                  if(p.names.fr){
+                    names = names + "**FR:** " + p.names.fr + "\n"
+                  }
+                  if(p.names.es){
+                    names = names + "**ES:** " + p.names.es + "\n"
+                  }
+                  if(p.names.it){
+                    names = names + "**IT:** " + p.names.it + "\n"
+                  }
+                  
+                  embed.addField("Names", names)
+
                   msg.channel.send(embed)
                    
                 });
-            msg.channel.send("Pokemon not Found")
             console.log(err)
            })
            
