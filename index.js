@@ -91,12 +91,12 @@ if (message.author.bot) return;
 
     pool.query(`SELECT xp, level FROM xp WHERE userid = '${message.author.id}'`, (err, rows) => {
 	    
-    const xpgen = Math.floor(Math.random() * (20 - 5 + 1)) + 5;
+    const xpgen = Math.floor(Math.random() * (20 - 5 + 1)) + 2;
 	    
     if(err) throw err;
       	let sql;
 	    
-    if (rows.length < 1){
+    if (!rows.length < 1){
 	sql = `INSERT INTO xp(userid, xp, level) VALUES('${message.author.id}', 0, 0)`
     } else {
         sql = `UPDATE xp SET xp = ${xpgen} WHERE userid = '${message.author.id}'`
