@@ -112,6 +112,8 @@ module.exports = class pokemonCommand extends Command {
         }
         if(p.evolution_from || p.evolutions.length > 0){
             embed.addField("Evolutions", evs, true)
+        }else{
+            embed.addField("Evolutions", "None", true)
         }
         
 
