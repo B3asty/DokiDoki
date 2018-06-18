@@ -55,8 +55,8 @@ module.exports = class pokemonCommand extends Command {
 
 
           thum = thum+p.names.en.toLowerCase()+".png"
-
-            embed.setThumbnail(thum)
+          console.log(thum)
+        embed.setThumbnail(thum)
           
           var names = "";
 
