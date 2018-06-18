@@ -23,7 +23,7 @@ module.exports = class pokemonCommand extends Command {
 
 	async run(msg, args) {
            const embed = new RichEmbed()
-           //var poks = args.name.toLowerCase().replace(" ", "-");
+           var poks = args.name.toLowerCase().replace(" ", "-");
 
            pok.getPokemon(args.name)
            .then(poki => {
@@ -68,6 +68,9 @@ module.exports = class pokemonCommand extends Command {
                 oakdexPokedex.findPokemon(poke, function(p) {
                     console.log(p);
                   embed.setTitle('#'+p.national_id+ " "+p.names.en)
+                  if(p.names.en == "Mimikyu"){
+                    embed.setThumbnail("http://pokemondb.net/pokedex/mimikyu")
+                  }
 
                   if(p.pokedex_entries.Sun){
                     embed.setDescription(p.pokedex_entries.Sun.en + "\n\n" + p.pokedex_entries.Moon.en)
