@@ -130,7 +130,9 @@ client.on("message", (message) => {
 
     pool.query(`SELECT xp, level FROM xp WHERE userid = '193021560792154112'`, (err, result) => {
       console.log(result)
-	    console.log(result.rows[0])
+        console.log(result.rows[0].anonymous)
+  console.log(result.rows[0].JSON.parse(anonymous))
+
       pool.end(err => {
         if(err) throw err; 
         console.log('Logged to PostgresSQL');
