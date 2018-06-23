@@ -104,7 +104,7 @@ client.on("message", (message) => {
      pool.end(err => {
       if(err) throw err; 
       console.log('Logged to PostgresSQL');
-      console.log(`${rows[0].xp}`)
+      console.log(`${rows.xp}`)
       console.log(`${rows}`)
     });
   });
