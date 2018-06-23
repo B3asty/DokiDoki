@@ -111,32 +111,8 @@ client.on("message", (message) => {
 */
 client.on("message", (message) => {
     if (message.author.bot) return;
-        const parse = require("pg-connection-string");
-        const { Pool } = require ('pg');    
-        const pool = new Pool({
-              connectionString: process.env.DATABASE_URL.parse,
-              port: 5432,
-              host: process.env.dbhost,
-              database: process.env.db,
-              user: process.env.user,
-            password: process.env.password,
-              ssl: true,
-        });
-    
-    pool.connect(err => {
-      if(err) throw err; 
-      console.log('Connected to PostgresSQL');
-    })
 
-    pool.query(`SELECT xp, level FROM xp WHERE userid = '193021560792154112'`, (err, result) => {
-      console.log(result)
-        console.log(result.rows[0]["anonymous"].xp)
-      pool.end(err => {
-        if(err) throw err; 
-        console.log('Logged to PostgresSQL');
-
-    });
-  });
+	
 });
 
 	    
