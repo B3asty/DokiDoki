@@ -96,14 +96,14 @@ client.on("message", (message) => {
     if (rows.length < 1){
         sql = `INSERT INTO xp(userid, xp, level) VALUES('${message.author.id}', 0, 0)`
     } else {
-        let xp = rows[0].xp
+        let xp = rows[2].xp
         sql = `UPDATE xp SET xp = ${xp + xpgen} WHERE userid = '${message.author.id}'`
      }
      pool.query(sql, console.log);
      pool.end(err => {
       if(err) throw err; 
       console.log('Logged to PostgresSQL');
-      console.log(`${rows[0].xp}`)
+      console.log(`${rows[2].xp}`)
       console.log(`${rows}`)
     });
   });
