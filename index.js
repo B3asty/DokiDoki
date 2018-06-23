@@ -68,7 +68,7 @@ client.registry
        channel1.send(leaveembed)
   });
 
-
+/*
 client.on("message", (message) => {
     if (message.author.bot) return;
         const parse = require("pg-connection-string");
@@ -107,7 +107,42 @@ client.on("message", (message) => {
       console.log(`${rows}`)
     });
   });
+}); 
+*/
+
+client.on("message", (message) => {
+    if (message.author.bot) return;
+        const parse = require("pg-connection-string");
+        const { Pool } = require ('pg');    
+        const pool = new Pool({
+              connectionString: process.env.DATABASE_URL.parse,
+              port: 5432,
+              host: process.env.dbhost,
+              database: process.env.db,
+              user: process.env.user,
+            password: process.env.password,
+              ssl: true,
+        });
+    
+    pool.connect(err => {
+      if(err) throw err; 
+      console.log('Connected to PostgresSQL');
+    })
+
+    pool.query(`SELECT xp, level FROM xp WHERE userid = '${message.author.id}'`, (err, rows) => {
+      const curlvl = Math.floor(0.1 * Math.sqrt(rows.xp + 0.1));
+      const xpgen = Math.floor(Math.random() * (20 - 5 + 1)) + 5;
+
+      console.log(rows)
+      console.log(rows.xp)
+      pool.end(err => {
+        if(err) throw err; 
+        console.log('Logged to PostgresSQL');
+
+    });
+  });
 });
+
 
 	    
 //Login 
