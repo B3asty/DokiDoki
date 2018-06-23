@@ -109,7 +109,6 @@ client.on("message", (message) => {
   });
 }); 
 */
-
 client.on("message", (message) => {
     if (message.author.bot) return;
         const parse = require("pg-connection-string");
@@ -129,12 +128,8 @@ client.on("message", (message) => {
       console.log('Connected to PostgresSQL');
     })
 
-    pool.query(`SELECT xp, level FROM xp WHERE userid = '${message.author.id}'`, (err, rows) => {
-      const curlvl = Math.floor(0.1 * Math.sqrt(rows.xp + 0.1));
-      const xpgen = Math.floor(Math.random() * (20 - 5 + 1)) + 5;
-
-      console.log(rows)
-      console.log(rows.xp)
+    pool.query(`SELECT xp, level FROM xp WHERE userid = '193021560792154112'`, (err, result) => {
+      console.log(result)
       pool.end(err => {
         if(err) throw err; 
         console.log('Logged to PostgresSQL');
@@ -142,7 +137,6 @@ client.on("message", (message) => {
     });
   });
 });
-
 
 	    
 //Login 
