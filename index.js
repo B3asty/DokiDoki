@@ -70,7 +70,7 @@ client.registry
 
 
 
-/*client.on("message", (message) => {
+client.on("message", (message) => {
 if (message.author.bot) return;
 	const parse = require("pg-connection-string");
 	const { Pool } = require ('pg');	
@@ -97,7 +97,7 @@ if (message.author.bot) return;
     if (rows.length < 1){
 		sql = `INSERT INTO XP(userid, xp, level) VALUES('${message.author.id}', 0, 0)`
     } else {
-    	let curxp = rows.xp[3];
+    	let xp = [].xp;
         sql = `UPDATE XP SET xp = ${curxp + xpgen} WHERE userid = '${message.author.id}'`
      }
      pool.query(sql, console.log);
@@ -106,7 +106,7 @@ if (message.author.bot) return;
       console.log('Logged to PostgresSQL');
 	});
   });
-});*/
+});
 
 	    
 //Login 
