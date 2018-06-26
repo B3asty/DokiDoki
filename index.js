@@ -40,7 +40,7 @@ client.on("message", (message) => {
   if (message.author.bot) return;
     const { Pool } = require ('pg');    
     const pool = new Pool({
-      connectionString: process.env.DATABASE_URL.parse,
+      connectionString: process.env.DATABASE_URL,
       port: 5432,
       host: process.env.dbhost,
       database: process.env.db,
@@ -54,9 +54,22 @@ client.on("message", (message) => {
       console.log('Connected to PostgresSQL');
     })
 
-    pool.query(`SELECT xp, level FROM xp WHERE userid = '193021560792154112'`,(err, result) => {
+    pool.query(`SELECT xp, level FROM xp WHERE userid = '${message.author.id}'`, (err, result) => {
       console.log(result)
       console.log(result.rows[0])
+
+
+    const curlvl = Math.floor(0.1 * Math.sqrt(rows[2].xp + 0.1));
+    const xpgen = Math.floor(Math.random() * (20 - 5 + 1)) + 5;
+        let sql;
+    if (rows.length < 1){
+    sql = `INSERT INTO xp(userid, xp, level) VALUES('${message.author.id}', 0, 0)`
+    } else {
+      let xp = rows[2].xp;
+        sql = `UPDATE xp SET xp = ${xp + xpgen} WHERE userid = '${message.author.id}'`
+     }
+      
+      pool.query(sql, console.log);
       pool.end(err => {
         if(err) throw err; 
         console.log('Logged to PostgresSQL');
@@ -64,6 +77,7 @@ client.on("message", (message) => {
     });
   });
 });
+
 
 	    
 //Login 
