@@ -57,7 +57,7 @@ client.on("message", (message) => {
     level = parseInt(result.rows[0][2]);
 
     const xpgen = parseFloat(result.rows[0][2]) + Math.floor(Math.random() * (14 - 8) + 8);
-    let xp = result.rows[0][2];
+    	let xp = result.rows[2];
     pool.query(`UPDATE xp SET xp = ${xp + xpgen} WHERE userid = '${message.author.id}'`)
   }
   pool.end(err => {
