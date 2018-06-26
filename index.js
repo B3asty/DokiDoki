@@ -38,17 +38,10 @@ client.registry
 
 client.on("message", (message) => {
   if (message.author.bot) return;
+  if (message.channel.type === "dm") return;
 
     const { Pool } = require ('pg');    
-    const pool = new Pool({
-      connectionString: process.env.DATABASE_URL,
-      port: 5432,
-      host: process.env.dbhost,
-      database: process.env.db,
-      user: process.env.user,
-      password: process.env.password,
-      ssl: true,
-    });
+    const pool = new Pool({ connectionString: process.env.DATABASE_URL, port: 5432, host: process.env.dbhost, database: process.env.db, user: process.env.user, password: process.env.password, ssl: true, });
     
     pool.connect(err => {
       if(err) throw err; 
@@ -58,11 +51,11 @@ client.on("message", (message) => {
     pool.query(`SELECT xp, level FROM xp WHERE userid = '${message.author.id}'`, (err, result) => {
       console.log(result)
       console.log(result.rows[0])
-    if (result.rows[0] < 1){
+    if (!result.rows[0]){
       pool.query(`INSERT INTO xp(userid, xp, level) VALUES('${message.author.id}', 0, 0)`)
-    } else{
-      let xpgen = Math.floor(Math.random() * (20 - 5 + 1)) + 5;
-      let xp = result.rows[3];
+    }else{
+      const xpgen = Math.floor(Math.random() * (20 - 5 + 1)) + 5;
+      let xp = result.rows[0];
       pool.query(`UPDATE xp SET xp = ${xp + xpgen} WHERE userid = '${message.author.id}'`)
     }
     pool.end(err => {
