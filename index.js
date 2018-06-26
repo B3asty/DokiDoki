@@ -37,38 +37,35 @@ client.registry
 
 
 client.on("message", (message) => {
-if (!usersOnCooldown.has(message.author.id)){
-if (message.author.bot) return;
-if (message.channel.type === "dm") return;
-  const usersOnCooldown = new Set();
+  if (message.author.bot) return;
+  if (message.channel.type === "dm") return;
   const { Pool } = require ('pg');    
   const pool = new Pool({ connectionString: process.env.DATABASE_URL, port: 5432, host: process.env.dbhost, database: process.env.db, user: process.env.user, password: process.env.password, ssl: true, });  
   pool.connect(err => {
     if(err) throw err; 
     console.log('Connected to PostgresSQL');
   })
-let xp, level;
+  let xpgen, level;
   pool.query(`SELECT xp, level FROM xp WHERE userid = '${message.author.id}'`,null,{useArray: true}, (err, result) => {
+    
     console.log(result)
     console.log(result.rows[0])
+
   if (!result.rows[0]){
     level = 1;
-    pool.query(`INSERT INTO xp(userid, xp, level) VALUES('${message.author.id}', ${level}, 0)`)
+    pool.query(`INSERT INTO xp(userid, xp, level) VALUES('${message.author.id}', 0, ${level})`)
   }else{
     level = parseInt(result.rows[0][0]);
 
     const xpgen = parseFloat(result.rows[0][2]) + Math.floor(Math.random() * (14 - 8) + 8);
-    xp = result.rows([0][2]);
+    let xp = result.rows([0][2]);
     pool.query(`UPDATE xp SET xp = ${xp + xpgen} WHERE userid = '${message.author.id}'`)
   }
-pool.end(err => {
+  pool.end(err => {
   if(err) throw err; 
-console.log('Logged to PostgresSQL');
-    });
-usersOnCooldown.add(message.author.id);
-  setTimeout(() => { usersOnCooldown.delete(message.author.id); }, 60000);
+    console.log('Logged to PostgresSQL');
   });
-}
+});
 });
 	    
 //Login 
