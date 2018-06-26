@@ -54,7 +54,7 @@ client.on("message", (message) => {
       console.log('Connected to PostgresSQL');
     })
 
-    pool.query(`SELECT xp, level FROM xp WHERE userid = '193021560792154112'`, (err, result) => {
+    pool.query(`SELECT xp, level FROM xp WHERE userid = '193021560792154112'`,{rowAsArray: true} (err, result) => {
       console.log(result)
       console.log(result.rows[0])
       pool.end(err => {
