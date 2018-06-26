@@ -35,7 +35,6 @@ client.registry
 	  	client.user.setActivity(`Testing Stuff`);
 	})
 
-
 client.on("message", (message) => {
   if (message.author.bot) return;
   if (message.channel.type === "dm") return;
@@ -46,7 +45,7 @@ client.on("message", (message) => {
     console.log('Connected to PostgresSQL');
   })
   let xpgen, level;
-  pool.query(`SELECT xp, level FROM xp WHERE userid = '${message.author.id}'`,null,{useArray: true}, (err, result) => {
+  pool.query(`SELECT xp, level FROM xp WHERE userid = '${message.author.id}'`,null, {useArray: true}, (err, result) => {
     
     console.log(result)
     console.log(result.rows[0])
@@ -55,10 +54,10 @@ client.on("message", (message) => {
     level = 1;
     pool.query(`INSERT INTO xp(userid, xp, level) VALUES('${message.author.id}', 0, ${level})`)
   }else{
-    level = parseInt(result.rows[0][0]);
+    level = parseInt(result.rows[0][2]);
 
     const xpgen = parseFloat(result.rows[0][2]) + Math.floor(Math.random() * (14 - 8) + 8);
-    let xp = result.rows([0][2]);
+    let xp = result.rows[0][2];
     pool.query(`UPDATE xp SET xp = ${xp + xpgen} WHERE userid = '${message.author.id}'`)
   }
   pool.end(err => {
