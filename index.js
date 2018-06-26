@@ -45,7 +45,7 @@ client.on("message", (message) => {
     console.log('Connected to PostgresSQL');
   })
   let xpgen, level;
-  pool.query(`SELECT xp, level FROM xp WHERE userid = '${message.author.id}'`,null, {useArray: true}, (err, result) => {
+  pool.query(`SELECT xp, level FROM xp WHERE userid = '${message.author.id}'`,(err, result) => {
     
     console.log(result)
     console.log(result.rows[0])
