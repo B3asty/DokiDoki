@@ -47,7 +47,6 @@ client.on("message", (message) => {
       if(err) throw err; 
       console.log('Connected to PostgresSQL');
     })
-
     pool.query(`SELECT xp, level FROM xp WHERE userid = '${message.author.id}'`, (err, result) => {
       console.log(result)
       console.log(result.rows[0])
@@ -55,7 +54,7 @@ client.on("message", (message) => {
       pool.query(`INSERT INTO xp(userid, xp, level) VALUES('${message.author.id}', 0, 0)`)
     }else{
       const xpgen = Math.floor(Math.random() * (20 - 5 + 1)) + 5;
-      let xp = result.rows[0];
+      let xp = result.rows[0].xp;
       pool.query(`UPDATE xp SET xp = ${xp + xpgen} WHERE userid = '${message.author.id}'`)
     }
     pool.end(err => {
