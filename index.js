@@ -32,87 +32,37 @@ client.registry
 	   client.on('debug', console.log)
 	   client.on('ready', () => {
 		    console.log(`Client ready; logged in as ${client.user.username}#${client.user.discriminator} (${client.user.id})`);
-	  	client.user.setActivity(`with ${client.guilds.size} Servers`);
+	  	client.user.setActivity(`Testing Stuff`);
 	})
-// Guild Join / Leave 
-  client.on("guildCreate", (guildCreate) => { 
-      client.user.setPresence({ game: { name: `With ${client.guilds.size} Servers!` }, status: 'online' })
 
-      const channel1 = client.guilds.find("name", "DokiDoki Support").channels.find('name','server-join-leave');
-      const joinembed = new RichEmbed()
-            joinembed.setAuthor(client.user.username + ' Joined the Guild')
-            joinembed.setDescription(`${guildCreate.name}`)
-            joinembed.addField(`Guild ID` , `${guildCreate.id}`)
-            joinembed.addField('Member Count', `${guildCreate.memberCount}`, true)
-            joinembed.addField('Channel Count ' , ` ${guildCreate.channels.array().length}`, true)
-            var jownerTag = guildCreate.members.get(guildCreate.ownerID).user.username+"#"+guildCreate.members.get(guildCreate.ownerID).user.discriminator+" ("+guildCreate.ownerID+")"
-           joinembed.addField('Server Owner ', jownerTag)
-            joinembed.setThumbnail(guildCreate.iconURL)
-            joinembed.setColor(`#00FF00`)
-            joinembed.setFooter(client.user.username + ' \(' + client.user.id + '\)')
-       channel1.send(joinembed)
-  });
-  client.on("guildDelete", (guildDelete) => {
-      client.user.setPresence({ game: { name: `With ${client.guilds.size} Servers!` }, status: 'online' })
 
-      const channel1 = client.guilds.find("name", "DokiDoki Support").channels.find('name','server-join-leave');
-        const leaveembed = new RichEmbed()
-            leaveembed.setAuthor(client.user.username + ' Left the Guild')
-            leaveembed.setDescription(`${guildDelete.name}`)
-            leaveembed.addField(`Guild ID` , `${guildDelete.id}`)
-            var lownerTag = guildDelete.members.get(guildDelete.ownerID).user.username+"#"+guildDelete.members.get(guildDelete.ownerID).user.discriminator+" ("+guildDelete.ownerID+")"      
-            leaveembed.addField('Server Owner: ', lownerTag)
-            leaveembed.setThumbnail(guildDelete.iconURL)
-            leaveembed.setColor(`#FF0000`)
-            leaveembed.setFooter(client.user.username + ' \(' + client.user.id + '\)')
-       channel1.send(leaveembed)
-  });
-
-/*
 client.on("message", (message) => {
-    if (message.author.bot) return;
-        const parse = require("pg-connection-string");
-        const { Pool } = require ('pg');    
-        const pool = new Pool({
-              connectionString: process.env.DATABASE_URL.parse,
-              port: 5432,
-              host: process.env.dbhost,
-              database: process.env.db,
-              user: process.env.user,
-            password: process.env.password,
-              ssl: true,
-        });
+  if (message.author.bot) return;
+    const { Pool } = require ('pg');    
+    const pool = new Pool({
+      connectionString: process.env.DATABASE_URL.parse,
+      port: 5432,
+      host: process.env.dbhost,
+      database: process.env.db,
+      user: process.env.user,
+      password: process.env.password,
+      ssl: true,
+    });
     
     pool.connect(err => {
       if(err) throw err; 
       console.log('Connected to PostgresSQL');
     })
 
-    pool.query(`SELECT xp, level FROM xp WHERE userid = '${message.author.id}'`, (err, rows) => {
-    const curlvl = Math.floor(0.1 * Math.sqrt(rows.xp + 0.1));
-    const xpgen = Math.floor(Math.random() * (20 - 5 + 1)) + 5;
-    if(err) throw err;
-          let sql;
-    if (rows.length < 1){
-        sql = `INSERT INTO xp(userid, xp, level) VALUES('${message.author.id}', 0, 0)`
-    } else {
-        let xp = rows[2].xp
-        sql = `UPDATE xp SET xp = ${xp + xpgen} WHERE userid = '${message.author.id}'`
-     }
-     pool.query(sql, console.log);
-     pool.end(err => {
-      if(err) throw err; 
-      console.log('Logged to PostgresSQL');
-      console.log(`${rows[2].xp}`)
-      console.log(`${rows}`)
+    pool.query(`SELECT xp, level FROM xp WHERE userid = '193021560792154112'`, (err, result) => {
+      console.log(result)
+      console.log(result.rows[0])
+      pool.end(err => {
+        if(err) throw err; 
+        console.log('Logged to PostgresSQL');
+
     });
   });
-}); 
-*/
-client.on("message", (message) => {
-    if (message.author.bot) return;
-
-	
 });
 
 	    
