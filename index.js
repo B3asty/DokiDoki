@@ -38,7 +38,7 @@ client.registry
 
 client.on("message", (message) => {
   if (message.author.bot) return;
-  
+
     const { Pool } = require ('pg');    
     const pool = new Pool({
       connectionString: process.env.DATABASE_URL,
@@ -60,13 +60,13 @@ client.on("message", (message) => {
       console.log(result.rows[0])
 
 
-    const curlvl = Math.floor(0.1 * Math.sqrt(result.rows[2].xp + 0.1));
+    const curlvl = Math.floor(0.1 * Math.sqrt(result.rows[2] + 0.1));
     const xpgen = Math.floor(Math.random() * (20 - 5 + 1)) + 5;
         let sql;
     if (result.rows.length < 1){
     sql = `INSERT INTO xp(userid, xp, level) VALUES('${message.author.id}', 0, 0)`
     } else {
-      let xp = result.rows[2].xp;
+      let xp = result.rows[2];
         sql = `UPDATE xp SET xp = ${xp + xpgen} WHERE userid = '${message.author.id}'`
      }
       
