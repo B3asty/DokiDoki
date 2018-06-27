@@ -19,7 +19,7 @@ module.exports = class WhyCommand extends Command {
         .get('https://nekos.life/api/v2/why')
         const embed = new RichEmbed()
 	        embed.setTitle('Random Fact~')
-            console.log(body.why)
+            console.log(body.why.charAt(0))
             embed.setDescription(`${body.why}`)
             embed.setColor('RANDOM')
         return msg.embed(embed);
