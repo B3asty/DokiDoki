@@ -27,7 +27,7 @@ module.exports = class kissCommand extends Command {
         .then(body => {
             const embed = new RichEmbed()
             embed.setDescription(msg.author + ' Kisses ' + args.member)
-            console.log(body.url)
+            console.log(body.Request)
             embed.setImage(body.url)
             embed.setColor('RANDOM')
              return msg.embed(embed);
