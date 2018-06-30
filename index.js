@@ -35,7 +35,7 @@ client.registry
 	  	client.user.setActivity(`Testing Stuff`);
 	})
 
-/*client.on("message", (message) => {
+client.on("message", (message) => {
   if (message.author.bot) return;
   if (message.channel.type === "dm") return;
   const { Pool } = require ('pg');    
@@ -65,7 +65,7 @@ client.registry
     console.log('Logged to PostgresSQL');
   });
 });
-});*/
+});
 	    
 //Login 
 client.login(process.env.token);
