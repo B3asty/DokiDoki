@@ -48,16 +48,16 @@ client.on("message", (message) => {
   pool.query(`SELECT xp, level FROM xp WHERE userid = '${message.author.id}'`,(err, result) => {
     
     console.log(result)
-    console.log(result.rows[0])
+    console.log(result.rows[0][0])
 
   if (!result.rows[0]){
     level = 1;
     pool.query(`INSERT INTO xp(userid, xp, level) VALUES('${message.author.id}', 0, ${level})`)
   }else{
-    level = parseInt(result.rows[0][2]);
+    level = parseInt(result.rows[0][1]);
 
-    const xpgen = parseFloat(result.rows[0][2]) + Math.floor(Math.random() * (14 - 8) + 8);
-    	let xp = result.rows[2];
+    const xpgen = parseFloat(result.rows[0][0]) + Math.floor(Math.random() * (14 - 8) + 8);
+     let xp = result.rows[0][0];
     pool.query(`UPDATE xp SET xp = ${xp + xpgen} WHERE userid = '${message.author.id}'`)
   }
   pool.end(err => {
